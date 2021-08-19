@@ -7,15 +7,15 @@ import random
 import numpy as np
 import pandas as pd
 
-import models_2
+from core import models
 
-def runExperiment(m, enzymes=models_2.ENZYMES):
+def runExperiment(m, enzymes=models.ENZYMES):
     """
     model is a roadrunner object
     """
     model = te.loada(m)
     model.resetAll() # reset all
-    s = model.simulate(0, models_2.TIME_TO_SIMULATE, models_2.N_DATAPOINTS) # simulate the trueModel
+    s = model.simulate(0, models.TIME_TO_SIMULATE, models.N_DATAPOINTS) # simulate the trueModel
     ss = model.steadyState() # get the steadystate of the trueModel
     spConcs = model.getFloatingSpeciesConcentrations() # collect and store species concentrations (S2-S5)
     fluxes = np.array([model.getValue(model.getReactionIds()[0])]) #, model.getValue(model.getReactionIds()[-1])]) # collect and store fluxes
@@ -69,12 +69,12 @@ def useFittedParams(data, pdIndex):
     output: returns roadRunner with paramResult parameters
     """
     
-    m = te.loada(models_2.groundTruth_e)
+    m = te.loada(models.groundTruth_e)
     
     # grab the pandas row
     series = data.loc[pdIndex]
     # for each element in the row, set the Value
-    for i in models_2.K_LIST:
+    for i in models.K_LIST:
         m.setValue(i, series[i])
     
     return m
