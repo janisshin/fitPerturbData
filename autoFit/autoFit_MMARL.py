@@ -1,4 +1,4 @@
-# autoFit_single_MMARL_2.py
+# autoFit_single_MMARL_3.py
 
 import tellurium as te
 import numpy as np
@@ -24,7 +24,8 @@ def fitMultipleModels(n, fileName=None, groundTruthModel=models_2.groundTruth_mo
         fitMultipleModelsData.list
     """
     def residuals(p): # p for parameters that change when lmfitting
-        return runExperiment_pFit(p)# normalized list of differences;
+        y1 =  groundTruth - runExperiment_pFit(p) # this is a list of differences
+        return y1
 
     def runExperiment_pFit(p):
         m = te.loada(model)
@@ -48,20 +49,19 @@ def fitMultipleModels(n, fileName=None, groundTruthModel=models_2.groundTruth_mo
             ss = m.steadyState() # calculate new steadystate
             spConcs_e = m.getFloatingSpeciesConcentrations() # collect and store species concentrations (S2-S5)
 
-            spfoldChange = evaluate.normalizer(evaluate.normalizer(spConcs_e, spConcs), groundTruth[(i*4):(i*4+4)]) # 4 each time # (spConcs_e-spConcs)/spConcs
-            perturbationData[i,:] = spfoldChange
+            # spfoldChange = evaluate.normalizer(evaluate.normalizer(spConcs_e, spConcs), groundTruth[(i*4):(i*4+4)]) # 4 each time # (spConcs_e-spConcs)/spConcs
+            perturbationData[i,:] = spConcs_e # spfoldChange
 
             fluxes_e = np.array([m.getValue(m.getReactionIds()[0])]) #, m.getValue(m.getReactionIds()[-1])])
 
             # fluxFoldChange = evaluate.normalizer(evaluate.normalizer(fluxes_e, fluxes), groundTruth[20+i]) # 1 each time # (fluxes_e-fluxes)/fluxes
-            fluxFoldChange = evaluate.normalizer(fluxes_e, fluxes)
+            # fluxFoldChange = evaluate.normalizer(fluxes_e, fluxes)
 
-            fluxData[i,:] = fluxFoldChange
+            fluxData[i,:] = fluxes_e # fluxFoldChange
 
             # normalize spConcs and fluxes
-            n_spConcs = evaluate.normalizer(spConcs, groundTruth[25:29])
-            n_fluxes = evaluate.normalizer(fluxes, groundTruth[29])
-
+            # n_spConcs = evaluate.normalizer(spConcs, groundTruth[25:29])
+            # n_fluxes = evaluate.normalizer(fluxes, groundTruth[29])
 
         allData = np.concatenate((np.ravel(perturbationData), np.ravel(fluxData), np.ravel(spConcs)))
         allData = np.append(allData, fluxes)
@@ -77,8 +77,7 @@ def fitMultipleModels(n, fileName=None, groundTruthModel=models_2.groundTruth_mo
         fileName = 'fitMultipleModelsData_.list'
     f = open(fileName, "a") 
     
-    i = 0
-    while i < 100: 
+    for i in range(n): 
         model = models_2.generateSingleModel(groundTruthModel_string=models_2.groundTruth_mod_e, parameters=models_2.K_LIST)
 
         for param in toFit: 
@@ -87,11 +86,11 @@ def fitMultipleModels(n, fileName=None, groundTruthModel=models_2.groundTruth_mo
         minimizer = lmfit.Minimizer(residuals, params)  
         result = minimizer.minimize(method='leastsqr') # DETERMINISTIC 
         
-        if result.chisqr < 100:
-            for ii in models_2.K_LIST:
-                f.write(str(result.params[ii].value) + '\n')
-            f.write(str(result.chisqr) + '\n')
-            i += 1
+        for ii in models_2.K_LIST:
+            f.write(str(result.params[ii].value) + '\n')
+            # print(str(result.params[ii].value) + '\n')
+        f.write(str(result.chisqr) + '\n')
+        # print(str(result.chisqr) + '\n')
 
     f.close() 
     
