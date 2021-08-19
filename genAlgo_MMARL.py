@@ -1,16 +1,68 @@
+# revised 11:03 20210806
 
+from numpy.core.fromnumeric import sort
 import tellurium as te
 import random
 import numpy as np
-from time import time
+import os
+
 import models_2
+import evaluate_3
 
-
-# Crossover - create 5 children
-params = ['k1','k11','k2','k22','k3'] #,'k33','k4','k44','k5','k55']
-def generateOffspring(currentPopulation, crossOver=params):
+# Crossover
+def generateOffspring(n, population):
     """
     creates new models from current model lineup
+    Parameters
+        n: number of offspring to make
+        population: current gene pool
+        parameters
+    """
+    offspring = []
+    for i in range(n):
+        isMutation = bool(random.getrandbits(1))
+        
+        if isMutation: # mutation
+            offspring = performMutation(population)
+        else:
+            offspring = performCrossover(population)
+    
+        # write child to file
+        j = 0
+        while os.path.exists(population + "/antimonyModel_" + str(j) + ".txt"):
+            j += 1
+        fileName = population + "/antimonyModel_" + str(j) + ".txt"
+        f = open(fileName, "w")
+        f.write(offspring) 
+        del offspring
+        f.close()
+        
+
+def performMutation(population, parameters=models_2.K_LIST):
+    """
+    
+    """
+    p = parameters.copy()
+    
+    # randomly choose an existing file
+    parent = population + "/" + random.choice(os.listdir(population))
+
+    f = open(parent, "r")
+    child = te.loada(f.read())
+
+    n = random.randint(1, len(p)-1) # number of mutations to make in an individual
+    
+    for i in range(n):
+        random.shuffle(p) # choose a random parameter
+        nn = p.pop()
+        nnn = random.randint(1,1000) # choose which value to set parameter
+        child.setValue(nn, nnn)
+
+    return child.getCurrentAntimony()
+    
+
+def performCrossover(population, parameters=models_2.K_LIST[0:3]):
+    """
     Parameters
         currentPopulation = Str-list of Antimony strings of roadrunner models
         parameters = Str-list
@@ -19,27 +71,43 @@ def generateOffspring(currentPopulation, crossOver=params):
         offspring = Str-list of Antimony strings of roadrunner models
             list will be the same length as currentPopulation
     """
-    random.shuffle(currentPopulation) # shuffle the list
-    offspring = []
-    for i in range(len(crossOver)):
-        indexA = i * 2
-        indexB = indexA + 1
-        a = te.loada(currentPopulation[indexA])
-        b = te.loada(currentPopulation[indexB])
-        aValues = a.getGlobalParameterValues()
-        bValues = b.getGlobalParameterValues()
-        for p in crossOver:
-            aa = a.getValue(p)
-            bb = b.getValue(p)
-            a.setValue(p, bb)
-            b.setValue(p, aa)
-        offspring.append(a.getAntimony())
-        offspring.append(b.getAntimony())
-    return offspring
+    
+    # choose the parents
+    parentA = population + "/" + random.choice(os.listdir(population))
+    parentB = population + "/" + random.choice(os.listdir(population))
+    while parentA == parentB:
+        parentB = population + "/" + random.choice(os.listdir(population))
 
+    # create crossed child
+    f = open(parentA, "r")
+    parentA = te.loada(f.read())
+    f = open(parentB, "r")
+    child = te.loada(f.read())
+
+    for p in parameters:
+        aa = parentA.getValue(p)
+        child.setValue(p, aa)
+
+    del f; del parentB; del parentA
+
+    return child.getCurrentAntimony()
+
+def calculateFitness(population):
+    """
+    population = name of directory containing Antimony files
+    scores = dictionary of file name and score
+    """
+    scores = {}
+    groundTruthData = evaluate_3.runExperiment(models_2.groundTruth_mod_e)
+    for individual in os.listdir(population):
+        f = open(population + "/" + individual, "r")
+        individualData = evaluate_3.runExperiment(f.read())
+        chiSq = np.sum(np.square(groundTruthData - individualData))
+        scores[individual] = chiSq
+    return scores #### here might be the memory problem
 
 # Selection 
-def selectFittest(population, scoreResults, n):
+def selectFittest(population, n):
     """
     Orders models from most fit to least fit. Removes least fit models. 
     Parameters
@@ -48,108 +116,79 @@ def selectFittest(population, scoreResults, n):
             number of survivors
         scoreResults: float-list
     """
-    fitnessOrder = scoreResults.copy()
-    fitnessOrder.sort() # sort in order of fittest to least fit
-    removeList = []
-    for i in range(len(scoreResults)-n):
-        # pop the value from fitnessOrder
-        value = fitnessOrder.pop(-1)
-        # find the value's index in scoreResults
-        index = scoreResults.index(value)
-        removeList.append(index)
-        
-    removeList.sort(reverse=True)
-    # remove the model from scrambledModels using index
-    for i in removeList:
-        population.pop(i)
+    # compute fitness of population
+    scores = calculateFitness(population)
 
-
-# check convergence
-def checkPopulationConvergence(population, tolerance=1):
-    """
-    Determines whether individuals in population have parameter values that are within tolerance
+    sorted_scores = sorted(scores.items(), key=lambda x: x[1])
     
-    Parameters
-        population: Str-list of Antimony strings of roadrunner models
-        tolerance: int
-            the size of chisq differences between models in the population
-    Returns Bool
-    """
-    f = population.pop()
-    fittest = te.loada(f)
-    fittestParamValues = fittest.getGlobalParameterValues()
-    for m in population:
-        model = te.loada(m)
-        # subtract all parameter values from `fittest`
-        fitDifference = model.getGlobalParameterValues() - fittestParamValues
-        # square and sum all values
-        fitChiSq = np.sum(np.square(fitDifference))
-        print(f"fitChiSq: {fitChiSq}")
-        if fitChiSq > tolerance:
-            population.append(f)
-            return False # the entire population has not converged
-    population.append(f)
-    return True
+    del scores
 
+    for ii in range(n):
+        sorted_scores.pop(0)
+    
+    for s in sorted_scores:
+        os.remove(population + "/" + s[0])
 
-def runGeneticAlgorithm(population, lastGeneration=100, survivorRatio=(7,3), tolerance=100, crossOver=None, toFit=None):
+def extractParams(population):
+    groundTruthData = evaluate_3.runExperiment(models_2.groundTruth_mod_e)
+    scoreFile = open("scores.list", "w")
+    paramFile = open("paramData.list", "w")
+    for individual in os.listdir(population):
+        f = open(population + "/" + individual, "r")
+        individualModel = f.read()
+        individualData = evaluate_3.runExperiment(individualModel)
+        chiSq = np.sum(np.square(groundTruthData - individualData))
+        scoreFile.write(str(chiSq) + "\n")
+        for k in models_2.K_LIST:
+            paramFile.write(str(te.loada(individualModel).getValue(k)) + '\n')
+        f.close()
+    paramFile.close()
+    scoreFile.close()
+
+def runGeneticAlgorithm(population, lastGeneration=100, survivorRatio=(2,9), tolerance=1):
     """
     Run genetic algorithm with a given population until convergence or last generation is reached. 
     Also prints out timestamps for each step
     Parameters
-        population = Str-list of Antimony strings of roadrunner models
+        population = name of Folder containing antimony files of all individuals
         lastGeneration = int
     Returns
         population = Str-list of Antimony strings of roadrunner models
     """
     converged=False
     generation = 1
-    print("simulating generation 1")
-    while not converged or generation < lastGeneration: 
-        t1 = time()
+    
+    f = open("runningOutput.list", "a")
 
-        # generate offspring
-        if not crossOver:
-            offspring = generateOffspring(population, crossOver=crossOver)
-        else: 
-            offspring = generateOffspring(population)
-        t2 = time()
-        print(f"B: {t2-t1}")
-
-        # compute fitness of starting population
-        if not toFit: # if toFit is has argument
-            paramResults, scoreResults = models_2.fitMultipleModels(population, toFit=toFit)
-        else:
-            paramResults, scoreResults = models_2.fitMultipleModels(population)
-        t3 = time()
-        print(f"A: {t3-t2}")
-
-        # compute fitness of offspring
-        offspring_paramResults, offspring_scoreResults = models_2.fitMultipleModels(offspring) 
-        t4 = time()
-        print(f"C: {t4-t3}")
+    while not converged and generation < lastGeneration: 
+        f.write('generation' + str(generation) + '\n')
         
-        # select fittest parents and offspring
-        selectFittest(population, scoreResults, survivorRatio[0]) # parents
-        selectFittest(offspring, offspring_scoreResults, survivorRatio[1]) # offspring
+        # select fittest
+        selectFittest(population, survivorRatio[0])
         
-        t5 = time()
-        print(f"D: {t5-t4}")
-        
-        # define surviving population
-        population = population + offspring
-        t6 = time()
-        print(f"E: {t6-t5}")
+        # create offspring
+        offspring = generateOffspring(survivorRatio[1], population)
 
+        # check fitness
+        scores = calculateFitness(population)
+        
+        f.write('max fitness ' + '\n' + str(max(scores.values())) + '\n')
+        f.write('min fitness ' + '\n' + str(min(scores.values())) + '\n') ### PRINT FITNESS LEVEL OF FITTEST INDIVIDUAL
+        
         generation += 1
-        print(f"simulating generation {generation}")
 
-        # check that genes have converged
-        converged = checkPopulationConvergence(population, tolerance=tolerance)
-        t7 = time()
-        print(f"F: {t7-t6}")
-        print()
-        
-    # if genes have converged or if 100 generations have been reached,
-    print(f"converged? {converged}")
-    return population # this may be unneccesary in an interactive script because population is a list...but may be necessary if you are submitting jobs. 
+        if max(scores.values()) < tolerance:
+            f.write("tolerance")
+            converged = True
+        elif max(scores.values())-min(scores.values()) < 0.0001:
+            f.write("convergence")
+            converged = True
+        f.write(f"converged? {converged}"  + '\n')
+    f.close()
+
+    # print params and scores to files
+    extractParams(population)
+
+
+# folderName = models.generateModelFiles(11)
+# runGeneticAlgorithm("genAlgo_population_3", lastGeneration=10, tolerance=10)

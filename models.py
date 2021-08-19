@@ -1,3 +1,6 @@
+# revised 20210818 
+# changed rand.int to rand.uniform
+
 import tellurium as te
 import random
 import os
@@ -96,7 +99,7 @@ def generateModelFiles(n, groundTruthModel_string=groundTruth_e, parameters=PARA
             if p in knownValues.keys():
                 pValue = knownValues.get(p)
             else:
-                pValue = random.randint(1, 1000)
+                pValue = random.uniform(0, 1000)
             randomModel.setValue(p, pValue) # redefine parameters
         fileName = folderName + "/antimonyModel_" + str(number) + ".txt"
         f = open(fileName, "w")
@@ -118,7 +121,7 @@ def generateSingleModel(groundTruthModel_string=groundTruth_e, parameters=PARAME
     randomModel = te.loada(groundTruthModel_string) # make a copy of the model 
     # set k values to random numbers 
     for p in parameters:
-        pValue = random.randint(1, 1000)
+        pValue = random.uniform(0, 1000)
         randomModel.setValue(p, pValue) # redefine parameters
     return randomModel.getCurrentAntimony()
 
