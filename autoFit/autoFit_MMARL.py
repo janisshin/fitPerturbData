@@ -1,12 +1,14 @@
-# autoFit_single_MMARL_3.py
+# autoFit_single_MMARL_4.py
+
+## this script fits the model to the concentration and flux fold change
 
 import tellurium as te
 import numpy as np
 import lmfit
-import models_2
+import models
 import evaluate
   
-def fitMultipleModels(n, fileName=None, groundTruthModel=models_2.groundTruth_mod_e, toFit=models_2.K_LIST, enzymes=models_2.ENZYMES):
+def fitMultipleModels(n, fileName=None, groundTruthModel=models.groundTruth_mod_e, toFit=models.K_LIST, enzymes=models.ENZYMES):
     """
     Takes in a list of different scrambled models and tries to find parameters which match them to the ground truth model
 
@@ -28,13 +30,14 @@ def fitMultipleModels(n, fileName=None, groundTruthModel=models_2.groundTruth_mo
         return y1
 
     def runExperiment_pFit(p):
+
         m = te.loada(model)
         v = p.valuesdict()
 
         for i in range(0, len(toFit)): # declare all k's as parameters in fitting 
             m[toFit[i]] = v[toFit[i]] # set a parameter based on its name
         
-        s = m.simulate(0, models_2.TIME_TO_SIMULATE, models_2.N_DATAPOINTS) # simulate the trueModel
+        s = m.simulate(0, models.TIME_TO_SIMULATE, models.N_DATAPOINTS) # simulate the trueModel
         ss = m.steadyState() # get the steadystate of the trueModel
         spConcs = m.getFloatingSpeciesConcentrations() # collect and store initial species concentrations (S2-S5)
         fluxes = np.array([m.getValue(m.getReactionIds()[0])]) #, m.getValue(m.getReactionIds()[-1])])
@@ -49,24 +52,18 @@ def fitMultipleModels(n, fileName=None, groundTruthModel=models_2.groundTruth_mo
             ss = m.steadyState() # calculate new steadystate
             spConcs_e = m.getFloatingSpeciesConcentrations() # collect and store species concentrations (S2-S5)
 
-            # spfoldChange = evaluate.normalizer(evaluate.normalizer(spConcs_e, spConcs), groundTruth[(i*4):(i*4+4)]) # 4 each time # (spConcs_e-spConcs)/spConcs
+            spfoldChange = evaluate.normalizer(evaluate.normalizer(spConcs_e, spConcs), groundTruth[(i*4):(i*4+4)]) # 4 each time # (spConcs_e-spConcs)/spConcs
             perturbationData[i,:] = spConcs_e # spfoldChange
 
             fluxes_e = np.array([m.getValue(m.getReactionIds()[0])]) #, m.getValue(m.getReactionIds()[-1])])
 
-            # fluxFoldChange = evaluate.normalizer(evaluate.normalizer(fluxes_e, fluxes), groundTruth[20+i]) # 1 each time # (fluxes_e-fluxes)/fluxes
-            # fluxFoldChange = evaluate.normalizer(fluxes_e, fluxes)
+            fluxFoldChange = evaluate.normalizer(evaluate.normalizer(fluxes_e, fluxes), groundTruth[20+i]) # 1 each time # (fluxes_e-fluxes)/fluxes
+            fluxFoldChange = evaluate.normalizer(fluxes_e, fluxes)
 
-            fluxData[i,:] = fluxes_e # fluxFoldChange
+            fluxData[i,:] = fluxFoldChange
 
-            # normalize spConcs and fluxes
-            # n_spConcs = evaluate.normalizer(spConcs, groundTruth[25:29])
-            # n_fluxes = evaluate.normalizer(fluxes, groundTruth[29])
-
-        allData = np.concatenate((np.ravel(perturbationData), np.ravel(fluxData), np.ravel(spConcs)))
-        allData = np.append(allData, fluxes)
-        
-        # print(allData)
+        allData = np.concatenate((np.ravel(perturbationData), np.ravel(fluxData))) # , np.ravel(spConcs)))
+        # allData = np.append(allData, fluxes)
 
         return allData 
 
@@ -78,15 +75,15 @@ def fitMultipleModels(n, fileName=None, groundTruthModel=models_2.groundTruth_mo
     f = open(fileName, "a") 
     
     for i in range(n): 
-        model = models_2.generateSingleModel(groundTruthModel_string=models_2.groundTruth_mod_e, parameters=models_2.K_LIST)
+        model = models.generateSingleModel(groundTruthModel_string=models.groundTruth_mod_e, parameters=models.K_LIST)
 
         for param in toFit: 
             params.add(param, value=1, min=0, max=1000) # add each parameter to the list of params that lmfit will fit
 
         minimizer = lmfit.Minimizer(residuals, params)  
-        result = minimizer.minimize(method='leastsqr') # DETERMINISTIC 
+        result = minimizer.minimize(method='differential_evolution') # DETERMINISTIC 
         
-        for ii in models_2.K_LIST:
+        for ii in models.K_LIST:
             f.write(str(result.params[ii].value) + '\n')
             # print(str(result.params[ii].value) + '\n')
         f.write(str(result.chisqr) + '\n')
