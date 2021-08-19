@@ -1,5 +1,5 @@
-# revised 11:03 20210806
-# genAlgo_MMARL_5.py
+# revised 20210818
+# genAlgo_MMARL_6.py
 
 from numpy.core.fromnumeric import sort
 import tellurium as te
@@ -41,6 +41,11 @@ def generateOffspring(n, population):
 
 def performMutation(population, parameters=models_2.K_LIST):
     """
+    performs a mutation on a random number of parameters for each individual in population
+    Parameters
+        population: folder of current gene pool
+    Returns
+        Antimony string of child
     
     """
     p = parameters.copy()
@@ -55,10 +60,11 @@ def performMutation(population, parameters=models_2.K_LIST):
     
     for i in range(n):
         random.shuffle(p) # choose a random parameter
-        nn = p.pop()
-        nnn = random.randint(1,1000) # choose which value to set parameter
-        child.setValue(nn, nnn)
-
+        mutation_site = p.pop() # parameter to be mutated
+        param_shift = random.uniform(-1, 1) # how much to mutate the original value
+        original_parameter_value = child.getValue(mutation_site)
+        mutated_parameter_value = original_parameter_value + original_parameter_value * param_shift
+        child.setValue(mutation_site, mutated_parameter_value)
     return child.getCurrentAntimony()
     
 
