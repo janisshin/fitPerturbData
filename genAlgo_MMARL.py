@@ -1,4 +1,5 @@
 # revised 11:03 20210806
+# genAlgo_MMARL_5.py
 
 from numpy.core.fromnumeric import sort
 import tellurium as te
@@ -7,7 +8,7 @@ import numpy as np
 import os
 
 import models_2
-import evaluate_3
+import evaluate_4
 
 # Crossover
 def generateOffspring(n, population):
@@ -98,10 +99,10 @@ def calculateFitness(population):
     scores = dictionary of file name and score
     """
     scores = {}
-    groundTruthData = evaluate_3.runExperiment(models_2.groundTruth_mod_e)
+    groundTruthData = evaluate_4.runExperiment(models_2.groundTruth_mod_e)
     for individual in os.listdir(population):
         f = open(population + "/" + individual, "r")
-        individualData = evaluate_3.runExperiment(f.read())
+        individualData = evaluate_4.runExperiment(f.read())
         chiSq = np.sum(np.square(groundTruthData - individualData))
         scores[individual] = chiSq
     return scores #### here might be the memory problem
@@ -130,13 +131,13 @@ def selectFittest(population, n):
         os.remove(population + "/" + s[0])
 
 def extractParams(population):
-    groundTruthData = evaluate_3.runExperiment(models_2.groundTruth_mod_e)
+    groundTruthData = evaluate_4.runExperiment(models_2.groundTruth_mod_e)
     scoreFile = open("scores.list", "w")
     paramFile = open("paramData.list", "w")
     for individual in os.listdir(population):
         f = open(population + "/" + individual, "r")
         individualModel = f.read()
-        individualData = evaluate_3.runExperiment(individualModel)
+        individualData = evaluate_4.runExperiment(individualModel)
         chiSq = np.sum(np.square(groundTruthData - individualData))
         scoreFile.write(str(chiSq) + "\n")
         for k in models_2.K_LIST:

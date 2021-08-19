@@ -1,5 +1,6 @@
-# revised 20210805
-# runExperiment evaluates absolute concentrations and fluxes
+# revised 20210816
+# evaluate_4
+# runExperiment evaluates relative (foldchange) concentrations and fluxes
 
 import tellurium as te
 import random
@@ -29,17 +30,17 @@ def runExperiment(m, enzymes=models_2.ENZYMES):
         ss = model.steadyState() # calculate new steadystate
         
         spConcs_e = model.getFloatingSpeciesConcentrations() # collect and store species concentrations (S2-S5)
-        # spfoldChange = (spConcs_e-spConcs)/spConcs
-        perturbationData[i,:] = spConcs_e # species fold change
+        spfoldChange = (spConcs_e-spConcs)/spConcs
+        perturbationData[i,:] = spfoldChange # species fold change
 
         fluxes_e = np.array([model.getValue(model.getReactionIds()[0])]) #, model.getValue(model.getReactionIds()[-1])])
-        # fluxFoldChange = (fluxes_e-fluxes)/fluxes
-        fluxData[i,:] = fluxes_e
+        fluxFoldChange = (fluxes_e-fluxes)/fluxes
+        fluxData[i,:] = fluxFoldChange
 
         model.setValue(e, 1)
 
-    allData = np.concatenate((np.ravel(perturbationData), np.ravel(fluxData), np.ravel(spConcs)))
-    allData = np.append(allData, fluxes)
+    allData = np.concatenate((np.ravel(perturbationData), np.ravel(fluxData)))# , np.ravel(spConcs)))
+    # allData = np.append(allData, fluxes)
 
     return allData 
 
