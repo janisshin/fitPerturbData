@@ -6,32 +6,18 @@ import os
 
 # the most basic model. 
 groundTruth = ("""
-  $S1 -> S2; k1*S1 - k11*S2
-  S2 -> S3; k2*S2 - k22*S3
-  S3 -> S4; k3*S3 - k33*S4
-  S4 -> S5; k4*S4 - k44*S5
-  S5 -> $S6; k5*S5 - k55*S6
+  $S1 -> S2; k1*S1 - k2*S2
+  S2 -> S3; k2*S2 - k3*S3
+  S3 -> S4; k3*S3 - k4*S4
+  S4 -> S5; k4*S4 - k5*S5
+  S5 -> $S6; k5*S5 - k6*S6
   S1 = 1; 
-  k1 = 1; k11 = 1.1; 
-  k2 = 2; k22 = 2.2;
-  k3 = 3; k33 = 3.3; 
-  k4 = 4; k44 = 4.4;
-  k5 = 5; k55 = 5.5; 
-""")
-
-# scrambled version of grountTruth model
-scrambled = ("""
-  $S1 -> S2; k1*S1 - k11*S2
-  S2 -> S3; k2*S2 - k22*S3
-  S3 -> S4; k3*S3 - k33*S4
-  S4 -> S5; k4*S4 - k44*S5
-  S5 -> $S6; k5*S5 - k55*S6
-  S1 = 1; 
-  k1 = 4; k11 = 8; 
-  k2 = 5; k22 = 3;
-  k3 = 2; k33 = 2; 
-  k4 = 9; k44 = 3;
-  k5 = 6; k55 = 7; 
+  k1 = 1; 
+  k2 = 2; 
+  k3 = 3;
+  k4 = 4; 
+  k5 = 5;
+  k6 = 6; 
 """)
 
 # groundTruth model with reverse reaction constants replaced with Keq terms
@@ -51,35 +37,20 @@ groundTruth_mod = ("""
 
 # groundTruth model with enzyme terms
 groundTruth_e = ("""
-  R1: $S1 -> S2; (e1) * (k1*S1 - k11*S2)
-  R2: S2 -> S3; (e2) * (k2*S2 - k22*S3)
-  R3: S3 -> S4; (e3) * (k3*S3 - k33*S4)
-  R4: S4 -> S5; (e4) * (k4*S4 - k44*S5)
-  R5: S5 -> $S6; (e5) * (k5*S5 - k55*S6)
+  R1: $S1 -> S2; (e1) * (k1*S1 - k2*S2)
+  R2: S2 -> S3; (e2) * (k2*S2 - k3*S3)
+  R3: S3 -> S4; (e3) * (k3*S3 - k4*S4)
+  R4: S4 -> S5; (e4) * (k4*S4 - k5*S5)
+  R5: S5 -> $S6; (e5) * (k5*S5 - k6*S6)
   S1 = 1; 
-  k1 = 1; k11 = 1.1; 
-  k2 = 2; k22 = 2.2;
-  k3 = 3; k33 = 3.3; 
-  k4 = 4; k44 = 4.4;
-  k5 = 5; k55 = 5.5; 
+  k1 = 1; 
+  k2 = 2; 
+  k3 = 3; 
+  k4 = 4; 
+  k5 = 5; 
+  k6 = 6;
   e1 = 1; e2 = 1; e3 = 1; e4 = 1; e5 = 1;
 """) 
-
-# scrambled version of grountTruth model with enzyme terms
-scrambled_e = ("""
-  R1: $S1 -> S2; (e1) * (k1*S1 - k11*S2)
-  R2: S2 -> S3; (e2) * (k2*S2 - k22*S3)
-  R3: S3 -> S4; (e3) * (k3*S3 - k33*S4)
-  R4: S4 -> S5; (e4) * (k4*S4 - k44*S5)
-  R5: S5 -> $S6; (e5) * (k5*S5 - k55*S6)
-  S1 = 1; 
-  k1 = 4; k11 = 8; 
-  k2 = 5; k22 = 3;
-  k3 = 2; k33 = 2; 
-  k4 = 9; k44 = 3;
-  k5 = 6; k55 = 7; 
-  e1 = 1; e2 = 1; e3 = 1; e4 = 1; e5 = 1;
-""")
 
 # groundTruth model with reverse reaction constants replaced with Keq terms and enzyme terms
 groundTruth_mod_e = ("""
@@ -99,9 +70,10 @@ groundTruth_mod_e = ("""
 
 ENZYMES = ["e1", "e2", "e3", "e4", "e5"] 
 PARAMETERS = te.loada(groundTruth).getGlobalParameterIds() # parameters for groundTruth model
+MOD_PARAMETERS = ['Keq1','Keq2','Keq3','Keq4','Keq5']
 TIME_TO_SIMULATE = 100
 N_DATAPOINTS = 100
-K_LIST = ['k1', 'k11', 'k2', 'k22', 'k3', 'k33', 'k4', 'k44', 'k5', 'k55']
+K_LIST = ['k1', 'k2', 'k3', 'k4', 'k5']
 
 def generateModelFiles(n, groundTruthModel_string=groundTruth_e, parameters=PARAMETERS, knownValues={}):
     """
@@ -149,25 +121,6 @@ def generateSingleModel(groundTruthModel_string=groundTruth_e, parameters=PARAME
         pValue = random.randint(1, 1000)
         randomModel.setValue(p, pValue) # redefine parameters
     return randomModel.getCurrentAntimony()
-
-def generateModModel(n, model_string=groundTruth_mod_e, knownValues=None):
-    """
-    generates n number of models with Keq terms
-    Parameters:
-        n: int. number of models desired by user
-        model_string: String. template to make random models
-        knownValues: dict. contains parameter name followed by numerical value
-
-    Returns: 
-        List of Strings. Models are expressed in String form and have random values for parameters. Keq is used
-
-    """
-    if knownValues==None: # if the model has modified mass action rate laws,
-        raise ValueError("Must specify Keq values in dictionary form")
-    elif not knownValues: 
-        raise ValueError("dictionary is empty!")
-    params=te.loada(groundTruth_mod).getGlobalParameterIds()
-    return generateModel(n, groundTruthModel_string=model_string, parameters=params, knownValues=knownValues)
 
 # check if folder exists; if not, make a new folder
 def makeFolder(folderName):
