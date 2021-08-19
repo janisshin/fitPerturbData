@@ -1,3 +1,5 @@
+# autoFit_single_MMARL_2.py
+
 import tellurium as te
 import numpy as np
 import lmfit
@@ -72,10 +74,11 @@ def fitMultipleModels(n, fileName=None, groundTruthModel=models_2.groundTruth_mo
     params = lmfit.Parameters()
 
     if not fileName:
-        fileName = 'fitMultipleModelsData.list'
-    f = open(fileName, "w") 
+        fileName = 'fitMultipleModelsData_.list'
+    f = open(fileName, "a") 
     
-    for i in range(n):
+    i = 0
+    while i < 100: 
         model = models_2.generateSingleModel(groundTruthModel_string=models_2.groundTruth_mod_e, parameters=models_2.K_LIST)
 
         for param in toFit: 
@@ -83,9 +86,12 @@ def fitMultipleModels(n, fileName=None, groundTruthModel=models_2.groundTruth_mo
 
         minimizer = lmfit.Minimizer(residuals, params)  
         result = minimizer.minimize(method='leastsqr') # DETERMINISTIC 
-        for ii in models_2.K_LIST:
-            f.write(str(result.params[ii].value) + '\n')
-        f.write(str(result.chisqr) + '\n')
+        
+        if result.chisqr < 100:
+            for ii in models_2.K_LIST:
+                f.write(str(result.params[ii].value) + '\n')
+            f.write(str(result.chisqr) + '\n')
+            i += 1
 
     f.close() 
     
