@@ -1,5 +1,5 @@
-# revised 20210818
-# genAlgo_MMARL_6.py
+# v = Vm1/Km1*(S1 - S2/Keq)/(1 + S1/Km1 + S2/Km2)
+
 
 from numpy.core.fromnumeric import sort
 import tellurium as te
@@ -7,8 +7,8 @@ import random
 import numpy as np
 import os
 
-import models_2
-import evaluate_4
+from core import models
+from core import evaluate
 
 # Crossover
 def generateOffspring(n, population):
@@ -39,7 +39,7 @@ def generateOffspring(n, population):
         f.close()
         
 
-def performMutation(population, parameters=models_2.K_LIST):
+def performMutation(population, parameters=models.K_LIST):
     """
     performs a mutation on a random number of parameters for each individual in population
     Parameters
@@ -61,14 +61,18 @@ def performMutation(population, parameters=models_2.K_LIST):
     for i in range(n):
         random.shuffle(p) # choose a random parameter
         mutation_site = p.pop() # parameter to be mutated
-        param_shift = random.uniform(-1, 1) # how much to mutate the original value
+        param_shift = random.uniform(-0.2, 0.2) # how much to mutate the original value
+
+        # currently the learning rate is 0.2
+
+
         original_parameter_value = child.getValue(mutation_site)
         mutated_parameter_value = original_parameter_value + original_parameter_value * param_shift
         child.setValue(mutation_site, mutated_parameter_value)
     return child.getCurrentAntimony()
     
 
-def performCrossover(population, parameters=models_2.K_LIST[0:3]):
+def performCrossover(population, parameters=models.K_LIST[0:3]):
     """
     Parameters
         currentPopulation = Str-list of Antimony strings of roadrunner models
@@ -105,10 +109,10 @@ def calculateFitness(population):
     scores = dictionary of file name and score
     """
     scores = {}
-    groundTruthData = evaluate_4.runExperiment(models_2.groundTruth_mod_e)
+    groundTruthData = evaluate.runExperiment(models.groundTruth_mod_e)
     for individual in os.listdir(population):
         f = open(population + "/" + individual, "r")
-        individualData = evaluate_4.runExperiment(f.read())
+        individualData = evaluate.runExperiment(f.read())
         chiSq = np.sum(np.square(groundTruthData - individualData))
         scores[individual] = chiSq
     return scores #### here might be the memory problem
@@ -136,23 +140,24 @@ def selectFittest(population, n):
     for s in sorted_scores:
         os.remove(population + "/" + s[0])
 
-def extractParams(population):
-    groundTruthData = evaluate_4.runExperiment(models_2.groundTruth_mod_e)
-    scoreFile = open("scores.list", "w")
-    paramFile = open("paramData.list", "w")
+def extractParams(population, folderName=''):
+    groundTruthData = evaluate.runExperiment(models.groundTruth_mod_e)
+    
+    scoreFile = open(folderName + "/scores.list", "w")
+    paramFile = open(folderName + "/paramData.list", "w")
     for individual in os.listdir(population):
         f = open(population + "/" + individual, "r")
         individualModel = f.read()
-        individualData = evaluate_4.runExperiment(individualModel)
+        individualData = evaluate.runExperiment(individualModel)
         chiSq = np.sum(np.square(groundTruthData - individualData))
         scoreFile.write(str(chiSq) + "\n")
-        for k in models_2.K_LIST:
+        for k in models.K_LIST:
             paramFile.write(str(te.loada(individualModel).getValue(k)) + '\n')
         f.close()
     paramFile.close()
     scoreFile.close()
 
-def runGeneticAlgorithm(population, lastGeneration=100, survivorRatio=(2,9), tolerance=1):
+def runGeneticAlgorithm(population, lastGeneration=100, survivorRatio=(2,9), tolerance=1, runID=''):
     """
     Run genetic algorithm with a given population until convergence or last generation is reached. 
     Also prints out timestamps for each step
@@ -163,9 +168,9 @@ def runGeneticAlgorithm(population, lastGeneration=100, survivorRatio=(2,9), tol
         population = Str-list of Antimony strings of roadrunner models
     """
     converged=False
-    generation = 1
-    
-    f = open("runningOutput.list", "a")
+    generation = 1    
+
+    f = open(runID + "/runningOutput.list", "a")
 
     while not converged and generation < lastGeneration: 
         f.write('generation' + str(generation) + '\n')
@@ -194,7 +199,7 @@ def runGeneticAlgorithm(population, lastGeneration=100, survivorRatio=(2,9), tol
     f.close()
 
     # print params and scores to files
-    extractParams(population)
+    extractParams(population, folderName=runID)
 
 
 # folderName = models.generateModelFiles(11)

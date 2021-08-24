@@ -1,9 +1,8 @@
-# revised 20210818 
-# changed rand.int to rand.uniform
 
 import tellurium as te
 import random
 import os
+from datetime import datetime
 
 # all of the models are in String form
 
@@ -78,7 +77,7 @@ TIME_TO_SIMULATE = 100
 N_DATAPOINTS = 100
 K_LIST = ['k1', 'k2', 'k3', 'k4', 'k5']
 
-def generateModelFiles(n, groundTruthModel_string=groundTruth_e, parameters=PARAMETERS, knownValues={}):
+def generateModelFiles(n, groundTruthModel_string=groundTruth_e, parameters=PARAMETERS, knownValues={}, folderName=None):
     """
     generates n number of models that do not contain Keq terms
     
@@ -90,7 +89,10 @@ def generateModelFiles(n, groundTruthModel_string=groundTruth_e, parameters=PARA
         List of Strings. Models are expressed in String form and have random values for parameters. 
     """
     # make a folder 
-    folderName = makeFolder("genAlgo_population")
+    if not folderName:
+        folderName = makeFolder("data/genAlgo_population")
+    else:
+        folderName = makeFolder(folderName + '/genAlgo_population')
     
     for number in range(n):
         randomModel = te.loada(groundTruthModel_string) # make a copy of the model 
@@ -126,13 +128,23 @@ def generateSingleModel(groundTruthModel_string=groundTruth_e, parameters=PARAME
     return randomModel.getCurrentAntimony()
 
 # check if folder exists; if not, make a new folder
-def makeFolder(folderName):
+def makeFolder(folderName, date=False):
+    """
+    Returns
+        numbered_folderName: Str
+    """
     i = 1
-    if not os.path.exists(folderName):
-        os.mkdir(folderName)
-        return folderName
-    while os.path.exists(folderName+"_"+str(i)):
+
+    if date:
+        now = datetime.now() # current date and time
+        folderName = folderName + now.strftime("%Y%m%d")
+    
+    numbered_folderName = folderName + "_" + str(i)
+    if not os.path.exists(numbered_folderName):
+        os.mkdir(numbered_folderName)
+        return numbered_folderName
+    while os.path.exists(numbered_folderName):
         i += 1
-    folderName = folderName+"_"+str(i)
-    os.mkdir(folderName)
-    return folderName
+        numbered_folderName = folderName + "_" + str(i)
+    os.mkdir(numbered_folderName)
+    return numbered_folderName
