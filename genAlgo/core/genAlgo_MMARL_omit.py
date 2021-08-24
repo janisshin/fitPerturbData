@@ -1,3 +1,4 @@
+# the same things as genAlgo_MMARL, but runExperiment has been changed to runExperiment_omit
 # v = Vm1/Km1*(S1 - S2/Keq)/(1 + S1/Km1 + S2/Km2)
 
 
@@ -61,7 +62,10 @@ def performMutation(population, parameters=models.K_LIST):
     for i in range(n):
         random.shuffle(p) # choose a random parameter
         mutation_site = p.pop() # parameter to be mutated
-        param_shift = random.uniform(-0.2, 0.2) # how much to mutate the original value # the learning rate is 0.2
+        param_shift = random.uniform(-0.2, 0.2) # how much to mutate the original value
+
+        # currently the learning rate is 0.2
+
 
         original_parameter_value = child.getValue(mutation_site)
         mutated_parameter_value = original_parameter_value + original_parameter_value * param_shift
@@ -106,10 +110,10 @@ def calculateFitness(population):
     scores = dictionary of file name and score
     """
     scores = {}
-    groundTruthData = evaluate.runExperiment(models.groundTruth_mod_e)
+    groundTruthData = evaluate.runExperiment_omit(models.groundTruth_mod_e)
     for individual in os.listdir(population):
         f = open(population + "/" + individual, "r")
-        individualData = evaluate.runExperiment(f.read())
+        individualData = evaluate.runExperiment_omit(f.read())
         chiSq = np.sum(np.square(groundTruthData - individualData))
         scores[individual] = chiSq
     return scores #### here might be the memory problem
@@ -138,14 +142,14 @@ def selectFittest(population, n):
         os.remove(population + "/" + s[0])
 
 def extractParams(population, folderName=''):
-    groundTruthData = evaluate.runExperiment(models.groundTruth_mod_e)
+    groundTruthData = evaluate.runExperiment_omit(models.groundTruth_mod_e)
     
     scoreFile = open(folderName + "/scores.list", "w")
     paramFile = open(folderName + "/paramData.list", "w")
     for individual in os.listdir(population):
         f = open(population + "/" + individual, "r")
         individualModel = f.read()
-        individualData = evaluate.runExperiment(individualModel)
+        individualData = evaluate.runExperiment_omit(individualModel)
         chiSq = np.sum(np.square(groundTruthData - individualData))
         scoreFile.write(str(chiSq) + "\n")
         for k in models.K_LIST:
