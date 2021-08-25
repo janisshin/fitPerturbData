@@ -1,0 +1,3 @@
+in this experiment, I ran the genAlgo_MMARL_omit.py
+Bascially, I omitted the foldchange values for E1/S1 and E2/S1
+I ran the genAlgo until it reached a tolerance of 0.1 (less than 10 generations)

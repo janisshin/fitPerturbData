@@ -5,7 +5,7 @@ import numpy as np
 from core import models
 from core import evaluate
 
-def getFoldChangeValues(testModel=te.loada(models.groundTruth_mod_e), paramData="paramData.list"):
+def getFoldChangeValues(testModel=te.loada(models.groundTruth_mod_e), paramData="paramData.list", folderName='data'):
     """
     Parameters
 
@@ -34,7 +34,7 @@ def getFoldChangeValues(testModel=te.loada(models.groundTruth_mod_e), paramData=
         # print allData
 
     # open file
-    f = open("data/allData.list", "w")
+    f = open(folderName + "/allData.list", "w")
 
     for row in arr:
         for i, parameter in enumerate(row):
