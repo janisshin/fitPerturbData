@@ -1,5 +1,3 @@
-# v = Vm1/Km1*(S1 - S2/Keq)/(1 + S1/Km1 + S2/Km2)
-
 
 from numpy.core.fromnumeric import sort
 import tellurium as te
@@ -11,7 +9,7 @@ from core import models
 from core import evaluate
 
 # Crossover
-def generateOffspring(n, population):
+def generateOffspring(n, population, parameters):
     """
     creates new models from current model lineup
     Parameters
@@ -24,9 +22,9 @@ def generateOffspring(n, population):
         isMutation = bool(random.getrandbits(1))
         
         if isMutation: # mutation
-            offspring = performMutation(population)
+            offspring = performMutation(population, parameters)
         else:
-            offspring = performCrossover(population)
+            offspring = performCrossover(population, parameters)
     
         # write child to file
         j = 0
@@ -39,7 +37,7 @@ def generateOffspring(n, population):
         f.close()
         
 
-def performMutation(population, parameters=models.K_LIST):
+def performMutation(population, parameters):
     """
     performs a mutation on a random number of parameters for each individual in population
     Parameters
@@ -69,7 +67,7 @@ def performMutation(population, parameters=models.K_LIST):
     return child.getCurrentAntimony()
     
 
-def performCrossover(population, parameters=models.K_LIST[0:3]):
+def performCrossover(population, parameters):
     """
     Parameters
         currentPopulation = Str-list of Antimony strings of roadrunner models
@@ -92,7 +90,7 @@ def performCrossover(population, parameters=models.K_LIST[0:3]):
     f = open(parentB, "r")
     child = te.loada(f.read())
 
-    for p in parameters:
+    for p in parameters[0:3]:
         aa = parentA.getValue(p)
         child.setValue(p, aa)
 
@@ -100,13 +98,13 @@ def performCrossover(population, parameters=models.K_LIST[0:3]):
 
     return child.getCurrentAntimony()
 
-def calculateFitness(population):
+def calculateFitness(population, groundTruth):
     """
     population = name of directory containing Antimony files
     scores = dictionary of file name and score
     """
     scores = {}
-    groundTruthData = evaluate.runExperiment(models.groundTruth_mod_e)
+    groundTruthData = evaluate.runExperiment(groundTruth)
     for individual in os.listdir(population):
         f = open(population + "/" + individual, "r")
         individualData = evaluate.runExperiment(f.read())
@@ -115,7 +113,7 @@ def calculateFitness(population):
     return scores #### here might be the memory problem
 
 # Selection 
-def selectFittest(population, n):
+def selectFittest(population, groundTruth, n):
     """
     Orders models from most fit to least fit. Removes least fit models. 
     Parameters
@@ -125,7 +123,7 @@ def selectFittest(population, n):
         scoreResults: float-list
     """
     # compute fitness of population
-    scores = calculateFitness(population)
+    scores = calculateFitness(population, groundTruth)
 
     sorted_scores = sorted(scores.items(), key=lambda x: x[1])
     
@@ -137,24 +135,29 @@ def selectFittest(population, n):
     for s in sorted_scores:
         os.remove(population + "/" + s[0])
 
-def extractParams(population, folderName=''):
-    groundTruthData = evaluate.runExperiment(models.groundTruth_mod_e)
+def extractParams(population, parameters, groundTruth, folderName=''):
+    groundTruthData = evaluate.runExperiment(groundTruth)
     
-    scoreFile = open(folderName + "/scores.list", "w")
-    paramFile = open(folderName + "/paramData.list", "w")
+    if folderName: 
+        scoreFile = open(folderName + "/scores.list", "w")
+        paramFile = open(folderName + "/paramData.list", "w")
+    else: 
+        scoreFile = open("scores.list", "w")
+        paramFile = open("paramData.list", "w")
+
     for individual in os.listdir(population):
         f = open(population + "/" + individual, "r")
         individualModel = f.read()
         individualData = evaluate.runExperiment(individualModel)
         chiSq = np.sum(np.square(groundTruthData - individualData))
         scoreFile.write(str(chiSq) + "\n")
-        for k in models.K_LIST:
+        for k in parameters:
             paramFile.write(str(te.loada(individualModel).getValue(k)) + '\n')
         f.close()
     paramFile.close()
     scoreFile.close()
 
-def runGeneticAlgorithm(population, lastGeneration=100, survivorRatio=(2,9), tolerance=1, runID=''):
+def runGeneticAlgorithm(population, groundTruth=models.groundTruth_mod_e, parameters=models.K_LIST, lastGeneration=100, survivorRatio=(2,9), tolerance=1, runID=''):
     """
     Run genetic algorithm with a given population until convergence or last generation is reached. 
     Also prints out timestamps for each step
@@ -166,20 +169,23 @@ def runGeneticAlgorithm(population, lastGeneration=100, survivorRatio=(2,9), tol
     """
     converged=False
     generation = 1    
-
-    f = open(runID + "/runningOutput.list", "a")
+    
+    if runID:
+        f = open(runID + "/runningOutput.list", "a")
+    else: 
+        f = open("runningOutput.list", "a")
 
     while not converged and generation < lastGeneration: 
         f.write('generation ' + str(generation) + '\n')
         
         # select fittest
-        selectFittest(population, survivorRatio[0])
+        selectFittest(population, groundTruth, survivorRatio[0])
         
         # create offspring
-        offspring = generateOffspring(survivorRatio[1], population)
+        offspring = generateOffspring(survivorRatio[1], population, parameters)
 
         # check fitness
-        scores = calculateFitness(population)
+        scores = calculateFitness(population, groundTruth)
         
         f.write('max fitness ' + '\n' + str(max(scores.values())) + '\n')
         f.write('min fitness ' + '\n' + str(min(scores.values())) + '\n') ### PRINT FITNESS LEVEL OF FITTEST INDIVIDUAL
@@ -196,7 +202,7 @@ def runGeneticAlgorithm(population, lastGeneration=100, survivorRatio=(2,9), tol
     f.close()
 
     # print params and scores to files
-    extractParams(population, folderName=runID)
+    extractParams(population, parameters, groundTruth, folderName=runID)
 
 
 # folderName = models.generateModelFiles(11)
