@@ -1,0 +1,4 @@
+in this experiment, I ran the genAlgo_MMARL.py
+it had a learning rate of 0.5
+the genAlgo was run up til a tolerance of 0.01
+

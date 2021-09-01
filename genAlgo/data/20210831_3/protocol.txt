@@ -1,0 +1,5 @@
+in this experiment, I ran the genAlgo_MMARL_omit.py
+it had a learning rate of 0.5
+I omitted the fold change values for E1/S1, E2/S2, E3/S3, and E4/S4 (this is [0,4,9,20] in allData numpy)
+the genAlgo was run up til a tolerance of 0.01
+
