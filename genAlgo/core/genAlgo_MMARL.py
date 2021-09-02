@@ -203,7 +203,3 @@ def runGeneticAlgorithm(population, groundTruth=models.groundTruth_mod_e, parame
 
     # print params and scores to files
     extractParams(population, parameters, groundTruth, folderName=runID)
-
-
-# folderName = models.generateModelFiles(11)
-# runGeneticAlgorithm("genAlgo_population_3", lastGeneration=10, tolerance=10)

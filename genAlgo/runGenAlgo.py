@@ -7,5 +7,5 @@ runID = models.makeFolder('data/',date = True)
 # folderName = 'genAlgo_population'
 # genAlgo_MMARL.runGeneticAlgorithm(populationFolder, survivorRatio=(10,90), lastGeneration=300, tolerance=0.01, runID=runID)
 
-populationFolder = models.generateModelFiles(100, groundTruthModel_string=models.groundTruth_MM_e, parameters=models.Km_LIST)
+populationFolder = models.generateModelFiles(100, groundTruthModel_string=models.groundTruth_MM_e, parameters=models.Km_LIST, folderName=runID)
 genAlgo_MMARL.runGeneticAlgorithm(populationFolder, groundTruth=models.groundTruth_MM_e, parameters=models.Km_LIST, survivorRatio=(10,90), lastGeneration=300, tolerance=0.01, runID=runID)
