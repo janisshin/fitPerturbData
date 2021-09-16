@@ -1,0 +1,495 @@
+generation 1
+max fitness: 0.2635800663772752
+min fitness: 0.07263901943154893
+converged? False
+
+generation 2
+max fitness: 0.1535377329880216
+min fitness: 0.06855956334796662
+converged? False
+
+generation 3
+max fitness: 0.12377145376892273
+min fitness: 0.0643511747167765
+converged? False
+
+generation 4
+max fitness: 0.10390880485886195
+min fitness: 0.05968291042435782
+converged? False
+
+generation 5
+max fitness: 0.11501177159713297
+min fitness: 0.05554523585071399
+converged? False
+
+generation 6
+max fitness: 0.1421195165588622
+min fitness: 0.05359554977832977
+converged? False
+
+generation 7
+max fitness: 0.17235830207149624
+min fitness: 0.05035088972916946
+converged? False
+
+generation 8
+max fitness: 0.1424044310076974
+min fitness: 0.04891184484375552
+converged? False
+
+generation 9
+max fitness: 0.09299843179292891
+min fitness: 0.04483771393084608
+converged? False
+
+generation 10
+max fitness: 0.11999839511391859
+min fitness: 0.041145990813571856
+converged? False
+
+generation 11
+max fitness: 0.12846468144894418
+min fitness: 0.041006686122538695
+converged? False
+
+generation 12
+max fitness: 0.10553074789293185
+min fitness: 0.03889897677435263
+converged? False
+
+generation 13
+max fitness: 0.09045697347838756
+min fitness: 0.03630642935887354
+converged? False
+
+generation 14
+max fitness: 0.14422439709220877
+min fitness: 0.03384006007377686
+converged? False
+
+generation 15
+max fitness: 0.1288383210472611
+min fitness: 0.03384006007377686
+converged? False
+
+generation 16
+max fitness: 0.1684925421423303
+min fitness: 0.03348861682005395
+converged? False
+
+generation 17
+max fitness: 0.08716802950335777
+min fitness: 0.031865303887470456
+converged? False
+
+generation 18
+max fitness: 0.09160576945892869
+min fitness: 0.031865303887470456
+converged? False
+
+generation 19
+max fitness: 0.11095939068018074
+min fitness: 0.031865303887470456
+converged? False
+
+generation 20
+max fitness: 0.13653866450192464
+min fitness: 0.031865303887470456
+converged? False
+
+generation 21
+max fitness: 0.12500687245395006
+min fitness: 0.03176164149046727
+converged? False
+
+generation 22
+max fitness: 0.1688995357479063
+min fitness: 0.03176164149046727
+converged? False
+
+generation 23
+max fitness: 0.13486343262347247
+min fitness: 0.031407626062876746
+converged? False
+
+generation 24
+max fitness: 0.09579277255032344
+min fitness: 0.031407626062876746
+converged? False
+
+generation 25
+max fitness: 0.13906403899195338
+min fitness: 0.03126722052858351
+converged? False
+
+generation 26
+max fitness: 0.12173840132264675
+min fitness: 0.03126722052858351
+converged? False
+
+generation 27
+max fitness: 0.09360825392059514
+min fitness: 0.031129133465010332
+converged? False
+
+generation 28
+max fitness: 0.11182866132068629
+min fitness: 0.03099408607318329
+converged? False
+
+generation 29
+max fitness: 0.12663172156336125
+min fitness: 0.03097763488356345
+converged? False
+
+generation 30
+max fitness: 0.12051767986763623
+min fitness: 0.03097763488356345
+converged? False
+
+generation 31
+max fitness: 0.12499062412045714
+min fitness: 0.030781905768148144
+converged? False
+
+generation 32
+max fitness: 0.1897960286075597
+min fitness: 0.030718185026988257
+converged? False
+
+generation 33
+max fitness: 0.12382895755371556
+min fitness: 0.030718185026988257
+converged? False
+
+generation 34
+max fitness: 0.14433858140756192
+min fitness: 0.03070837132333397
+converged? False
+
+generation 35
+max fitness: 0.090421084277037
+min fitness: 0.030498982753196745
+converged? False
+
+generation 36
+max fitness: 0.16996552150041577
+min fitness: 0.030498982753196745
+converged? False
+
+generation 37
+max fitness: 0.16191443701122413
+min fitness: 0.030265062805045668
+converged? False
+
+generation 38
+max fitness: 0.09716487652705297
+min fitness: 0.030265062805045668
+converged? False
+
+generation 39
+max fitness: 0.09066352658513392
+min fitness: 0.030265062805045668
+converged? False
+
+generation 40
+max fitness: 0.09711094311228567
+min fitness: 0.030119286856826282
+converged? False
+
+generation 41
+max fitness: 0.10898083069377659
+min fitness: 0.030119286856826282
+converged? False
+
+generation 42
+max fitness: 0.10058754899960957
+min fitness: 0.030085341546608135
+converged? False
+
+generation 43
+max fitness: 0.09473214121731524
+min fitness: 0.030063993021819623
+converged? False
+
+generation 44
+max fitness: 0.16909416368694355
+min fitness: 0.029906121156709663
+converged? False
+
+generation 45
+max fitness: 0.0987902096475392
+min fitness: 0.02974994343264005
+converged? False
+
+generation 46
+max fitness: 0.07454904520039601
+min fitness: 0.029737992372047967
+converged? False
+
+generation 47
+max fitness: 0.08351544572711082
+min fitness: 0.029737992372047967
+converged? False
+
+generation 48
+max fitness: 0.08707585664536382
+min fitness: 0.029391818737859014
+converged? False
+
+generation 49
+max fitness: 0.08093054678525882
+min fitness: 0.029391818737859014
+converged? False
+
+generation 50
+max fitness: 0.23600723867036846
+min fitness: 0.02929701936892609
+converged? False
+
+generation 51
+max fitness: 0.06964050435313235
+min fitness: 0.029282192670949662
+converged? False
+
+generation 52
+max fitness: 0.06989233018392366
+min fitness: 0.0292205032542377
+converged? False
+
+generation 53
+max fitness: 0.08017280697645371
+min fitness: 0.02906920352677026
+converged? False
+
+generation 54
+max fitness: 0.09230036869409995
+min fitness: 0.029053848746225547
+converged? False
+
+generation 55
+max fitness: 0.09479028239193439
+min fitness: 0.029053848746225547
+converged? False
+
+generation 56
+max fitness: 0.09040683501346966
+min fitness: 0.028852842041436722
+converged? False
+
+generation 57
+max fitness: 0.10862948541120014
+min fitness: 0.028699569545504424
+converged? False
+
+generation 58
+max fitness: 0.06519281943068264
+min fitness: 0.028446911145292613
+converged? False
+
+generation 59
+max fitness: 0.08866660873922222
+min fitness: 0.028446911145292613
+converged? False
+
+generation 60
+max fitness: 0.12650130094344372
+min fitness: 0.028415037143812286
+converged? False
+
+generation 61
+max fitness: 0.07261521600940896
+min fitness: 0.028415037143812286
+converged? False
+
+generation 62
+max fitness: 0.07422769970581485
+min fitness: 0.028415037143812286
+converged? False
+
+generation 63
+max fitness: 0.11638015774122913
+min fitness: 0.028415034530994046
+converged? False
+
+generation 64
+max fitness: 0.08151662372049358
+min fitness: 0.028377647805177198
+converged? False
+
+generation 65
+max fitness: 0.10765241258616527
+min fitness: 0.02825549445125637
+converged? False
+
+generation 66
+max fitness: 0.05880374011367821
+min fitness: 0.02825549445125637
+converged? False
+
+generation 67
+max fitness: 0.09102872820938972
+min fitness: 0.028111511863375592
+converged? False
+
+generation 68
+max fitness: 0.11588715670659266
+min fitness: 0.028108744903402212
+converged? False
+
+generation 69
+max fitness: 0.07456102364400681
+min fitness: 0.02800593432411211
+converged? False
+
+generation 70
+max fitness: 0.06438144756836527
+min fitness: 0.02800593432411211
+converged? False
+
+generation 71
+max fitness: 0.07917928445527232
+min fitness: 0.02800593432411211
+converged? False
+
+generation 72
+max fitness: 0.075686581215698
+min fitness: 0.027866956466651473
+converged? False
+
+generation 73
+max fitness: 0.07366137528114255
+min fitness: 0.027866956466651473
+converged? False
+
+generation 74
+max fitness: 0.08000758197136154
+min fitness: 0.027866956466651473
+converged? False
+
+generation 75
+max fitness: 0.07699190527554263
+min fitness: 0.027866956466651473
+converged? False
+
+generation 76
+max fitness: 0.06491535513936678
+min fitness: 0.027866956466651473
+converged? False
+
+generation 77
+max fitness: 0.10846854559581343
+min fitness: 0.027866956466651473
+converged? False
+
+generation 78
+max fitness: 0.14724161971553654
+min fitness: 0.027866956466651473
+converged? False
+
+generation 79
+max fitness: 0.07322303871953008
+min fitness: 0.027866956466651473
+converged? False
+
+generation 80
+max fitness: 0.051794744000615386
+min fitness: 0.027860059311548557
+converged? False
+
+generation 81
+max fitness: 0.18545315128385262
+min fitness: 0.027846025307343956
+converged? False
+
+generation 82
+max fitness: 0.08314225277088022
+min fitness: 0.027831798563682942
+converged? False
+
+generation 83
+max fitness: 0.05552910894710146
+min fitness: 0.027784351753208217
+converged? False
+
+generation 84
+max fitness: 0.06591620983325787
+min fitness: 0.027784351753208217
+converged? False
+
+generation 85
+max fitness: 0.0962141400974968
+min fitness: 0.027684469647413015
+converged? False
+
+generation 86
+max fitness: 0.07000383602988049
+min fitness: 0.027684469647413015
+converged? False
+
+generation 87
+max fitness: 0.10724577129133471
+min fitness: 0.027646599619700053
+converged? False
+
+generation 88
+max fitness: 0.09619515478080648
+min fitness: 0.027616291178971884
+converged? False
+
+generation 89
+max fitness: 0.04980094658005142
+min fitness: 0.027583391126015416
+converged? False
+
+generation 90
+max fitness: 0.08719493074682907
+min fitness: 0.027542609281835575
+converged? False
+
+generation 91
+max fitness: 0.07294203639644388
+min fitness: 0.027448465790918027
+converged? False
+
+generation 92
+max fitness: 0.09314595262900048
+min fitness: 0.027448465790918027
+converged? False
+
+generation 93
+max fitness: 0.07106611633988448
+min fitness: 0.027448465790918027
+converged? False
+
+generation 94
+max fitness: 0.09654041539448524
+min fitness: 0.027395995360417237
+converged? False
+
+generation 95
+max fitness: 0.06217497903987463
+min fitness: 0.027395995360417237
+converged? False
+
+generation 96
+max fitness: 0.057676784969000194
+min fitness: 0.02736697851993394
+converged? False
+
+generation 97
+max fitness: 0.08575181491377537
+min fitness: 0.02736697851993394
+converged? False
+
+generation 98
+max fitness: 0.080050847528338
+min fitness: 0.02736697851993394
+converged? False
+
+generation 99
+max fitness: 0.0993477632006404
+min fitness: 0.027360858738870095
+converged? False
+

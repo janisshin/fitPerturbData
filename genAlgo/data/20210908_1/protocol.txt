@@ -1,0 +1,5 @@
+in this experiment, I ran the genAlgo_MMARL.py on the Michaelis-Menten model (groundTruth_MM_e)
+it had a learning rate of 0.5
+the length of time simulation was 60 (as opposed to the standard 100)
+the genAlgo was run up til a tolerance of 0.01 for 150 generations (ran out of memory when running for 300 generations)
+

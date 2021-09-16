@@ -171,35 +171,35 @@ def runGeneticAlgorithm(population, groundTruth=models.groundTruth_mod_e, parame
     generation = 1    
     
     if runID:
-        f = open(runID + "/runningOutput.list", "a")
+        filename=runID + "/runningOutput.list"
     else: 
-        f = open("runningOutput.list", "a")
+        filename="runningOutput.list"
 
     while not converged and generation < lastGeneration: 
-        f.write('generation ' + str(generation) + '\n')
-        
-        # select fittest
-        selectFittest(population, groundTruth, survivorRatio[0])
-        
-        # create offspring
-        offspring = generateOffspring(survivorRatio[1], population, parameters)
+        with open(filename, "a") as f:
+            f.write('generation ' + str(generation) + '\n')
+            
+            # select fittest
+            selectFittest(population, groundTruth, survivorRatio[0])
+            
+            # create offspring
+            offspring = generateOffspring(survivorRatio[1], population, parameters)
 
-        # check fitness
-        scores = calculateFitness(population, groundTruth)
-        
-        f.write('max fitness ' + '\n' + str(max(scores.values())) + '\n')
-        f.write('min fitness ' + '\n' + str(min(scores.values())) + '\n') ### PRINT FITNESS LEVEL OF FITTEST INDIVIDUAL
-        
-        generation += 1
+            # check fitness
+            scores = calculateFitness(population, groundTruth)
+            
+            f.write('max fitness: ' +  str(max(scores.values())) + '\n')
+            f.write('min fitness: ' +  str(min(scores.values())) + '\n') ### PRINT FITNESS LEVEL OF FITTEST INDIVIDUAL
+            
+            generation += 1
 
-        if max(scores.values()) < tolerance:
-            f.write("tolerance")
-            converged = True
-        elif max(scores.values())-min(scores.values()) < 0.0001:
-            f.write("convergence")
-            converged = True
-        f.write(f"converged? {converged}"  + '\n')
-    f.close()
+            if max(scores.values()) < tolerance:
+                f.write("tolerance")
+                converged = True
+            elif max(scores.values())-min(scores.values()) < 0.0001:
+                f.write("convergence")
+                converged = True
+            f.write(f"converged? {converged}"  + '\n\n')
 
     # print params and scores to files
     extractParams(population, parameters, groundTruth, folderName=runID)

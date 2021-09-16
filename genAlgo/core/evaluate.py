@@ -11,7 +11,11 @@ from core import models
 
 def runExperiment(m, enzymes=models.ENZYMES):
     """
-    model is a roadrunner object
+    Parameters: 
+        m: Antimony str of model
+        enzymes: Str list of enzyme names in m
+    Returns:
+        allData: float list; foldchanges of species as enzyme levels are perturbed
     """
     model = te.loada(m)
     model.resetAll() # reset all
@@ -46,7 +50,11 @@ def runExperiment(m, enzymes=models.ENZYMES):
 
 def runExperiment_omit(m, enzymes=models.ENZYMES):
     """
-    model is a roadrunner object
+    Parameters: 
+        m: Antimony str of model
+        enzymes: Str list of enzyme names in m
+    Returns:
+        trimmedData: float list; foldchanges of species as enzyme levels are perturbed with some values omitted
     """
     model = te.loada(m)
     model.resetAll() # reset all
@@ -75,43 +83,9 @@ def runExperiment_omit(m, enzymes=models.ENZYMES):
         model.setValue(e, 1)
 
     allData = np.concatenate((np.ravel(perturbationData), np.ravel(fluxData)))# , np.ravel(spConcs)))
-    omittedData = np.delete(allData,[0,4])
+    trimmedData = np.delete(allData,[0,4])
 
-    return omittedData
-
-
-def makeDataFrame(paramResultsFile):
-    """
-    input: paramResults from fitMultipleModels method
-    
-    """
-
-    # open the results file
-    f = open(paramResultsFile, "r") # "fitMultipleModelsData.txt"
-    lines = f.read()
-    # parse the data into an array 
-    arr = np.array(lines.splitlines())
-    f.close()
-    arr = arr.astype('float64')
-    arr = np.reshape(arr, (int(len(arr)/11), 11))
-
-    # convert to pandas
-    return pd.DataFrame(arr, columns = ['k1','k11','k2', 'k22','k3','k33','k4','k44','k5','k55','chiSq'])
-
-def useFittedParams(data, pdIndex):
-    """
-    output: returns roadRunner with paramResult parameters
-    """
-    
-    m = te.loada(models.groundTruth_e)
-    
-    # grab the pandas row
-    series = data.loc[pdIndex]
-    # for each element in the row, set the Value
-    for i in models.K_LIST:
-        m.setValue(i, series[i])
-    
-    return m
+    return trimmedData
 
 def normalizer(x, trueValue):
     return (x-trueValue)/trueValue

@@ -1,5 +1,3 @@
-# revised 20210816
-# evaluate_4
 # runExperiment evaluates relative (foldchange) concentrations and fluxes
 
 import tellurium as te
@@ -44,14 +42,11 @@ def runExperiment(m, enzymes=models.ENZYMES):
 
     return allData 
 
-
-
 def makeDataFrame(paramResultsFile):
     """
     input: paramResults from fitMultipleModels method
     
     """
-
     # open the results file
     f = open(paramResultsFile, "r") # "fitMultipleModelsData.txt"
     lines = f.read()
@@ -68,7 +63,6 @@ def useFittedParams(data, pdIndex):
     """
     output: returns roadRunner with paramResult parameters
     """
-    
     m = te.loada(models.groundTruth_e)
     
     # grab the pandas row

@@ -1,0 +1,3 @@
+in this experiment, I ran the genAlgo_MMARL.py
+it had a learning rate of 0.2
+the genAlgo was run up til a tolerance of 0.01 for 100 generations (ran out of memory when running for 300 generations)
