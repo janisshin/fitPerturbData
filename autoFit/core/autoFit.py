@@ -5,10 +5,12 @@
 import tellurium as te
 import numpy as np
 import lmfit
-import models
-import evaluate
-  
-def fitMultipleModels(n, fileName=None, groundTruthModel=models.groundTruth_mod_e, toFit=models.K_LIST, enzymes=models.ENZYMES):
+
+from core import models
+from core import evaluate
+
+
+def fitMultipleModels(n, folder=None, groundTruthModel=models.groundTruth_mod_e, toFit=models.K_LIST, enzymes=models.ENZYMES):
     """
     Takes in a list of different scrambled models and tries to find parameters which match them to the ground truth model
 
@@ -70,24 +72,25 @@ def fitMultipleModels(n, fileName=None, groundTruthModel=models.groundTruth_mod_
     groundTruth = evaluate.runExperiment(groundTruthModel)
     params = lmfit.Parameters()
 
-    if not fileName:
-        fileName = 'fitMultipleModelsData_.list'
-    f = open(fileName, "a") 
+    if folder:
+        fileName = folder + '/fittedParam.list'
+    else: 
+        fileName = 'fittedParam.list'
     
-    for i in range(n): 
-        model = models.generateSingleModel(groundTruthModel_string=models.groundTruth_mod_e, parameters=models.K_LIST)
+    with open(fileName, "a") as f:
+    
+        for i in range(n): 
+            model = models.generateSingleModel(groundTruthModel_string=models.groundTruth_mod_e, parameters=models.K_LIST)
 
-        for param in toFit: 
-            params.add(param, value=1, min=0, max=1000) # add each parameter to the list of params that lmfit will fit
+            for param in toFit: 
+                params.add(param, value=1, min=0, max=1000) # add each parameter to the list of params that lmfit will fit
 
-        minimizer = lmfit.Minimizer(residuals, params)  
-        result = minimizer.minimize(method='differential_evolution') # DETERMINISTIC 
-        
-        for ii in models.K_LIST:
-            f.write(str(result.params[ii].value) + '\n')
-            # print(str(result.params[ii].value) + '\n')
-        f.write(str(result.chisqr) + '\n')
-        # print(str(result.chisqr) + '\n')
-
-    f.close() 
+            minimizer = lmfit.Minimizer(residuals, params)  
+            result = minimizer.minimize(method='differential_evolution') # DETERMINISTIC 
+            
+            for ii in models.K_LIST:
+                f.write(str(result.params[ii].value) + '\n')
+                # print(str(result.params[ii].value) + '\n')
+            f.write(str(result.chisqr) + '\n')
+            # print(str(result.chisqr) + '\n')
     
