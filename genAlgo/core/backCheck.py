@@ -1,9 +1,32 @@
-# 20210819
-
+import os
 import tellurium as te
 import numpy as np
 from core import models
 from core import evaluate
+
+    
+def extractParams(population, parameters, groundTruth, folderName='', omit=None):
+    groundTruthData = evaluate.runExperiment(groundTruth, omit=omit)
+    
+    if folderName: 
+        scoreFile = open(folderName + "/scores.list", "w")
+        paramFile = open(folderName + "/paramData.list", "w")
+    else: 
+        scoreFile = open("scores.list", "w")
+        paramFile = open("paramData.list", "w")
+
+    for individual in os.listdir(population):
+        f = open(population + "/" + individual, "r")
+        individualModel = f.read()
+        individualData = evaluate.runExperiment(individualModel, omit=omit)
+        chiSq = np.sum(np.square(groundTruthData - individualData))
+        scoreFile.write(str(chiSq) + "\n")
+        for k in parameters:
+            paramFile.write(str(te.loada(individualModel).getValue(k)) + '\n')
+        f.close()
+    paramFile.close()
+    scoreFile.close()
+
 
 def getFoldChangeValues(testModel=te.loada(models.groundTruth_mod_e), parameters=models.K_LIST, 
                         data='', folder='', n_individuals=100):
@@ -41,4 +64,3 @@ def getFoldChangeValues(testModel=te.loada(models.groundTruth_mod_e), parameters
             allData = evaluate.runExperiment(alteredModel).tolist()
             s = " ".join(str(datum) for datum in allData)
             f.write(s + '\n') # possible problem if not a string
-    

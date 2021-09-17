@@ -1,4 +1,3 @@
-
 from numpy.core.fromnumeric import sort
 import tellurium as te
 import random
@@ -7,6 +6,7 @@ import os
 
 from core import models
 from core import evaluate
+
 
 # Crossover
 def generateOffspring(n, population, parameters):
@@ -100,16 +100,17 @@ def performCrossover(population, parameters):
 
     return child.getCurrentAntimony()
 
+
 def calculateFitness(population, groundTruth, minmax=False):
     """
     population = name of directory containing Antimony files
     scores = dictionary of file name and score
     """
     scores = {}
-    groundTruthData = evaluate.runExperiment(groundTruth)
+    groundTruthData = evaluate.runExperiment(groundTruth, omit=omission)
     for individual in os.listdir(population):
         with open(population + "/" + individual, "r") as f:
-            individualData = evaluate.runExperiment(f.read())
+            individualData = evaluate.runExperiment(f.read(), omit=omission)
         chiSq = np.sum(np.square(groundTruthData - individualData))
         scores[individual] = chiSq
     if minmax:
@@ -117,10 +118,11 @@ def calculateFitness(population, groundTruth, minmax=False):
     else:
         return scores #### here might be the memory problem
 
-# Selection 
+
 def selectFittest(population, groundTruth, n):
     """
-    Orders models from most fit to least fit. Removes least fit models. 
+    Selection step of genetic algorithm. Orders models from most fit to least fit. 
+    Removes least fit models. 
     Parameters
         population: Str-list of Antimony strings of roadrunner models
         n: int
@@ -140,30 +142,9 @@ def selectFittest(population, groundTruth, n):
     for s in sorted_scores:
         os.remove(population + "/" + s[0])
 
-def extractParams(population, parameters, groundTruth, folderName=''):
-    groundTruthData = evaluate.runExperiment(groundTruth)
-    
-    if folderName: 
-        scoreFile = open(folderName + "/scores.list", "w")
-        paramFile = open(folderName + "/paramData.list", "w")
-    else: 
-        scoreFile = open("scores.list", "w")
-        paramFile = open("paramData.list", "w")
-
-    for individual in os.listdir(population):
-        f = open(population + "/" + individual, "r")
-        individualModel = f.read()
-        individualData = evaluate.runExperiment(individualModel)
-        chiSq = np.sum(np.square(groundTruthData - individualData))
-        scoreFile.write(str(chiSq) + "\n")
-        for k in parameters:
-            paramFile.write(str(te.loada(individualModel).getValue(k)) + '\n')
-        f.close()
-    paramFile.close()
-    scoreFile.close()
 
 def runGeneticAlgorithm(population, groundTruth=models.groundTruth_mod_e, parameters=models.K_LIST,
-                        lastGeneration=100, survivorRatio=(2,9), tolerance=1, runID=''):
+                        lastGeneration=100, survivorRatio=(2,9), tolerance=1, runID='', omit=None):
     """
     Run genetic algorithm with a given population until convergence or last generation is reached. 
     Also prints out timestamps for each step
@@ -173,6 +154,8 @@ def runGeneticAlgorithm(population, groundTruth=models.groundTruth_mod_e, parame
     Returns
         population = Str-list of Antimony strings of roadrunner models
     """
+    global omission; omission = omit
+
     converged=False
     generation = 1    
     
@@ -207,4 +190,3 @@ def runGeneticAlgorithm(population, groundTruth=models.groundTruth_mod_e, parame
                 converged = True
             f.write(f"converged? {converged}"  + '\n\n')
 
-    
