@@ -17,7 +17,6 @@ def generateOffspring(n, population, parameters):
         population: current gene pool
         parameters
     """
-    offspring = []
     for i in range(n):
         isMutation = bool(random.getrandbits(1))
         
@@ -31,10 +30,11 @@ def generateOffspring(n, population, parameters):
         while os.path.exists(population + "/antimonyModel_" + str(j) + ".txt"):
             j += 1
         fileName = population + "/antimonyModel_" + str(j) + ".txt"
-        f = open(fileName, "w")
-        f.write(offspring) 
-        del offspring
-        f.close()
+        
+        with open(fileName, "w") as f:
+            f.write(offspring) 
+        
+        del offspring; del fileName
         
 
 def performMutation(population, parameters):
@@ -51,8 +51,8 @@ def performMutation(population, parameters):
     # randomly choose an existing file
     parent = population + "/" + random.choice(os.listdir(population))
 
-    f = open(parent, "r")
-    child = te.loada(f.read())
+    with open(parent, "r") as f:
+        child = te.loada(f.read())
 
     n = random.randint(1, len(p)-1) # number of mutations to make in an individual
     
@@ -64,6 +64,9 @@ def performMutation(population, parameters):
         original_parameter_value = child.getValue(mutation_site)
         mutated_parameter_value = original_parameter_value + original_parameter_value * param_shift
         child.setValue(mutation_site, mutated_parameter_value)
+    
+    del p; del n; del mutation_site; del param_shift; del original_parameter_value; del mutated_parameter_value;
+
     return child.getCurrentAntimony()
     
 
@@ -91,14 +94,13 @@ def performCrossover(population, parameters):
     child = te.loada(f.read())
 
     for p in parameters[0:3]:
-        aa = parentA.getValue(p)
-        child.setValue(p, aa)
+        child.setValue(p, parentA.getValue(p))
 
     del f; del parentB; del parentA
 
     return child.getCurrentAntimony()
 
-def calculateFitness(population, groundTruth):
+def calculateFitness(population, groundTruth, minmax=False):
     """
     population = name of directory containing Antimony files
     scores = dictionary of file name and score
@@ -106,11 +108,14 @@ def calculateFitness(population, groundTruth):
     scores = {}
     groundTruthData = evaluate.runExperiment(groundTruth)
     for individual in os.listdir(population):
-        f = open(population + "/" + individual, "r")
-        individualData = evaluate.runExperiment(f.read())
+        with open(population + "/" + individual, "r") as f:
+            individualData = evaluate.runExperiment(f.read())
         chiSq = np.sum(np.square(groundTruthData - individualData))
         scores[individual] = chiSq
-    return scores #### here might be the memory problem
+    if minmax:
+        return min(scores.values()), max(scores.values())
+    else:
+        return scores #### here might be the memory problem
 
 # Selection 
 def selectFittest(population, groundTruth, n):
@@ -157,7 +162,8 @@ def extractParams(population, parameters, groundTruth, folderName=''):
     paramFile.close()
     scoreFile.close()
 
-def runGeneticAlgorithm(population, groundTruth=models.groundTruth_mod_e, parameters=models.K_LIST, lastGeneration=100, survivorRatio=(2,9), tolerance=1, runID=''):
+def runGeneticAlgorithm(population, groundTruth=models.groundTruth_mod_e, parameters=models.K_LIST,
+                        lastGeneration=100, survivorRatio=(2,9), tolerance=1, runID=''):
     """
     Run genetic algorithm with a given population until convergence or last generation is reached. 
     Also prints out timestamps for each step
@@ -183,23 +189,22 @@ def runGeneticAlgorithm(population, groundTruth=models.groundTruth_mod_e, parame
             selectFittest(population, groundTruth, survivorRatio[0])
             
             # create offspring
-            offspring = generateOffspring(survivorRatio[1], population, parameters)
+            generateOffspring(survivorRatio[1], population, parameters)
 
             # check fitness
-            scores = calculateFitness(population, groundTruth)
+            min, max = calculateFitness(population, groundTruth, minmax=True) 
             
-            f.write('max fitness: ' +  str(max(scores.values())) + '\n')
-            f.write('min fitness: ' +  str(min(scores.values())) + '\n') ### PRINT FITNESS LEVEL OF FITTEST INDIVIDUAL
+            f.write('least fit: ' +  str(max) + '\n')
+            f.write('most fit: ' +  str(min) + '\n') 
             
             generation += 1
 
-            if max(scores.values()) < tolerance:
+            if max < tolerance:
                 f.write("tolerance")
                 converged = True
-            elif max(scores.values())-min(scores.values()) < 0.0001:
+            elif max-min < 0.000001: # cutoff is 1e-6, just like in tellurium
                 f.write("convergence")
                 converged = True
             f.write(f"converged? {converged}"  + '\n\n')
 
-    # print params and scores to files
-    extractParams(population, parameters, groundTruth, folderName=runID)
+    

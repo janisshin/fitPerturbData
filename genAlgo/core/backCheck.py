@@ -5,13 +5,17 @@ import numpy as np
 from core import models
 from core import evaluate
 
-def getFoldChangeValues(testModel=te.loada(models.groundTruth_mod_e), parameters=models.K_LIST, data='', folder='', n_individuals=100):
+def getFoldChangeValues(testModel=te.loada(models.groundTruth_mod_e), parameters=models.K_LIST, 
+                        data='', folder='', n_individuals=100):
     """
-    Parameters
-
-    Returns
-
     Create 'allData.list' file which lists the values of foldchanges for each model per line
+
+    Parameters
+        testModel: roadrunner object of groundtruth model
+        parameters: Str list of parameter names
+        data: Str name of file with parameters
+        folder: Str name of folder to place results file
+        n_individuals: number of individuals in population
     """
     # take in the file paramData.list
     # open the results file
@@ -28,7 +32,7 @@ def getFoldChangeValues(testModel=te.loada(models.groundTruth_mod_e), parameters
     # (number of models, number of parameters per model)
     arr = np.reshape(arr, (n_individuals, len(parameters))) 
     
-    # open file
+    
     with open(folder + "/allData.list", "w") as f:
         for row in arr:
             for i, parameter in enumerate(row):
