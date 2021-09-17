@@ -4,6 +4,7 @@ import random
 import os
 from datetime import datetime
 
+
 # all of the models are in String form
 
 # the most basic model. 
@@ -14,12 +15,7 @@ groundTruth = ("""
   S4 -> S5; k4*S4 - k5*S5
   S5 -> $S6; k5*S5 - k6*S6
   S1 = 1; 
-  k1 = 1; 
-  k2 = 2; 
-  k3 = 3;
-  k4 = 4; 
-  k5 = 5;
-  k6 = 6; 
+  k1 = 1; k2 = 2; k3 = 3; k4 = 4; k5 = 5; k6 = 6; 
 """)
 
 # groundTruth model with enzyme terms
@@ -30,12 +26,7 @@ groundTruth_e = ("""
   R4: S4 -> S5; (e4) * (k4*S4 - k5*S5)
   R5: S5 -> $S6; (e5) * (k5*S5 - k6*S6)
   S1 = 1; 
-  k1 = 1; 
-  k2 = 2; 
-  k3 = 3; 
-  k4 = 4; 
-  k5 = 5; 
-  k6 = 6;
+  k1 = 1; k2 = 2; k3 = 3; k4 = 4; k5 = 5; k6 = 6; 
   e1 = 1; e2 = 1; e3 = 1; e4 = 1; e5 = 1;
 """) 
 
@@ -47,11 +38,8 @@ groundTruth_mod = ("""
   v4: S4 -> S5; k4*S4 * (1-(S5/S4)/Keq4)
   v5: S5 -> $S6; k5*S5 * (1-(S6/S5)/Keq5)
   S1 = 1; S2 = 0.1; S3 = 0.1; S4 = 0.1; S5 = 0.1;
-  k1 = 1; Keq1 = 3; 
-  k2 = 2; Keq2 = 3;
-  k3 = 3; Keq3 = 3; 
-  k4 = 4; Keq4 = 3;
-  k5 = 5; Keq5 = 3; 
+  k1 = 1; k2 = 2; k3 = 3; k4 = 4; k5 = 5; 
+  Keq1 = 3; Keq2 = 3; Keq3 = 3; Keq4 = 3; Keq5 = 3; 
 """)
 
 # groundTruth model with reverse reaction constants replaced with Keq terms and enzyme terms
@@ -62,11 +50,8 @@ groundTruth_mod_e = ("""
   v4: S4 -> S5; (e4) * k4*S4 * (1-(S5/S4)/Keq4)
   v5: S5 -> $S6; (e5) * k5*S5 * (1-(S6/S5)/Keq5)
   S1 = 1; S2 = 0.1; S3 = 0.1; S4 = 0.1; S5 = 0.1;
-  k1 = 1; Keq1 = 3; 
-  k2 = 2; Keq2 = 3;
-  k3 = 3; Keq3 = 3; 
-  k4 = 4; Keq4 = 3;
-  k5 = 5; Keq5 = 3; 
+  k1 = 1; k2 = 2; k3 = 3; k4 = 4; k5 = 5; 
+  Keq1 = 3; Keq2 = 3; Keq3 = 3; Keq4 = 3; Keq5 = 3; 
   e1 = 1; e2 = 1; e3 = 1; e4 = 1; e5 = 1;
 """)
 
@@ -100,13 +85,16 @@ groundTruth_MM_e = ("""
   Vm1 = 1; Vm2 = 2; Vm3 = 4; Vm4 = 5; Vm5 = 7; 
 """)
 
-ENZYMES = ["e1", "e2", "e3", "e4", "e5"] 
-PARAMETERS = te.loada(groundTruth).getGlobalParameterIds() # parameters for groundTruth model
-MOD_PARAMETERS = ['Keq1','Keq2','Keq3','Keq4','Keq5']
+
 TIME_TO_SIMULATE = 100
 N_DATAPOINTS = 100
-K_LIST = ['k1', 'k2', 'k3', 'k4', 'k5']
+
+PARAMETERS = te.loada(groundTruth).getGlobalParameterIds() # parameters for groundTruth model
+
+K_LIST = ['k1', 'k2', 'k3', 'k4', 'k5'],
 Km_LIST = ['Km1', 'Km2', 'Km3', 'Km4', 'Km5', 'Km6','Km7','Km8','Km9','Km10']
+ENZYMES = ["e1", "e2", "e3", "e4", "e5"]
+
 
 def generateModelFiles(n, groundTruthModel_string=groundTruth_e, parameters=PARAMETERS, knownValues={}, folderName=None):
     """
