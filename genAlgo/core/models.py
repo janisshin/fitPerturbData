@@ -1,4 +1,3 @@
-
 import tellurium as te
 import random
 import os
@@ -130,6 +129,7 @@ def generateModelFiles(n, groundTruthModel_string=groundTruth_e, parameters=PARA
         f.close()
     return folderName
 
+
 def generateSingleModel(groundTruthModel_string=groundTruth_e, parameters=PARAMETERS):
     """
     generates n number of models that do not contain Keq terms
@@ -147,6 +147,7 @@ def generateSingleModel(groundTruthModel_string=groundTruth_e, parameters=PARAME
         pValue = random.uniform(0, 1000)
         randomModel.setValue(p, pValue) # redefine parameters
     return randomModel.getCurrentAntimony()
+
 
 # check if folder exists; if not, make a new folder
 def makeFolder(folderName, date=False):

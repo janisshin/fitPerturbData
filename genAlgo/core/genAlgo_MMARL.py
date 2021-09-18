@@ -59,13 +59,14 @@ def performMutation(population, parameters):
     for i in range(n):
         random.shuffle(p) # choose a random parameter
         mutation_site = p.pop() # parameter to be mutated
-        param_shift = random.uniform(-0.2, 0.2) # how much to mutate the original value # the learning rate is 0.2
-
+        # how much to mutate the original value
+        param_shift = random.uniform([-learnRate, learnRate]) 
         original_parameter_value = child.getValue(mutation_site)
         mutated_parameter_value = original_parameter_value + original_parameter_value * param_shift
         child.setValue(mutation_site, mutated_parameter_value)
     
-    del p; del n; del mutation_site; del param_shift; del original_parameter_value; del mutated_parameter_value;
+    del p; del n; del mutation_site; del param_shift; del original_parameter_value; 
+    del mutated_parameter_value;
 
     return child.getCurrentAntimony()
     
@@ -143,18 +144,29 @@ def selectFittest(population, groundTruth, n):
         os.remove(population + "/" + s[0])
 
 
-def runGeneticAlgorithm(population, groundTruth=models.groundTruth_mod_e, parameters=models.K_LIST,
-                        lastGeneration=100, survivorRatio=(2,9), tolerance=1, runID='', omit=None):
+def runGeneticAlgorithm(population, groundTruth, parameters, lastGeneration, survivorRatio, 
+                        tolerance, runID, lr, omit):
     """
     Run genetic algorithm with a given population until convergence or last generation is reached. 
     Also prints out timestamps for each step
     Parameters
-        population = name of Folder containing antimony files of all individuals
-        lastGeneration = int
+        population = name of folder containing antimony files of all individuals
+        groundTruth = Antimony Str representation of model to be evaluated
+        parameters = Str list of parameter names in groundTruth model
+        lastGeneration = int, max number of generations to run
+        survivorRatio = tuple (survive, culled). survive + culled = total number of individuals 
+            in population
+        tolerance = float. genetic algorithm will stop running if fitting score < tolerance
+        runID = name of folder in which to put output file (runningOutput.list)
+        lr = float. learning rate of algorithm. Recommended to put between 0.1 and 1
+        omit = int list. each int signifies a position to be omitted in the fitness evaluation. 
+            see ReadMe for positions and numbers. 
+
     Returns
         population = Str-list of Antimony strings of roadrunner models
     """
     global omission; omission = omit
+    global learnRate; learnRate = lr
 
     converged=False
     generation = 1    
