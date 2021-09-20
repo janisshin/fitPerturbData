@@ -87,9 +87,7 @@ groundTruth_MM_e = ("""
 
 TIME_TO_SIMULATE = 100
 N_DATAPOINTS = 100
-
 PARAMETERS = te.loada(groundTruth).getGlobalParameterIds() # parameters for groundTruth model
-
 K_LIST = ['k1', 'k2', 'k3', 'k4', 'k5'],
 Km_LIST = ['Km1', 'Km2', 'Km3', 'Km4', 'Km5', 'Km6','Km7','Km8','Km9','Km10']
 ENZYMES = ["e1", "e2", "e3", "e4", "e5"]

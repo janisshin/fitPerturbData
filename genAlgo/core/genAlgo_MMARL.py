@@ -60,7 +60,7 @@ def performMutation(population, parameters):
         random.shuffle(p) # choose a random parameter
         mutation_site = p.pop() # parameter to be mutated
         # how much to mutate the original value
-        param_shift = random.uniform([-learnRate, learnRate]) 
+        param_shift = random.uniform(-learnRate, learnRate) 
         original_parameter_value = child.getValue(mutation_site)
         mutated_parameter_value = original_parameter_value + original_parameter_value * param_shift
         child.setValue(mutation_site, mutated_parameter_value)
@@ -102,13 +102,13 @@ def performCrossover(population, parameters):
     return child.getCurrentAntimony()
 
 
-def calculateFitness(population, groundTruth, minmax=False):
+def calculateFitness(population, minmax=False):
     """
     population = name of directory containing Antimony files
     scores = dictionary of file name and score
     """
     scores = {}
-    groundTruthData = evaluate.runExperiment(groundTruth, omit=omission)
+    groundTruthData = evaluate.runExperiment(groundTruth, omit=omission) ################
     for individual in os.listdir(population):
         with open(population + "/" + individual, "r") as f:
             individualData = evaluate.runExperiment(f.read(), omit=omission)
@@ -120,7 +120,7 @@ def calculateFitness(population, groundTruth, minmax=False):
         return scores #### here might be the memory problem
 
 
-def selectFittest(population, groundTruth, n):
+def selectFittest(population, n):
     """
     Selection step of genetic algorithm. Orders models from most fit to least fit. 
     Removes least fit models. 
@@ -131,7 +131,7 @@ def selectFittest(population, groundTruth, n):
         scoreResults: float-list
     """
     # compute fitness of population
-    scores = calculateFitness(population, groundTruth)
+    scores = calculateFitness(population)
 
     sorted_scores = sorted(scores.items(), key=lambda x: x[1])
     
@@ -144,7 +144,7 @@ def selectFittest(population, groundTruth, n):
         os.remove(population + "/" + s[0])
 
 
-def runGeneticAlgorithm(population, groundTruth, parameters, lastGeneration, survivorRatio, 
+def runGeneticAlgorithm(population, gt, parameters, lastGeneration, survivorRatio, 
                         tolerance, runID, lr, omit):
     """
     Run genetic algorithm with a given population until convergence or last generation is reached. 
@@ -167,6 +167,7 @@ def runGeneticAlgorithm(population, groundTruth, parameters, lastGeneration, sur
     """
     global omission; omission = omit
     global learnRate; learnRate = lr
+    global groundTruth; groundTruth = gt
 
     converged=False
     generation = 1    
@@ -181,13 +182,13 @@ def runGeneticAlgorithm(population, groundTruth, parameters, lastGeneration, sur
             f.write('generation ' + str(generation) + '\n')
             
             # select fittest
-            selectFittest(population, groundTruth, survivorRatio[0])
+            selectFittest(population, survivorRatio[0])
             
             # create offspring
             generateOffspring(survivorRatio[1], population, parameters)
 
             # check fitness
-            min, max = calculateFitness(population, groundTruth, minmax=True) 
+            min, max = calculateFitness(population, minmax=True) 
             
             f.write('least fit: ' +  str(max) + '\n')
             f.write('most fit: ' +  str(min) + '\n') 
