@@ -49,7 +49,6 @@ function performMutation(population, parameters)
         population: folder of current gene pool
     Returns
         Antimony string of child
-    
     """=#
     p = copy(parameters)
     
@@ -100,17 +99,14 @@ function performCrossover(population, parameters)
     child = te.loada(read(B, String))
     close(B)
 
-    # parentA=te.loada(readstring(parentA))
-    # child=te.loada(readstring(parentB))
-    
-    for p in parameters[1:end-length(parameters)] # there may be a problem here
+    for p in parameters[1:end-length(parameters)] 
         child.setValue(p, parentA.getValue(p))
     end
 
     return child.getCurrentAntimony()
 end
 
-function calculateFitness(population, groundTruth) # minmax=false
+function calculateFitness(population, groundTruth) 
     #="""
     population = name of directory containing Antimony files
     scores = dictionary of file name and score
@@ -136,6 +132,7 @@ function selectFittest(population, groundTruth, n)
             number of culled members
         scoreResults: float-list
     """=#
+    
     # compute fitness of population
     scores = calculateFitness(population, groundTruth)
 

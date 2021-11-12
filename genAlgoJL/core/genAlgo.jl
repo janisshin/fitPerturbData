@@ -1,30 +1,28 @@
-# Pkg.add("Distributions")
+module GenAlgo
 
-using Random
 using PyCall
+using Random
+using Main.Models
+
 import Distributions: Uniform 
 
 # Python packages
 te = pyimport("tellurium")
 np = pyimport("numpy")
 
-# Other Julia scripts
-include("models.jl")
-include("evaluate.jl")
-
 # Crossover
 function generateOffspring(n, population, parameters)
-    """
+     #="""
     creates new models from current model lineup
     Parameters
         n: number of offspring to make
         population: current gene pool
         parameters
-    """
-    for i in range(n)
+    """=#
+    for i in 1:n
         isMutation = rand(Bool, 1)
         
-        if isMutation # mutation
+        if isMutation == [1] # mutation
             offspring = performMutation(population, parameters)
         else
             offspring = performCrossover(population, parameters)
@@ -32,10 +30,10 @@ function generateOffspring(n, population, parameters)
     
         # write child to file
         j = 0
-        while isdir(population + "/antimonyModel_" + string(i, base = 10, pad=3) + ".txt")
+        while isdir(population * "/antimonyModel_" * string(i, base = 10, pad=3) * ".txt")
             j += 1
         end
-        fileName = population + "/antimonyModel_" + string(i, base = 10, pad=3) + ".txt"
+        fileName = population * "/antimonyModel_" * string(i, base = 10, pad=3) * ".txt"
         
         open(fileName, "w") do io
             write(io, offspring) 
@@ -45,29 +43,30 @@ end
         
         
 function performMutation(population, parameters)
-    """
+    #="""
     performs a mutation on a random number of parameters for each individual in population
     Parameters
         population: folder of current gene pool
     Returns
         Antimony string of child
-    
-    """
+    """=#
     p = copy(parameters)
     
     # randomly choose an existing file
-    parent = population + "/" + rand(readdir(population))
+    parent = population * "/" * rand(readdir(population))
 
-    child=te.loada(readstring(parent))
+    io = open(parent, "r");
+    child = te.loada(read(io, String))
+    close(io)
 
-    n = rand(1, length(p)-1) # number of mutations to make in an individual
-    
-    for i in range(n)
+    n = rand(1: length(p)-1) # number of mutations to make in an individual
+
+    for i in 1:n
         shuffle!(p) # shuffle parameters
         mutation_site = pop!(p) # choose a random parameter to be mutated
     
         # how much to mutate the original value
-        param_shift = rand(Uniform(-learnRate,learnRate))
+        param_shift = rand(Uniform(-0.2, 0.2))
         original_parameter_value = child.getValue(mutation_site)
         mutated_parameter_value = original_parameter_value + original_parameter_value * param_shift
         child.setValue(mutation_site, mutated_parameter_value)
@@ -75,8 +74,9 @@ function performMutation(population, parameters)
     return child.getCurrentAntimony()
 end
 
+
 function performCrossover(population, parameters)
-    """
+    #="""
     Parameters
         currentPopulation = Str-list of Antimony strings of roadrunner models
         parameters = Str-list
@@ -84,20 +84,23 @@ function performCrossover(population, parameters)
     Returns
         offspring = Str-list of Antimony strings of roadrunner models
             list will be the same length as currentPopulation
-    """
+    """=#
     
     # choose the parents
-    parentA = population + "/" + rand(readdir(population))
-    parentB = population + "/" + rand(readdir(population))
+    parentA = population * "/" * rand(readdir(population))
+    parentB = population * "/" * rand(readdir(population))
     while parentA == parentB
-        parentB = population + "/" + rand(readdir(population))
+        parentB = population * "/" * rand(readdir(population))
     end
 
-    parentA=te.loada(readstring(parentA))
-    child=te.loada(readstring(parentB))
-    
+    A = open(parentA, "r")
+    parentA = te.loada(read(A, String))
+    close(A)
+    B = open(parentB, "r")
+    child = te.loada(read(B, String))
+    close(B)    
 
-    for p in parameters[0:end-length(parameters)]
+    for p in parameters[1:end-length(parameters)] 
         child.setValue(p, parentA.getValue(p))
     end
 
@@ -105,28 +108,29 @@ function performCrossover(population, parameters)
 end
 
 
-function calculateFitness(population, minmax=false)
-    """
+function calculateFitness(population, groundTruth) 
+    #="""
     population = name of directory containing Antimony files
     scores = dictionary of file name and score
-    """
+    """=#
     scores = Dict()
-    groundTruthData = evaluate.runExperiment(groundTruth, omit=omission) ################
+
+    groundTruthData = Main.Evaluate.runExperiment(groundTruth) #, omit=omission
     for individual in readdir(population)
-        individualData = evaluate.runExperiment(readstring(population + "/" + individual), omit=omission)
+        
+        io = open(population * "/" * individual, "r")
+        individualData = Main.Evaluate.runExperiment(read(io, String))# , omit=omission)
+        close(io)
+    
         chiSq = sum((groundTruthData - individualData).^2)
         scores[individual] = chiSq
-    end
-    if minmax
-        return (minimum(keys(scores)), maximum(keys(scores)))
     end
     return scores #### here might be the memory problem
 end
 
 
-
-function selectFittest(population, n)
-    """
+function selectFittest(population, groundTruth, n)
+    #="""
     Selection step of genetic algorithm. Orders models from most fit to least fit. 
     Removes least fit models. 
     Parameters
@@ -134,23 +138,24 @@ function selectFittest(population, n)
         n: int
             number of culled members
         scoreResults: float-list
-    """
+    """=#
+    
     # compute fitness of population
-    scores = calculateFitness(population)
+    scores = calculateFitness(population, groundTruth)
 
-    sorted_scores = sort(collect(scores), by=x->x[2])
+    sorted_scores = reverse(sort(collect(scores), by=x->x[2]))
 
-    for ii in range(n)
-        sorted_scores.pop!(0)
+    for ii in 1:n
+        pop!(sorted_scores)
     end
 
     for s in sorted_scores
-        rm(population + "/" + s[0], force=true)
+        rm(population * "/" * s[1], force=true)
     end 
 end
 
-
-function runGeneticAlgorithm(population, gt, parameters, lastGeneration, survivorRatio, tolerance, runID, lr, omit)
+function runGeneticAlgorithm(population, runID, groundTruth=Main.Models.groundTruth_e, parameters=Main.Models.K_LIST, lastGeneration=10, survivorRatio=(2,8), tolerance=1)
+#function runGeneticAlgorithm(population, gt, parameters, lastGeneration, survivorRatio, tolerance, runID, lr, omit)
     #="""
     Run genetic algorithm with a given population until convergence or last generation is reached. 
     Also prints out timestamps for each step
@@ -171,43 +176,35 @@ function runGeneticAlgorithm(population, gt, parameters, lastGeneration, survivo
         population = Str-list of Antimony strings of roadrunner models
     """=#
 
-    global omission; omission = omit
-    global learnRate; learnRate = lr
-    global groundTruth; groundTruth = gt
-
     converged=false
     generation = 1    
     
-    filename=runID + "/runningOutput.list"
+    fileName = runID * "/runningOutput.list"
     
-    while !converged && generation < lastGeneration 
+    while !converged && generation < lastGeneration + 1
         open(fileName, "a") do io
-            write(io, "generation " + str(generation) + "\n")
+            write(io, "generation " * string(generation) * "\n")
+        end
             
-            # select fittest
-            selectFittest(population, survivorRatio[1])
+        # select fittest
+        selectFittest(population, groundTruth, survivorRatio[1])
             
-            # create offspring
-            generateOffspring(survivorRatio[2], population, parameters)
+        # create offspring
+        offspring = generateOffspring(survivorRatio[2], population, parameters)
 
-            # check fitness
-            minmax = calculateFitness(population, minmax=true) 
-            
-            write(io, "least fit: " +  str(minmax[1]) + "\n")
-            write(io, "most fit: " +  str(minmax[2]) + "\n") 
-            
-            generation += 1
+        # check fitness
+        scores = calculateFitness(population, groundTruth) 
 
-            if max < tolerance
-                write(io, "tolerance")
-                converged = true
-            elseif max-min < 0.000001 # cutoff is 1e-6, just like in tellurium
-                write(io, "convergence")
-                converged = true
-            end
-            write(io, converged)
-            write(io, "\n\n")
+        open(fileName, "a") do io
+            write(io, "most fit: " * string(minimum(values(scores))) * "\n")
+            write(io, "least fit: " *  string(maximum(values(scores))) * "\n") 
+        end 
+            
+        generation += 1
+
+        open(fileName, "a") do io
+            write(io, "\n")
         end
     end
 end
-
+end

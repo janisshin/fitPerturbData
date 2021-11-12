@@ -8,9 +8,6 @@ te = pyimport("tellurium")
 
 import Dates
 
-# export generateModelFiles, makeFolder
-
-
 # the most basic model. 
 groundTruth = (""" 
   \$S1 -> S2; k1*S1 - k2*S2
