@@ -20,6 +20,7 @@ IFS=$'\n'
 reactions=($(sed -n '/Reactions/,/Species initializations/{//!p;}' "$antimony_file")) 
 unset IFS
 
+((i = 0))
 for lineA in "${reactions[@]}"
 do 
 	if [[ ! "$lineA" = *"#"*  ]] # if lineA is not commented out
@@ -33,7 +34,8 @@ do
 		products=`echo "$equation" | awk -F '-> || => ' '{print $2}'`
 
 		# send reactant part of equation to Python for writing into mass action equation
-		python3 _MM-writer.py "$reactants" "$products"
-
+		python3 _MM-writer.py "$reactants" "$products" "$i"
+		
+		((i += 1))
 	fi
 done < enzymes.txt

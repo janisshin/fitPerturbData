@@ -7,6 +7,7 @@ import random
 # sys.argv[0] is the name of the py file
 reactants = sys.argv[1] # should be a string
 products = sys.argv[2] # should be a string
+index = int(sys.argv[3]) # passed in as a string; should be an int 
 
 reactantsList = reactants.split(" + ")
 productsList = products.split(" + ")
@@ -21,6 +22,8 @@ def isEmpty(testList):
 	return True # if list is empty
 
 def addMetabolites(listOfMetabolites):
+	# processes each metabolite so that coefficients are accounted for
+	
 	species = ''
 
 	for m in listOfMetabolites: 
@@ -47,8 +50,10 @@ if isEmpty(reactantsList): # if reactantsList is empty
 	parString = None
 
 else: 
-	Km1 = randomConstant()
-	parString = "e * " + randomConstant() + "/" + Km1 + " * ("
+	Km1 = "Km" + str(index * 2 - 1)
+	Km2 = "Km" + str(index * 2)
+
+	parString = "e" + str(index + 1) + " * " + randomConstant() + "/" + Km1 + " * ("
 	parString = parString + addMetabolites(reactantsList)
 
 	if not isEmpty(productsList): #
@@ -58,7 +63,7 @@ else:
 	parString =  parString + ")/(1 + " + addMetabolites(reactantsList) + " / " + Km1
 
 	if not isEmpty(productsList): # if reactantsList is empty
-		parString =parString +  " + " + addMetabolites(productsList) + " / " + randomConstant() ###########HERE IS THE WEIRD PART
+		parString =parString +  " + " + addMetabolites(productsList) + " / " + Km2
 
 	parString += ");"
 	
