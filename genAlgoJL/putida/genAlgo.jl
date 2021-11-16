@@ -1,14 +1,11 @@
 module GenAlgo
 
-using PyCall
+using RoadRunner
 using Random
 using Main.Models
 
 import Distributions: Uniform 
 
-# Python packages
-te = pyimport("tellurium")
-np = pyimport("numpy")
 
 # Crossover
 function generateOffspring(n, population, parameters)
@@ -56,7 +53,7 @@ function performMutation(population, parameters)
     parent = population * "/" * rand(readdir(population))
 
     io = open(parent, "r");
-    child = te.loada(read(io, String))
+    child = RoadRunner.loada(read(io, String))
     close(io)
 
     n = rand(1: length(p)-1) # number of mutations to make in an individual
@@ -71,7 +68,7 @@ function performMutation(population, parameters)
         mutated_parameter_value = original_parameter_value + original_parameter_value * param_shift
         child.setValue(mutation_site, mutated_parameter_value)
     end
-    return child.getCurrentAntimony()
+    return child.getAntimonyString()
 end
 
 
@@ -94,17 +91,18 @@ function performCrossover(population, parameters)
     end
 
     A = open(parentA, "r")
-    parentA = te.loada(read(A, String))
+    parentA = RoadRunner.loada(read(A, String))
     close(A)
     B = open(parentB, "r")
-    child = te.loada(read(B, String))
+    child = RoadRunner.loada(read(B, String))
     close(B)    
 
     for p in parameters[1:end-length(parameters)] 
         child.setValue(p, parentA.getValue(p))
     end
 
-    return child.getCurrentAntimony()
+    return child.getAntimonyString()
+
 end
 
 

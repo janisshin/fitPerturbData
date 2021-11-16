@@ -1,0 +1,5328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
+  <model metaid="putida_core" id="putida_core">
+    <listOfUnitDefinitions>
+      <unitDefinition id="mmol_per_gDW_per_hr">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="-3" multiplier="1"/>
+          <unit kind="gram" exponent="-1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="3" multiplier="3.6"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment sboTerm="SBO:0000410" id="default_compartment" spatialDimensions="3" size="1" constant="true"/>
+      <compartment id="c" spatialDimensions="3" size="1" constant="true"/>
+      <compartment id="e" spatialDimensions="3" size="1" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="M_2ddg6p_c" name="2-dehydro-3-deoxy-D-gluconate 6-phosphate" compartment="c" initialConcentration="0.7057897284" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_2dhglcn_c" name="2-Dehydro-D-gluconate" compartment="c" initialConcentration="0.7367059204" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_3dhq_c" name="3-dehydroquinate" compartment="c" initialConcentration="0.6690307574" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_3dhsk_c" name="3-dehydroshikimate" compartment="c" initialConcentration="0.4483794762" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_3pg_c" name="3-Phospho-D-glycerate" compartment="c" initialConcentration="0.1791109565" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_6pgc_c" name="6-Phospho-D-gluconate" compartment="c" initialConcentration="0.5213138195" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_accoa_c" name="Acetyl-CoA" compartment="c" initialConcentration="0.01906305228" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_acon_c" name="cis-Aconitate" compartment="c" initialConcentration="0.01868593144" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_adp_c" name="ADP" compartment="c" initialConcentration="0.421901755" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_akg_c" name="2-Oxoglutarate" compartment="c" initialConcentration="0.5531344988" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_atp_c" name="ATP" compartment="c" initialConcentration="0.4257262025" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_catechol_c" name="catechol" compartment="c" initialConcentration="0.0383608419" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_ccmuac_c" name="cis,cis-muconate" compartment="c" initialConcentration="0.1604952063" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species id="M_cit_c" name="Citrate" compartment="c" initialConcentration="0.7644601687" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_co2_c" name="CO2" compartment="c" initialConcentration="0.08550737284" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_co2_e" name="CO2" compartment="e" initialConcentration="0.3101432197" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species id="M_coa_c" name="Coenzyme A" compartment="c" initialConcentration="0.550249993" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_dhap_c" name="Dihydroxyacetone phosphate" compartment="c" initialConcentration="0.6794459914" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_e4p_c" name="D-Erythrose 4-phosphate" compartment="c" initialConcentration="0.9599282675" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_f6p_c" name="D-Fructose 6-phosphate" compartment="c" initialConcentration="0.005863482857" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_fdp_c" name="D-Fructose 1,6-bisphosphate" compartment="c" initialConcentration="0.969583869" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_fum_c" name="Fumarate" compartment="c" initialConcentration="0.03998545533" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_g3p_c" name="Glyceraldehyde 3-phosphate" compartment="c" initialConcentration="0.05478684328" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_g6p_c" name="D-Glucose 6-phosphate" compartment="c" initialConcentration="0.2994662107" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_glc__D_c" name="D-Glucose" compartment="c" initialConcentration="0.04645243764" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_glc__D_e" name="D-Glucose (p)" compartment="e" initialConcentration="0.9056905778" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species id="M_glcn_c" name="D-Gluconate" compartment="c" initialConcentration="0.5546185522" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_gln__L_c" name="L-Glutamine" compartment="c" initialConcentration="0.393592952" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_glu__L_c" name="L-Glutamate" compartment="c" initialConcentration="0.6888715784" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_glx_c" name="Glyoxylate" compartment="c" initialConcentration="0.1841600945" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_h2o_c" name="H2O" compartment="c" initialConcentration="0.6750081211" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_h2o_e" name="H2O" compartment="e" initialConcentration="0.6182407343" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species id="M_h_c" name="H+" compartment="c" initialConcentration="0.1975639456" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_h_e" name="H+" compartment="e" initialConcentration="0.5210584359" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species id="M_hco3_c" name="hydrogen carbonate" compartment="c" initialConcentration="0.9107613345" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_icit_c" name="Isocitrate" compartment="c" initialConcentration="0.4955700663" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_mal__L_c" name="L-Malate" compartment="c" initialConcentration="0.1665700939" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_nad_c" name="Nicotinamide adenine dinucleotide" compartment="c" initialConcentration="0.1164424662" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_nadh_c" name="Nicotinamide adenine dinucleotide - reduced" compartment="c" initialConcentration="0.7339217238" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_nadp_c" name="Nicotinamide adenine dinucleotide phosphate" compartment="c" initialConcentration="0.6424746919" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_nadph_c" name="Nicotinamide adenine dinucleotide phosphate - reduced" compartment="c" initialConcentration="0.01926718312" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_nh4_c" name="Ammonium" compartment="c" initialConcentration="0.4019365581" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_nh4_e" name="Ammonium" compartment="e" initialConcentration="0.9528450855" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species id="M_o2_c" name="O2" compartment="c" initialConcentration="0.3913148877" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_o2_e" name="O2" compartment="e" initialConcentration="0.4500891887" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species id="M_oaa_c" name="Oxaloacetate" compartment="c" initialConcentration="0.2127708972" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_pep_c" name="Phosphoenolpyruvate" compartment="c" initialConcentration="0.8820200696" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_pi_c" name="Phosphate" compartment="c" initialConcentration="0.0492549438" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_pi_e" name="Phosphate" compartment="e" initialConcentration="0.7463446625" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species id="M_pyr_c" name="Pyruvate" compartment="c" initialConcentration="0.1193622661" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_pyr_e" name="Pyruvate" compartment="e" initialConcentration="0.1920500933" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species id="M_q8_c" name="Ubiquinone-8" compartment="c" initialConcentration="0.7879344641" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_q8h2_c" name="Ubiquinol-8" compartment="c" initialConcentration="0.9498789496" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_r5p_c" name="alpha-D-Ribose 5-phosphate" compartment="c" initialConcentration="0.9450299058" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_ru5p__D_c" name="D-Ribulose 5-phosphate" compartment="c" initialConcentration="0.810188931" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_s7p_c" name="Sedoheptulose 7-phosphate" compartment="c" initialConcentration="0.2577424753" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_succ_c" name="Succinate" compartment="c" initialConcentration="0.08493027499" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_succ_e" name="Succinate" compartment="e" initialConcentration="0.6896038985" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species id="M_xu5p__D_c" name="D-Xylulose 5-phosphate" compartment="c" initialConcentration="0.5240476197" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_shik_c" name="shikimate" compartment="default_compartment" initialConcentration="0.21497" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_shik3p_c" name="shikimate 3-phosphate" compartment="default_compartment" initialConcentration="0.149122" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_5eps3p_c" name="5-enolpyruvylshikimate 3-phosphate" compartment="default_compartment" initialConcentration="0.4912" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_chor_c" name="chorismate" compartment="default_compartment" initialConcentration="0.91228" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_4a4dch_c" name="4-amino-4-deoxychorismate" compartment="default_compartment" initialConcentration="0.1228" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_4a4dpr_c" name="4-amino-4-deoxyprephenate" compartment="default_compartment" initialConcentration="0.22807" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_4aPPA_c" name="4-amino-PPA" compartment="default_compartment" initialConcentration="0.2807" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_4aPhe_c" name="4-aminophenylalanine" compartment="default_compartment" initialConcentration="0.80701" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="M_4acinna_c" name="4-aminocinnamic acid" compartment="default_compartment" initialConcentration="0.001" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="e1" value="1" constant="true"/>
+      <parameter id="Km" value="0.06392707" constant="true"/>
+      <parameter id="e2" value="1" constant="true"/>
+      <parameter id="Km1" value="0.715329913" constant="true"/>
+      <parameter id="e3" value="1" constant="true"/>
+      <parameter id="Km3" value="0.67866575" constant="true"/>
+      <parameter id="e4" value="1" constant="true"/>
+      <parameter id="Km5" value="0.782065548" constant="true"/>
+      <parameter id="e5" value="1" constant="true"/>
+      <parameter id="Km7" value="0.813295904" constant="true"/>
+      <parameter id="e6" value="1" constant="true"/>
+      <parameter id="Km9" value="0.470134834" constant="true"/>
+      <parameter id="e7" value="1" constant="true"/>
+      <parameter id="Km11" value="0.92212873" constant="true"/>
+      <parameter id="e8" value="1" constant="true"/>
+      <parameter id="Km13" value="0.705400332" constant="true"/>
+      <parameter id="e9" value="1" constant="true"/>
+      <parameter id="Km15" value="0.572365451" constant="true"/>
+      <parameter id="e10" value="1" constant="true"/>
+      <parameter id="Km17" value="0.093867628" constant="true"/>
+      <parameter id="e11" value="1" constant="true"/>
+      <parameter id="Km19" value="0.703846517" constant="true"/>
+      <parameter id="Km20" value="0.162572136" constant="true"/>
+      <parameter id="e12" value="1" constant="true"/>
+      <parameter id="Km21" value="0.528636289" constant="true"/>
+      <parameter id="Km22" value="0.020545321" constant="true"/>
+      <parameter id="e13" value="1" constant="true"/>
+      <parameter id="Km23" value="0.997193288" constant="true"/>
+      <parameter id="Km24" value="0.554534868" constant="true"/>
+      <parameter id="e14" value="1" constant="true"/>
+      <parameter id="Km25" value="0.310826652" constant="true"/>
+      <parameter id="Km26" value="0.615678812" constant="true"/>
+      <parameter id="e15" value="1" constant="true"/>
+      <parameter id="Km27" value="0.576248607" constant="true"/>
+      <parameter id="Km28" value="0.38731537" constant="true"/>
+      <parameter id="e16" value="1" constant="true"/>
+      <parameter id="Km29" value="0.269104857" constant="true"/>
+      <parameter id="Km30" value="0.144431589" constant="true"/>
+      <parameter id="e17" value="1" constant="true"/>
+      <parameter id="Km31" value="0.043609458" constant="true"/>
+      <parameter id="Km32" value="0.496774238" constant="true"/>
+      <parameter id="e18" value="1" constant="true"/>
+      <parameter id="Km33" value="0.356465497" constant="true"/>
+      <parameter id="Km34" value="0.731349853" constant="true"/>
+      <parameter id="e19" value="1" constant="true"/>
+      <parameter id="Km35" value="0.804302567" constant="true"/>
+      <parameter id="Km36" value="0.943532307" constant="true"/>
+      <parameter id="e20" value="1" constant="true"/>
+      <parameter id="Km37" value="0.674395439" constant="true"/>
+      <parameter id="Km38" value="0.89340556" constant="true"/>
+      <parameter id="e21" value="1" constant="true"/>
+      <parameter id="Km39" value="0.500289906" constant="true"/>
+      <parameter id="Km40" value="0.334757355" constant="true"/>
+      <parameter id="e22" value="1" constant="true"/>
+      <parameter id="Km41" value="0.526511573" constant="true"/>
+      <parameter id="Km42" value="0.174884417" constant="true"/>
+      <parameter id="e23" value="1" constant="true"/>
+      <parameter id="Km43" value="0.194987233" constant="true"/>
+      <parameter id="Km44" value="0.175260292" constant="true"/>
+      <parameter id="e25" value="1" constant="true"/>
+      <parameter id="Km47" value="0.640615383" constant="true"/>
+      <parameter id="Km48" value="0.531952464" constant="true"/>
+      <parameter id="e26" value="1" constant="true"/>
+      <parameter id="Km49" value="0.796415757" constant="true"/>
+      <parameter id="Km50" value="0.0324991" constant="true"/>
+      <parameter id="e27" value="1" constant="true"/>
+      <parameter id="Km51" value="0.458485585" constant="true"/>
+      <parameter id="Km52" value="0.304994501" constant="true"/>
+      <parameter id="e28" value="1" constant="true"/>
+      <parameter id="Km53" value="0.274335147" constant="true"/>
+      <parameter id="Km54" value="0.466893428" constant="true"/>
+      <parameter id="e29" value="1" constant="true"/>
+      <parameter id="Km55" value="0.74061545" constant="true"/>
+      <parameter id="Km56" value="0.902368482" constant="true"/>
+      <parameter id="e30" value="1" constant="true"/>
+      <parameter id="Km57" value="0.882038322" constant="true"/>
+      <parameter id="Km58" value="0.300470914" constant="true"/>
+      <parameter id="e31" value="1" constant="true"/>
+      <parameter id="Km59" value="0.498724539" constant="true"/>
+      <parameter id="Km60" value="0.494398949" constant="true"/>
+      <parameter id="e32" value="1" constant="true"/>
+      <parameter id="Km61" value="0.629236404" constant="true"/>
+      <parameter id="Km62" value="0.183442318" constant="true"/>
+      <parameter id="e33" value="1" constant="true"/>
+      <parameter id="Km63" value="0.20841891" constant="true"/>
+      <parameter id="Km64" value="0.679849167" constant="true"/>
+      <parameter id="e34" value="1" constant="true"/>
+      <parameter id="Km65" value="0.725608349" constant="true"/>
+      <parameter id="Km66" value="0.742347552" constant="true"/>
+      <parameter id="e35" value="1" constant="true"/>
+      <parameter id="Km67" value="0.325572128" constant="true"/>
+      <parameter id="Km68" value="0.547677675" constant="true"/>
+      <parameter id="e36" value="1" constant="true"/>
+      <parameter id="Km69" value="0.161689162" constant="true"/>
+      <parameter id="Km70" value="0.332118443" constant="true"/>
+      <parameter id="e37" value="1" constant="true"/>
+      <parameter id="Km71" value="0.000176637" constant="true"/>
+      <parameter id="Km72" value="0.818803866" constant="true"/>
+      <parameter id="e38" value="1" constant="true"/>
+      <parameter id="Km73" value="0.780518749" constant="true"/>
+      <parameter id="Km74" value="0.355369872" constant="true"/>
+      <parameter id="e39" value="1" constant="true"/>
+      <parameter id="Km75" value="0.467971015" constant="true"/>
+      <parameter id="Km76" value="0.264487759" constant="true"/>
+      <parameter id="e40" value="1" constant="true"/>
+      <parameter id="Km77" value="0.86740806" constant="true"/>
+      <parameter id="Km78" value="0.070192695" constant="true"/>
+      <parameter id="e41" value="1" constant="true"/>
+      <parameter id="Km79" value="0.178125914" constant="true"/>
+      <parameter id="Km80" value="0.014560707" constant="true"/>
+      <parameter id="e42" value="1" constant="true"/>
+      <parameter id="Km81" value="0.860910632" constant="true"/>
+      <parameter id="Km82" value="0.170000341" constant="true"/>
+      <parameter id="e43" value="1" constant="true"/>
+      <parameter id="Km83" value="0.728952574" constant="true"/>
+      <parameter id="Km84" value="0.590314961" constant="true"/>
+      <parameter id="e44" value="1" constant="true"/>
+      <parameter id="Km85" value="0.509097316" constant="true"/>
+      <parameter id="Km86" value="0.296703746" constant="true"/>
+      <parameter id="e45" value="1" constant="true"/>
+      <parameter id="Km87" value="0.180983973" constant="true"/>
+      <parameter id="Km88" value="0.252060041" constant="true"/>
+      <parameter id="e46" value="1" constant="true"/>
+      <parameter id="Km89" value="0.88660008" constant="true"/>
+      <parameter id="Km90" value="0.373910323" constant="true"/>
+      <parameter id="e47" value="1" constant="true"/>
+      <parameter id="Km91" value="0.644844662" constant="true"/>
+      <parameter id="Km92" value="0.122791447" constant="true"/>
+      <parameter id="e48" value="1" constant="true"/>
+      <parameter id="Km93" value="0.428895523" constant="true"/>
+      <parameter id="Km94" value="0.834222278" constant="true"/>
+      <parameter id="e49" value="1" constant="true"/>
+      <parameter id="Km95" value="0.751789894" constant="true"/>
+      <parameter id="Km96" value="0.326971367" constant="true"/>
+      <parameter id="e50" value="1" constant="true"/>
+      <parameter id="Km97" value="0.949944019" constant="true"/>
+      <parameter id="Km98" value="0.623051879" constant="true"/>
+      <parameter id="e51" value="1" constant="true"/>
+      <parameter id="Km99" value="0.52452154" constant="true"/>
+      <parameter id="Km100" value="0.111622209" constant="true"/>
+      <parameter id="e52" value="1" constant="true"/>
+      <parameter id="Km101" value="0.754365105" constant="true"/>
+      <parameter id="Km102" value="0.426739273" constant="true"/>
+      <parameter id="e53" value="1" constant="true"/>
+      <parameter id="Km103" value="0.94560111" constant="true"/>
+      <parameter id="Km104" value="0.900386818" constant="true"/>
+      <parameter id="e54" value="1" constant="true"/>
+      <parameter id="Km105" value="0.754315439" constant="true"/>
+      <parameter id="Km106" value="0.463248868" constant="true"/>
+      <parameter id="e55" value="1" constant="true"/>
+      <parameter id="Km107" value="0.311052372" constant="true"/>
+      <parameter id="Km108" value="0.614902274" constant="true"/>
+      <parameter id="e56" value="1" constant="true"/>
+      <parameter id="Km109" value="0.77937075" constant="true"/>
+      <parameter id="Km110" value="0.624874609" constant="true"/>
+      <parameter id="e57" value="1" constant="true"/>
+      <parameter id="Km111" value="0.372420688" constant="true"/>
+      <parameter id="Km112" value="0.904344853" constant="true"/>
+      <parameter id="e58" value="1" constant="true"/>
+      <parameter id="Km113" value="0.438305062" constant="true"/>
+      <parameter id="Km114" value="0.859759852" constant="true"/>
+      <parameter id="e59" value="1" constant="true"/>
+      <parameter id="Km115" value="0.854746813" constant="true"/>
+      <parameter id="Km116" value="0.304001043" constant="true"/>
+      <parameter id="e60" value="1" constant="true"/>
+      <parameter id="Km117" value="0.851217009" constant="true"/>
+      <parameter id="Km118" value="0.189315697" constant="true"/>
+      <parameter id="e61" value="1" constant="true"/>
+      <parameter id="Km119" value="0.810392664" constant="true"/>
+      <parameter id="Km120" value="0.982757116" constant="true"/>
+      <parameter id="e62" value="1" constant="true"/>
+      <parameter id="Km121" value="0.190027884" constant="true"/>
+      <parameter id="Km122" value="0.244755716" constant="true"/>
+      <parameter id="e63" value="1" constant="true"/>
+      <parameter id="Km123" value="0.37996137" constant="true"/>
+      <parameter id="Km124" value="0.034559708" constant="true"/>
+      <parameter id="e64" value="1" constant="true"/>
+      <parameter id="Km125" value="0.170927187" constant="true"/>
+      <parameter id="Km126" value="0.371436695" constant="true"/>
+      <parameter id="e66" value="1" constant="true"/>
+      <parameter id="Km129" value="0.343934305" constant="true"/>
+      <parameter id="Km130" value="0.188796082" constant="true"/>
+      <parameter id="e67" value="1" constant="true"/>
+      <parameter id="Km131" value="0.361563197" constant="true"/>
+      <parameter id="Km132" value="0.84793024" constant="true"/>
+      <parameter id="e68" value="1" constant="true"/>
+      <parameter id="Km133" value="0.995777533" constant="true"/>
+      <parameter id="Km134" value="0.099404102" constant="true"/>
+      <parameter id="e69" value="1" constant="true"/>
+      <parameter id="Km135" value="0.286026759" constant="true"/>
+      <parameter id="Km136" value="0.516484304" constant="true"/>
+      <parameter id="e70" value="1" constant="true"/>
+      <parameter id="Km137" value="0.707459825" constant="true"/>
+      <parameter id="Km138" value="0.042014636" constant="true"/>
+      <parameter id="e71" value="1" constant="true"/>
+      <parameter id="Km139" value="0.710565911" constant="true"/>
+      <parameter id="Km140" value="0.534516814" constant="true"/>
+      <parameter id="e73" value="1" constant="true"/>
+      <parameter id="Km143" value="0.738475239" constant="true"/>
+      <parameter id="Km144" value="0.89785928" constant="true"/>
+      <parameter id="e74" value="1" constant="true"/>
+      <parameter id="Km145" value="0.026591312" constant="true"/>
+      <parameter id="Km146" value="0.776549805" constant="true"/>
+      <parameter id="e75" value="1" constant="true"/>
+      <parameter id="Km147" value="0.061924133" constant="true"/>
+      <parameter id="Km148" value="0.508083251" constant="true"/>
+      <parameter id="e76" value="1" constant="true"/>
+      <parameter id="Km149" value="0.925899193" constant="true"/>
+      <parameter id="Km150" value="0.983663199" constant="true"/>
+      <parameter id="e77" value="1" constant="true"/>
+      <parameter id="Km151" value="0.968111166" constant="true"/>
+      <parameter id="Km152" value="0.568326975" constant="true"/>
+      <parameter id="e78" value="1" constant="true"/>
+      <parameter id="Km153" value="0.95863854" constant="true"/>
+      <parameter id="Km154" value="0.218322081" constant="true"/>
+      <parameter id="e79" value="1" constant="true"/>
+      <parameter id="Km155" value="0.322176979" constant="true"/>
+      <parameter id="Km156" value="0.26738122" constant="true"/>
+      <parameter id="e80" value="1" constant="true"/>
+      <parameter id="Km157" value="0.296934185" constant="true"/>
+      <parameter id="Km158" value="0.174088593" constant="true"/>
+      <parameter id="e81" value="1" constant="true"/>
+      <parameter id="Km159" value="0.688771422" constant="true"/>
+      <parameter id="Km160" value="0.555926525" constant="true"/>
+      <parameter id="e82" value="1" constant="true"/>
+      <parameter id="e83" value="1" constant="true"/>
+      <parameter sboTerm="SBO:0000626" id="cobra_default_lb" value="-1000" constant="true"/>
+      <parameter sboTerm="SBO:0000626" id="cobra_default_ub" value="999999" constant="true"/>
+      <parameter sboTerm="SBO:0000626" id="cobra_0_bound" value="0" constant="true"/>
+      <parameter sboTerm="SBO:0000625" id="minus_inf" value="-INF" constant="true"/>
+      <parameter sboTerm="SBO:0000625" id="plus_inf" value="INF" constant="true"/>
+      <parameter sboTerm="SBO:0000625" id="R_ATPM_lower_bound" value="8.39" units="mmol_per_gDW_per_hr" constant="true"/>
+      <parameter sboTerm="SBO:0000625" id="R_EX_glc_e_lower_bound" value="-7.03" units="mmol_per_gDW_per_hr" constant="true"/>
+      <parameter sboTerm="SBO:0000625" id="R_GLCabcpp_upper_bound" value="999999" units="mmol_per_gDW_per_hr" constant="true"/>
+      <parameter sboTerm="SBO:0000625" id="R_GNK_upper_bound" value="999999" units="mmol_per_gDW_per_hr" constant="true"/>
+      <parameter sboTerm="SBO:0000625" id="R_HEX1_upper_bound" value="999999" units="mmol_per_gDW_per_hr" constant="true"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="R_muconate_sink" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_ccmuac_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> e1 </ci>
+                  <cn> 0.7592 </cn>
+                </apply>
+                <ci> Km </ci>
+              </apply>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <cn type="integer"> 1 </cn>
+                  <ci> M_ccmuac_c </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <plus/>
+                    <cn type="integer"> 1 </cn>
+                    <apply>
+                      <divide/>
+                      <ci> M_ccmuac_c </ci>
+                      <ci> Km </ci>
+                    </apply>
+                  </apply>
+                  <cn type="integer"> 1 </cn>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_EX_co2_e" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_co2_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e2 </ci>
+                    <cn> 0.7655 </cn>
+                  </apply>
+                  <ci> Km1 </ci>
+                </apply>
+                <ci> M_co2_e </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_co2_e </ci>
+                  <ci> Km1 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_EX_glc_e" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_glc__D_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e3 </ci>
+                    <cn> 0.3198 </cn>
+                  </apply>
+                  <ci> Km3 </ci>
+                </apply>
+                <ci> M_glc__D_e </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_glc__D_e </ci>
+                  <ci> Km3 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_EX_h2o_e" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_h2o_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e4 </ci>
+                    <cn> 0.5796 </cn>
+                  </apply>
+                  <ci> Km5 </ci>
+                </apply>
+                <ci> M_h2o_e </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_h2o_e </ci>
+                  <ci> Km5 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_EX_h_e" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_h_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e5 </ci>
+                    <cn> 0.6846 </cn>
+                  </apply>
+                  <ci> Km7 </ci>
+                </apply>
+                <ci> M_h_e </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_h_e </ci>
+                  <ci> Km7 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_EX_nh4_e" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_nh4_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e6 </ci>
+                    <cn> 0.9662 </cn>
+                  </apply>
+                  <ci> Km9 </ci>
+                </apply>
+                <ci> M_nh4_e </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_nh4_e </ci>
+                  <ci> Km9 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_EX_o2_e" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_o2_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e7 </ci>
+                    <cn> 0.6266 </cn>
+                  </apply>
+                  <ci> Km11 </ci>
+                </apply>
+                <ci> M_o2_e </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_o2_e </ci>
+                  <ci> Km11 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_EX_pi_e" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_pi_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e8 </ci>
+                    <cn> 0.2172 </cn>
+                  </apply>
+                  <ci> Km13 </ci>
+                </apply>
+                <ci> M_pi_e </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_pi_e </ci>
+                  <ci> Km13 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_EX_pyr_e" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_pyr_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e9 </ci>
+                    <cn> 0.971 </cn>
+                  </apply>
+                  <ci> Km15 </ci>
+                </apply>
+                <ci> M_pyr_e </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_pyr_e </ci>
+                  <ci> Km15 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_EX_succ_e" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_succ_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e10 </ci>
+                    <cn> 0.3664 </cn>
+                  </apply>
+                  <ci> Km17 </ci>
+                </apply>
+                <ci> M_succ_e </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_succ_e </ci>
+                  <ci> Km17 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_NH4t" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_nh4_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_nh4_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e11 </ci>
+                    <cn> 0.451 </cn>
+                  </apply>
+                  <ci> Km19 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_nh4_e </ci>
+                  <apply>
+                    <divide/>
+                    <ci> M_nh4_c </ci>
+                    <cn> 0.1199 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_nh4_e </ci>
+                  <ci> Km19 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> M_nh4_c </ci>
+                  <ci> Km20 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_CO2t" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_co2_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_co2_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e12 </ci>
+                    <cn> 0.3809 </cn>
+                  </apply>
+                  <ci> Km21 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_co2_e </ci>
+                  <apply>
+                    <divide/>
+                    <ci> M_co2_c </ci>
+                    <cn> 0.2889 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_co2_e </ci>
+                  <ci> Km21 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> M_co2_c </ci>
+                  <ci> Km22 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_O2t" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_o2_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_o2_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e13 </ci>
+                    <cn> 0.9777 </cn>
+                  </apply>
+                  <ci> Km23 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_o2_e </ci>
+                  <apply>
+                    <divide/>
+                    <ci> M_o2_c </ci>
+                    <cn> 0.4639 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_o2_e </ci>
+                  <ci> Km23 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> M_o2_c </ci>
+                  <ci> Km24 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_H2Ot" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_h2o_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e14 </ci>
+                    <cn> 0.5136 </cn>
+                  </apply>
+                  <ci> Km25 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_h2o_e </ci>
+                  <apply>
+                    <divide/>
+                    <ci> M_h2o_c </ci>
+                    <cn> 0.6871 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_h2o_e </ci>
+                  <ci> Km25 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> M_h2o_c </ci>
+                  <ci> Km26 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_PIt2r" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_h_e" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pi_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pi_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e15 </ci>
+                    <cn> 0.8099 </cn>
+                  </apply>
+                  <ci> Km27 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_e </ci>
+                    <ci> M_pi_e </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_h_c </ci>
+                      <ci> M_pi_c </ci>
+                    </apply>
+                    <cn> 0.8727 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_e </ci>
+                    <ci> M_pi_e </ci>
+                  </apply>
+                  <ci> Km27 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_c </ci>
+                    <ci> M_pi_c </ci>
+                  </apply>
+                  <ci> Km28 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_PYRt2" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_h_e" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pyr_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pyr_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e16 </ci>
+                    <cn> 0.267 </cn>
+                  </apply>
+                  <ci> Km29 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_e </ci>
+                    <ci> M_pyr_e </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_h_c </ci>
+                      <ci> M_pyr_c </ci>
+                    </apply>
+                    <cn> 0.2804 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_e </ci>
+                    <ci> M_pyr_e </ci>
+                  </apply>
+                  <ci> Km29 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_c </ci>
+                    <ci> M_pyr_c </ci>
+                  </apply>
+                  <ci> Km30 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_SUCCt2_2" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_h_e" stoichiometry="2" constant="true"/>
+          <speciesReference species="M_succ_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_h_c" stoichiometry="2" constant="true"/>
+          <speciesReference species="M_succ_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e17 </ci>
+                    <cn> 0.0312 </cn>
+                  </apply>
+                  <ci> Km31 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <power/>
+                      <ci> M_h_e </ci>
+                      <cn type="integer"> 2 </cn>
+                    </apply>
+                    <ci> M_succ_e </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <apply>
+                        <power/>
+                        <ci> M_h_c </ci>
+                        <cn type="integer"> 2 </cn>
+                      </apply>
+                      <ci> M_succ_c </ci>
+                    </apply>
+                    <cn> 0.5312 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <power/>
+                      <ci> M_h_e </ci>
+                      <cn type="integer"> 2 </cn>
+                    </apply>
+                    <ci> M_succ_e </ci>
+                  </apply>
+                  <ci> Km31 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <power/>
+                      <ci> M_h_c </ci>
+                      <cn type="integer"> 2 </cn>
+                    </apply>
+                    <ci> M_succ_c </ci>
+                  </apply>
+                  <ci> Km32 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_SUCCt3" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_h_e" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_succ_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_succ_e" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e18 </ci>
+                    <cn> 0.2265 </cn>
+                  </apply>
+                  <ci> Km33 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_e </ci>
+                    <ci> M_succ_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_h_c </ci>
+                      <ci> M_succ_e </ci>
+                    </apply>
+                    <cn> 0.9554 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_e </ci>
+                    <ci> M_succ_c </ci>
+                  </apply>
+                  <ci> Km33 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_c </ci>
+                    <ci> M_succ_e </ci>
+                  </apply>
+                  <ci> Km34 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_THD2" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_h_e" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadh_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadp_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nad_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadph_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e19 </ci>
+                    <cn> 0.7902 </cn>
+                  </apply>
+                  <ci> Km35 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_e </ci>
+                    <ci> M_nadh_c </ci>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_h_c </ci>
+                      <ci> M_nad_c </ci>
+                      <ci> M_nadph_c </ci>
+                    </apply>
+                    <cn> 0.4398 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_e </ci>
+                    <ci> M_nadh_c </ci>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <ci> Km35 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_c </ci>
+                    <ci> M_nad_c </ci>
+                    <ci> M_nadph_c </ci>
+                  </apply>
+                  <ci> Km36 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_ATPM" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_atp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_adp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pi_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e20 </ci>
+                    <cn> 0.1715 </cn>
+                  </apply>
+                  <ci> Km37 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_atp_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_adp_c </ci>
+                      <ci> M_h_c </ci>
+                      <ci> M_pi_c </ci>
+                    </apply>
+                    <cn> 0.8627 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_atp_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <ci> Km37 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_adp_c </ci>
+                    <ci> M_h_c </ci>
+                    <ci> M_pi_c </ci>
+                  </apply>
+                  <ci> Km38 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_ATPS4r" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_atp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="3" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_adp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_e" stoichiometry="4" constant="true"/>
+          <speciesReference species="M_pi_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e21 </ci>
+                    <cn> 0.7611 </cn>
+                  </apply>
+                  <ci> Km39 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_atp_c </ci>
+                    <ci> M_h2o_c </ci>
+                    <apply>
+                      <power/>
+                      <ci> M_h_c </ci>
+                      <cn type="integer"> 3 </cn>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_adp_c </ci>
+                      <apply>
+                        <power/>
+                        <ci> M_h_e </ci>
+                        <cn type="integer"> 4 </cn>
+                      </apply>
+                      <ci> M_pi_c </ci>
+                    </apply>
+                    <cn> 0.6071 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_atp_c </ci>
+                    <ci> M_h2o_c </ci>
+                    <apply>
+                      <power/>
+                      <ci> M_h_c </ci>
+                      <cn type="integer"> 3 </cn>
+                    </apply>
+                  </apply>
+                  <ci> Km39 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_adp_c </ci>
+                    <apply>
+                      <power/>
+                      <ci> M_h_e </ci>
+                      <cn type="integer"> 4 </cn>
+                    </apply>
+                    <ci> M_pi_c </ci>
+                  </apply>
+                  <ci> Km40 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_HCO3E" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_hco3_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_co2_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e22 </ci>
+                    <cn> 0.9203 </cn>
+                  </apply>
+                  <ci> Km41 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_c </ci>
+                    <ci> M_hco3_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_co2_c </ci>
+                      <ci> M_h2o_c </ci>
+                    </apply>
+                    <cn> 0.5795 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_c </ci>
+                    <ci> M_hco3_c </ci>
+                  </apply>
+                  <ci> Km41 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_co2_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <ci> Km42 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_NADTRHD" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_nad_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadph_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_nadh_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadp_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e23 </ci>
+                    <cn> 0.6675 </cn>
+                  </apply>
+                  <ci> Km43 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_nad_c </ci>
+                    <ci> M_nadph_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_nadh_c </ci>
+                      <ci> M_nadp_c </ci>
+                    </apply>
+                    <cn> 0.2638 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_nad_c </ci>
+                    <ci> M_nadph_c </ci>
+                  </apply>
+                  <ci> Km43 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_nadh_c </ci>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <ci> Km44 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_ACONTa" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_cit_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_acon_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e25 </ci>
+                    <cn> 0.2035 </cn>
+                  </apply>
+                  <ci> Km47 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_cit_c </ci>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_acon_c </ci>
+                      <ci> M_h2o_c </ci>
+                    </apply>
+                    <cn> 0.4333 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_cit_c </ci>
+                  <ci> Km47 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_acon_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <ci> Km48 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_ACONTb" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_acon_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_icit_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e26 </ci>
+                    <cn> 0.9913 </cn>
+                  </apply>
+                  <ci> Km49 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_acon_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> M_icit_c </ci>
+                    <cn> 0.5886 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_acon_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <ci> Km49 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> M_icit_c </ci>
+                  <ci> Km50 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_CATDOX" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_catechol_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_o2_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_ccmuac_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="2" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e27 </ci>
+                    <cn> 0.0457 </cn>
+                  </apply>
+                  <ci> Km51 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_catechol_c </ci>
+                    <ci> M_o2_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_ccmuac_c </ci>
+                      <apply>
+                        <power/>
+                        <ci> M_h_c </ci>
+                        <cn type="integer"> 2 </cn>
+                      </apply>
+                    </apply>
+                    <cn> 0.833 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_catechol_c </ci>
+                    <ci> M_o2_c </ci>
+                  </apply>
+                  <ci> Km51 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_ccmuac_c </ci>
+                    <apply>
+                      <power/>
+                      <ci> M_h_c </ci>
+                      <cn type="integer"> 2 </cn>
+                    </apply>
+                  </apply>
+                  <ci> Km52 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_CS" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_accoa_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_oaa_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_cit_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_coa_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e28 </ci>
+                    <cn> 0.3346 </cn>
+                  </apply>
+                  <ci> Km53 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_accoa_c </ci>
+                    <ci> M_h2o_c </ci>
+                    <ci> M_oaa_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_cit_c </ci>
+                      <ci> M_coa_c </ci>
+                      <ci> M_h_c </ci>
+                    </apply>
+                    <cn> 0.2088 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_accoa_c </ci>
+                    <ci> M_h2o_c </ci>
+                    <ci> M_oaa_c </ci>
+                  </apply>
+                  <ci> Km53 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_cit_c </ci>
+                    <ci> M_coa_c </ci>
+                    <ci> M_h_c </ci>
+                  </apply>
+                  <ci> Km54 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_CYTBD" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_h_c" stoichiometry="2" constant="true"/>
+          <speciesReference species="M_o2_c" stoichiometry="1.5" constant="true"/>
+          <speciesReference species="M_q8h2_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_e" stoichiometry="2" constant="true"/>
+          <speciesReference species="M_q8_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e29 </ci>
+                    <cn> 0.6916 </cn>
+                  </apply>
+                  <ci> Km55 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <power/>
+                      <ci> M_h_c </ci>
+                      <cn type="integer"> 2 </cn>
+                    </apply>
+                    <apply>
+                      <power/>
+                      <ci> M_o2_c </ci>
+                      <cn> 1.5 </cn>
+                    </apply>
+                    <ci> M_q8h2_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_h2o_c </ci>
+                      <apply>
+                        <power/>
+                        <ci> M_h_e </ci>
+                        <cn type="integer"> 2 </cn>
+                      </apply>
+                      <ci> M_q8_c </ci>
+                    </apply>
+                    <cn> 0.5209 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <power/>
+                      <ci> M_h_c </ci>
+                      <cn type="integer"> 2 </cn>
+                    </apply>
+                    <apply>
+                      <power/>
+                      <ci> M_o2_c </ci>
+                      <cn> 1.5 </cn>
+                    </apply>
+                    <ci> M_q8h2_c </ci>
+                  </apply>
+                  <ci> Km55 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_h2o_c </ci>
+                    <apply>
+                      <power/>
+                      <ci> M_h_e </ci>
+                      <cn type="integer"> 2 </cn>
+                    </apply>
+                    <ci> M_q8_c </ci>
+                  </apply>
+                  <ci> Km56 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_DHQTi" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_3dhq_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_3dhsk_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e30 </ci>
+                    <cn> 0.4644 </cn>
+                  </apply>
+                  <ci> Km57 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_3dhq_c </ci>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_3dhsk_c </ci>
+                      <ci> M_h2o_c </ci>
+                    </apply>
+                    <cn> 0.258 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_3dhq_c </ci>
+                  <ci> Km57 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_3dhsk_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <ci> Km58 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_ENO" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_3pg_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pep_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e31 </ci>
+                    <cn> 0.4202 </cn>
+                  </apply>
+                  <ci> Km59 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_3pg_c </ci>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_h2o_c </ci>
+                      <ci> M_pep_c </ci>
+                    </apply>
+                    <cn> 0.3662 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_3pg_c </ci>
+                  <ci> Km59 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_h2o_c </ci>
+                    <ci> M_pep_c </ci>
+                  </apply>
+                  <ci> Km60 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_FBA" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_fdp_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_dhap_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_g3p_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e32 </ci>
+                    <cn> 0.2596 </cn>
+                  </apply>
+                  <ci> Km61 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_fdp_c </ci>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_dhap_c </ci>
+                      <ci> M_g3p_c </ci>
+                    </apply>
+                    <cn> 0.8733 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_fdp_c </ci>
+                  <ci> Km61 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_dhap_c </ci>
+                    <ci> M_g3p_c </ci>
+                  </apply>
+                  <ci> Km62 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_FBP" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_fdp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_f6p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pi_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e33 </ci>
+                    <cn> 0.8985 </cn>
+                  </apply>
+                  <ci> Km63 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_fdp_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_f6p_c </ci>
+                      <ci> M_pi_c </ci>
+                    </apply>
+                    <cn> 0.5382 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_fdp_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <ci> Km63 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_f6p_c </ci>
+                    <ci> M_pi_c </ci>
+                  </apply>
+                  <ci> Km64 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_G6PDH2r" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_g6p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadp_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_6pgc_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="2" constant="true"/>
+          <speciesReference species="M_nadph_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e34 </ci>
+                    <cn> 0.4417 </cn>
+                  </apply>
+                  <ci> Km65 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_g6p_c </ci>
+                    <ci> M_h2o_c </ci>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_6pgc_c </ci>
+                      <apply>
+                        <power/>
+                        <ci> M_h_c </ci>
+                        <cn type="integer"> 2 </cn>
+                      </apply>
+                      <ci> M_nadph_c </ci>
+                    </apply>
+                    <cn> 0.7773 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_g6p_c </ci>
+                    <ci> M_h2o_c </ci>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <ci> Km65 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_6pgc_c </ci>
+                    <apply>
+                      <power/>
+                      <ci> M_h_c </ci>
+                      <cn type="integer"> 2 </cn>
+                    </apply>
+                    <ci> M_nadph_c </ci>
+                  </apply>
+                  <ci> Km66 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_GADktpp" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_glcn_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nad_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_2dhglcn_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadh_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e35 </ci>
+                    <cn> 0.9691 </cn>
+                  </apply>
+                  <ci> Km67 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_glcn_c </ci>
+                    <ci> M_nad_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_2dhglcn_c </ci>
+                      <ci> M_h_c </ci>
+                      <ci> M_nadh_c </ci>
+                    </apply>
+                    <cn> 0.4588 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_glcn_c </ci>
+                    <ci> M_nad_c </ci>
+                  </apply>
+                  <ci> Km67 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_2dhglcn_c </ci>
+                    <ci> M_h_c </ci>
+                    <ci> M_nadh_c </ci>
+                  </apply>
+                  <ci> Km68 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_GAPD" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_adp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_g3p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nad_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pi_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_3pg_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_atp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadh_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e36 </ci>
+                    <cn> 0.7113 </cn>
+                  </apply>
+                  <ci> Km69 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_adp_c </ci>
+                    <ci> M_g3p_c </ci>
+                    <ci> M_nad_c </ci>
+                    <ci> M_pi_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_3pg_c </ci>
+                      <ci> M_atp_c </ci>
+                      <ci> M_h_c </ci>
+                      <ci> M_nadh_c </ci>
+                    </apply>
+                    <cn> 0.5312 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_adp_c </ci>
+                    <ci> M_g3p_c </ci>
+                    <ci> M_nad_c </ci>
+                    <ci> M_pi_c </ci>
+                  </apply>
+                  <ci> Km69 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_3pg_c </ci>
+                    <ci> M_atp_c </ci>
+                    <ci> M_h_c </ci>
+                    <ci> M_nadh_c </ci>
+                  </apply>
+                  <ci> Km70 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_GLCDpp" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_glc__D_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_e" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_q8_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_glcn_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_e" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_q8h2_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e37 </ci>
+                    <cn> 0.4508 </cn>
+                  </apply>
+                  <ci> Km71 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_glc__D_c </ci>
+                    <ci> M_h2o_e </ci>
+                    <ci> M_q8_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_glcn_c </ci>
+                      <ci> M_h_e </ci>
+                      <ci> M_q8h2_c </ci>
+                    </apply>
+                    <cn> 0.7581 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_glc__D_c </ci>
+                    <ci> M_h2o_e </ci>
+                    <ci> M_q8_c </ci>
+                  </apply>
+                  <ci> Km71 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_glcn_c </ci>
+                    <ci> M_h_e </ci>
+                    <ci> M_q8h2_c </ci>
+                  </apply>
+                  <ci> Km72 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_GLNS" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_atp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_glu__L_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nh4_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_adp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_gln__L_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pi_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e38 </ci>
+                    <cn> 0.2219 </cn>
+                  </apply>
+                  <ci> Km73 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_atp_c </ci>
+                    <ci> M_glu__L_c </ci>
+                    <ci> M_nh4_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_adp_c </ci>
+                      <ci> M_gln__L_c </ci>
+                      <ci> M_h_c </ci>
+                      <ci> M_pi_c </ci>
+                    </apply>
+                    <cn> 0.3877 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_atp_c </ci>
+                    <ci> M_glu__L_c </ci>
+                    <ci> M_nh4_c </ci>
+                  </apply>
+                  <ci> Km73 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_adp_c </ci>
+                    <ci> M_gln__L_c </ci>
+                    <ci> M_h_c </ci>
+                    <ci> M_pi_c </ci>
+                  </apply>
+                  <ci> Km74 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_GLUDy" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_glu__L_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadp_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_akg_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadph_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nh4_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e39 </ci>
+                    <cn> 0.0402 </cn>
+                  </apply>
+                  <ci> Km75 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_glu__L_c </ci>
+                    <ci> M_h2o_c </ci>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_akg_c </ci>
+                      <ci> M_h_c </ci>
+                      <ci> M_nadph_c </ci>
+                      <ci> M_nh4_c </ci>
+                    </apply>
+                    <cn> 0.6949 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_glu__L_c </ci>
+                    <ci> M_h2o_c </ci>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <ci> Km75 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_akg_c </ci>
+                    <ci> M_h_c </ci>
+                    <ci> M_nadph_c </ci>
+                    <ci> M_nh4_c </ci>
+                  </apply>
+                  <ci> Km76 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_GLUN" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_gln__L_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_glu__L_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nh4_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e40 </ci>
+                    <cn> 0.9004 </cn>
+                  </apply>
+                  <ci> Km77 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_gln__L_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_glu__L_c </ci>
+                      <ci> M_nh4_c </ci>
+                    </apply>
+                    <cn> 0.3347 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_gln__L_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <ci> Km77 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_glu__L_c </ci>
+                    <ci> M_nh4_c </ci>
+                  </apply>
+                  <ci> Km78 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_GLUSy" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_akg_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_gln__L_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadph_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_glu__L_c" stoichiometry="2" constant="true"/>
+          <speciesReference species="M_nadp_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e41 </ci>
+                    <cn> 0.3031 </cn>
+                  </apply>
+                  <ci> Km79 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_akg_c </ci>
+                    <ci> M_gln__L_c </ci>
+                    <ci> M_h_c </ci>
+                    <ci> M_nadph_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <apply>
+                        <power/>
+                        <ci> M_glu__L_c </ci>
+                        <cn type="integer"> 2 </cn>
+                      </apply>
+                      <ci> M_nadp_c </ci>
+                    </apply>
+                    <cn> 0.0276 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_akg_c </ci>
+                    <ci> M_gln__L_c </ci>
+                    <ci> M_h_c </ci>
+                    <ci> M_nadph_c </ci>
+                  </apply>
+                  <ci> Km79 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <power/>
+                      <ci> M_glu__L_c </ci>
+                      <cn type="integer"> 2 </cn>
+                    </apply>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <ci> Km80 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_GND" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_6pgc_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadp_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_co2_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadph_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_ru5p__D_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e42 </ci>
+                    <cn> 0.7077 </cn>
+                  </apply>
+                  <ci> Km81 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_6pgc_c </ci>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_co2_c </ci>
+                      <ci> M_nadph_c </ci>
+                      <ci> M_ru5p__D_c </ci>
+                    </apply>
+                    <cn> 0.84 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_6pgc_c </ci>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <ci> Km81 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_co2_c </ci>
+                    <ci> M_nadph_c </ci>
+                    <ci> M_ru5p__D_c </ci>
+                  </apply>
+                  <ci> Km82 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_GNK" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_atp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_glcn_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_6pgc_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_adp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e43 </ci>
+                    <cn> 0.2898 </cn>
+                  </apply>
+                  <ci> Km83 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_atp_c </ci>
+                    <ci> M_glcn_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_6pgc_c </ci>
+                      <ci> M_adp_c </ci>
+                      <ci> M_h_c </ci>
+                    </apply>
+                    <cn> 0.8071 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_atp_c </ci>
+                    <ci> M_glcn_c </ci>
+                  </apply>
+                  <ci> Km83 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_6pgc_c </ci>
+                    <ci> M_adp_c </ci>
+                    <ci> M_h_c </ci>
+                  </apply>
+                  <ci> Km84 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_ICDHyr" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_icit_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadp_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_akg_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_co2_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadph_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e44 </ci>
+                    <cn> 0.4016 </cn>
+                  </apply>
+                  <ci> Km85 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_icit_c </ci>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_akg_c </ci>
+                      <ci> M_co2_c </ci>
+                      <ci> M_nadph_c </ci>
+                    </apply>
+                    <cn> 0.101 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_icit_c </ci>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <ci> Km85 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_akg_c </ci>
+                    <ci> M_co2_c </ci>
+                    <ci> M_nadph_c </ci>
+                  </apply>
+                  <ci> Km86 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_KDPGALDOL" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_2ddg6p_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_g3p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pyr_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e45 </ci>
+                    <cn> 0.4524 </cn>
+                  </apply>
+                  <ci> Km87 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_2ddg6p_c </ci>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_g3p_c </ci>
+                      <ci> M_pyr_c </ci>
+                    </apply>
+                    <cn> 0.5635 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_2ddg6p_c </ci>
+                  <ci> Km87 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_g3p_c </ci>
+                    <ci> M_pyr_c </ci>
+                  </apply>
+                  <ci> Km88 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_MDH" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_mal__L_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nad_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadh_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_oaa_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e46 </ci>
+                    <cn> 0.2885 </cn>
+                  </apply>
+                  <ci> Km89 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_mal__L_c </ci>
+                    <ci> M_nad_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_h_c </ci>
+                      <ci> M_nadh_c </ci>
+                      <ci> M_oaa_c </ci>
+                    </apply>
+                    <cn> 0.2501 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_mal__L_c </ci>
+                    <ci> M_nad_c </ci>
+                  </apply>
+                  <ci> Km89 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_h_c </ci>
+                    <ci> M_nadh_c </ci>
+                    <ci> M_oaa_c </ci>
+                  </apply>
+                  <ci> Km90 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_ME1" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_mal__L_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nad_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_co2_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadh_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pyr_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e47 </ci>
+                    <cn> 0.1203 </cn>
+                  </apply>
+                  <ci> Km91 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_mal__L_c </ci>
+                    <ci> M_nad_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_co2_c </ci>
+                      <ci> M_nadh_c </ci>
+                      <ci> M_pyr_c </ci>
+                    </apply>
+                    <cn> 0.2666 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_mal__L_c </ci>
+                    <ci> M_nad_c </ci>
+                  </apply>
+                  <ci> Km91 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_co2_c </ci>
+                    <ci> M_nadh_c </ci>
+                    <ci> M_pyr_c </ci>
+                  </apply>
+                  <ci> Km92 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_ME2" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_mal__L_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadp_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_co2_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadph_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pyr_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e48 </ci>
+                    <cn> 0.1521 </cn>
+                  </apply>
+                  <ci> Km93 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_mal__L_c </ci>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_co2_c </ci>
+                      <ci> M_nadph_c </ci>
+                      <ci> M_pyr_c </ci>
+                    </apply>
+                    <cn> 0.6134 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_mal__L_c </ci>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <ci> Km93 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_co2_c </ci>
+                    <ci> M_nadph_c </ci>
+                    <ci> M_pyr_c </ci>
+                  </apply>
+                  <ci> Km94 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_NADH16" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_h_c" stoichiometry="4" constant="true"/>
+          <speciesReference species="M_nadh_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_q8_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_h_e" stoichiometry="3" constant="true"/>
+          <speciesReference species="M_nad_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_q8h2_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e49 </ci>
+                    <cn> 0.6336 </cn>
+                  </apply>
+                  <ci> Km95 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <power/>
+                      <ci> M_h_c </ci>
+                      <cn type="integer"> 4 </cn>
+                    </apply>
+                    <ci> M_nadh_c </ci>
+                    <ci> M_q8_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <apply>
+                        <power/>
+                        <ci> M_h_e </ci>
+                        <cn type="integer"> 3 </cn>
+                      </apply>
+                      <ci> M_nad_c </ci>
+                      <ci> M_q8h2_c </ci>
+                    </apply>
+                    <cn> 0.5713 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <power/>
+                      <ci> M_h_c </ci>
+                      <cn type="integer"> 4 </cn>
+                    </apply>
+                    <ci> M_nadh_c </ci>
+                    <ci> M_q8_c </ci>
+                  </apply>
+                  <ci> Km95 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <power/>
+                      <ci> M_h_e </ci>
+                      <cn type="integer"> 3 </cn>
+                    </apply>
+                    <ci> M_nad_c </ci>
+                    <ci> M_q8h2_c </ci>
+                  </apply>
+                  <ci> Km96 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_PC" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_atp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_hco3_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pyr_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_adp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_oaa_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pi_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e50 </ci>
+                    <cn> 0.7614 </cn>
+                  </apply>
+                  <ci> Km97 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_atp_c </ci>
+                    <ci> M_hco3_c </ci>
+                    <ci> M_pyr_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_adp_c </ci>
+                      <ci> M_h_c </ci>
+                      <ci> M_oaa_c </ci>
+                      <ci> M_pi_c </ci>
+                    </apply>
+                    <cn> 0.0644 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_atp_c </ci>
+                    <ci> M_hco3_c </ci>
+                    <ci> M_pyr_c </ci>
+                  </apply>
+                  <ci> Km97 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_adp_c </ci>
+                    <ci> M_h_c </ci>
+                    <ci> M_oaa_c </ci>
+                    <ci> M_pi_c </ci>
+                  </apply>
+                  <ci> Km98 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_PDH" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_coa_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nad_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pyr_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_accoa_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_co2_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadh_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e51 </ci>
+                    <cn> 0.0072 </cn>
+                  </apply>
+                  <ci> Km99 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_coa_c </ci>
+                    <ci> M_nad_c </ci>
+                    <ci> M_pyr_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_accoa_c </ci>
+                      <ci> M_co2_c </ci>
+                      <ci> M_nadh_c </ci>
+                    </apply>
+                    <cn> 0.8797 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_coa_c </ci>
+                    <ci> M_nad_c </ci>
+                    <ci> M_pyr_c </ci>
+                  </apply>
+                  <ci> Km99 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_accoa_c </ci>
+                    <ci> M_co2_c </ci>
+                    <ci> M_nadh_c </ci>
+                  </apply>
+                  <ci> Km100 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_PGI" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_g6p_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_f6p_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e52 </ci>
+                    <cn> 0.7563 </cn>
+                  </apply>
+                  <ci> Km101 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_g6p_c </ci>
+                  <apply>
+                    <divide/>
+                    <ci> M_f6p_c </ci>
+                    <cn> 0.5056 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_g6p_c </ci>
+                  <ci> Km101 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> M_f6p_c </ci>
+                  <ci> Km102 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_PGLUCONDEHYDRAT" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_6pgc_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_2ddg6p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e53 </ci>
+                    <cn> 0.7445 </cn>
+                  </apply>
+                  <ci> Km103 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_6pgc_c </ci>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_2ddg6p_c </ci>
+                      <ci> M_h2o_c </ci>
+                    </apply>
+                    <cn> 0.9485 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_6pgc_c </ci>
+                  <ci> Km103 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_2ddg6p_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <ci> Km104 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_PPC" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_hco3_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pep_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_oaa_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pi_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e54 </ci>
+                    <cn> 0.9584 </cn>
+                  </apply>
+                  <ci> Km105 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_hco3_c </ci>
+                    <ci> M_pep_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_oaa_c </ci>
+                      <ci> M_pi_c </ci>
+                    </apply>
+                    <cn> 0.7637 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_hco3_c </ci>
+                    <ci> M_pep_c </ci>
+                  </apply>
+                  <ci> Km105 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_oaa_c </ci>
+                    <ci> M_pi_c </ci>
+                  </apply>
+                  <ci> Km106 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_PPCK" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_atp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_oaa_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_adp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_co2_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pep_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e55 </ci>
+                    <cn> 0.9534 </cn>
+                  </apply>
+                  <ci> Km107 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_atp_c </ci>
+                    <ci> M_oaa_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_adp_c </ci>
+                      <ci> M_co2_c </ci>
+                      <ci> M_pep_c </ci>
+                    </apply>
+                    <cn> 0.8695 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_atp_c </ci>
+                    <ci> M_oaa_c </ci>
+                  </apply>
+                  <ci> Km107 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_adp_c </ci>
+                    <ci> M_co2_c </ci>
+                    <ci> M_pep_c </ci>
+                  </apply>
+                  <ci> Km108 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_PYK" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_adp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pep_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_atp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pyr_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e56 </ci>
+                    <cn> 0.8693 </cn>
+                  </apply>
+                  <ci> Km109 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_adp_c </ci>
+                    <ci> M_h_c </ci>
+                    <ci> M_pep_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_atp_c </ci>
+                      <ci> M_pyr_c </ci>
+                    </apply>
+                    <cn> 0.9171 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_adp_c </ci>
+                    <ci> M_h_c </ci>
+                    <ci> M_pep_c </ci>
+                  </apply>
+                  <ci> Km109 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_atp_c </ci>
+                    <ci> M_pyr_c </ci>
+                  </apply>
+                  <ci> Km110 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_RPE" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_ru5p__D_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_xu5p__D_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e57 </ci>
+                    <cn> 0.916 </cn>
+                  </apply>
+                  <ci> Km111 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_ru5p__D_c </ci>
+                  <apply>
+                    <divide/>
+                    <ci> M_xu5p__D_c </ci>
+                    <cn> 0.9885 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_ru5p__D_c </ci>
+                  <ci> Km111 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> M_xu5p__D_c </ci>
+                  <ci> Km112 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_RPI" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_r5p_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_ru5p__D_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e58 </ci>
+                    <cn> 0.2707 </cn>
+                  </apply>
+                  <ci> Km113 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_r5p_c </ci>
+                  <apply>
+                    <divide/>
+                    <ci> M_ru5p__D_c </ci>
+                    <cn> 0.5307 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_r5p_c </ci>
+                  <ci> Km113 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> M_ru5p__D_c </ci>
+                  <ci> Km114 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_TALA" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_g3p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_s7p_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_e4p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_f6p_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e59 </ci>
+                    <cn> 0.7332 </cn>
+                  </apply>
+                  <ci> Km115 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_g3p_c </ci>
+                    <ci> M_s7p_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_e4p_c </ci>
+                      <ci> M_f6p_c </ci>
+                    </apply>
+                    <cn> 0.5608 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_g3p_c </ci>
+                    <ci> M_s7p_c </ci>
+                  </apply>
+                  <ci> Km115 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_e4p_c </ci>
+                    <ci> M_f6p_c </ci>
+                  </apply>
+                  <ci> Km116 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_TKT1" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_g3p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_s7p_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_r5p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_xu5p__D_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e60 </ci>
+                    <cn> 0.2531 </cn>
+                  </apply>
+                  <ci> Km117 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_g3p_c </ci>
+                    <ci> M_s7p_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_r5p_c </ci>
+                      <ci> M_xu5p__D_c </ci>
+                    </apply>
+                    <cn> 0.3239 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_g3p_c </ci>
+                    <ci> M_s7p_c </ci>
+                  </apply>
+                  <ci> Km117 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_r5p_c </ci>
+                    <ci> M_xu5p__D_c </ci>
+                  </apply>
+                  <ci> Km118 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_TKT2" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_e4p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_xu5p__D_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_f6p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_g3p_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e61 </ci>
+                    <cn> 0.3346 </cn>
+                  </apply>
+                  <ci> Km119 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_e4p_c </ci>
+                    <ci> M_xu5p__D_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_f6p_c </ci>
+                      <ci> M_g3p_c </ci>
+                    </apply>
+                    <cn> 0.1491 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_e4p_c </ci>
+                    <ci> M_xu5p__D_c </ci>
+                  </apply>
+                  <ci> Km119 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_f6p_c </ci>
+                    <ci> M_g3p_c </ci>
+                  </apply>
+                  <ci> Km120 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_TPI" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_g3p_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_dhap_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e62 </ci>
+                    <cn> 0.701 </cn>
+                  </apply>
+                  <ci> Km121 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_g3p_c </ci>
+                  <apply>
+                    <divide/>
+                    <ci> M_dhap_c </ci>
+                    <cn> 0.6754 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_g3p_c </ci>
+                  <ci> Km121 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> M_dhap_c </ci>
+                  <ci> Km122 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_MALS" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_accoa_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_glx_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_coa_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_mal__L_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e63 </ci>
+                    <cn> 0.4939 </cn>
+                  </apply>
+                  <ci> Km123 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_accoa_c </ci>
+                    <ci> M_glx_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_coa_c </ci>
+                      <ci> M_h_c </ci>
+                      <ci> M_mal__L_c </ci>
+                    </apply>
+                    <cn> 0.9307 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_accoa_c </ci>
+                    <ci> M_glx_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <ci> Km123 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_coa_c </ci>
+                    <ci> M_h_c </ci>
+                    <ci> M_mal__L_c </ci>
+                  </apply>
+                  <ci> Km124 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_FUM" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_fum_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_mal__L_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e64 </ci>
+                    <cn> 0.6326 </cn>
+                  </apply>
+                  <ci> Km125 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_fum_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> M_mal__L_c </ci>
+                    <cn> 0.0308 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_fum_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <ci> Km125 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> M_mal__L_c </ci>
+                  <ci> Km126 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_GLCabcpp_HEX1" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_atp_c" stoichiometry="2" constant="true"/>
+          <speciesReference species="M_glc__D_e" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_adp_c" stoichiometry="2" constant="true"/>
+          <speciesReference species="M_g6p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="2" constant="true"/>
+          <speciesReference species="M_pi_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e66 </ci>
+                    <cn> 0.9956 </cn>
+                  </apply>
+                  <ci> Km129 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <power/>
+                      <ci> M_atp_c </ci>
+                      <cn type="integer"> 2 </cn>
+                    </apply>
+                    <ci> M_glc__D_e </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <apply>
+                        <power/>
+                        <ci> M_adp_c </ci>
+                        <cn type="integer"> 2 </cn>
+                      </apply>
+                      <ci> M_g6p_c </ci>
+                      <apply>
+                        <power/>
+                        <ci> M_h_c </ci>
+                        <cn type="integer"> 2 </cn>
+                      </apply>
+                      <ci> M_pi_c </ci>
+                    </apply>
+                    <cn> 0.2865 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <power/>
+                      <ci> M_atp_c </ci>
+                      <cn type="integer"> 2 </cn>
+                    </apply>
+                    <ci> M_glc__D_e </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <ci> Km129 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <power/>
+                      <ci> M_adp_c </ci>
+                      <cn type="integer"> 2 </cn>
+                    </apply>
+                    <ci> M_g6p_c </ci>
+                    <apply>
+                      <power/>
+                      <ci> M_h_c </ci>
+                      <cn type="integer"> 2 </cn>
+                    </apply>
+                    <ci> M_pi_c </ci>
+                  </apply>
+                  <ci> Km130 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_2DHGLCK_PGLCNDH" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_2dhglcn_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_atp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadph_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_6pgc_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_adp_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e67 </ci>
+                    <cn> 0.6539 </cn>
+                  </apply>
+                  <ci> Km131 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_2dhglcn_c </ci>
+                    <ci> M_atp_c </ci>
+                    <ci> M_nadph_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_6pgc_c </ci>
+                      <ci> M_nadp_c </ci>
+                      <ci> M_adp_c </ci>
+                    </apply>
+                    <cn> 0.3222 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_2dhglcn_c </ci>
+                    <ci> M_atp_c </ci>
+                    <ci> M_nadph_c </ci>
+                  </apply>
+                  <ci> Km131 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_6pgc_c </ci>
+                    <ci> M_nadp_c </ci>
+                    <ci> M_adp_c </ci>
+                  </apply>
+                  <ci> Km132 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_ICL_FRD7" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_icit_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_q8_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_glx_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_fum_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_q8h2_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e68 </ci>
+                    <cn> 0.3415 </cn>
+                  </apply>
+                  <ci> Km133 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_icit_c </ci>
+                    <ci> M_q8_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_glx_c </ci>
+                      <ci> M_fum_c </ci>
+                      <ci> M_q8h2_c </ci>
+                    </apply>
+                    <cn> 0.0571 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_icit_c </ci>
+                    <ci> M_q8_c </ci>
+                  </apply>
+                  <ci> Km133 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_glx_c </ci>
+                    <ci> M_fum_c </ci>
+                    <ci> M_q8h2_c </ci>
+                  </apply>
+                  <ci> Km134 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_AKGDH_FRD7" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_q8_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_adp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_akg_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nad_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pi_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_atp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_co2_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadh_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_fum_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_q8h2_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e69 </ci>
+                    <cn> 0.1498 </cn>
+                  </apply>
+                  <ci> Km135 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_q8_c </ci>
+                    <ci> M_adp_c </ci>
+                    <ci> M_akg_c </ci>
+                    <ci> M_nad_c </ci>
+                    <ci> M_pi_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_atp_c </ci>
+                      <ci> M_co2_c </ci>
+                      <ci> M_nadh_c </ci>
+                      <ci> M_fum_c </ci>
+                      <ci> M_q8h2_c </ci>
+                    </apply>
+                    <cn> 0.3577 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_q8_c </ci>
+                    <ci> M_adp_c </ci>
+                    <ci> M_akg_c </ci>
+                    <ci> M_nad_c </ci>
+                    <ci> M_pi_c </ci>
+                  </apply>
+                  <ci> Km135 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_atp_c </ci>
+                    <ci> M_co2_c </ci>
+                    <ci> M_nadh_c </ci>
+                    <ci> M_fum_c </ci>
+                    <ci> M_q8h2_c </ci>
+                  </apply>
+                  <ci> Km136 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_DDPA_DHQS" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_e4p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pep_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_3dhq_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pi_c" stoichiometry="2" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e70 </ci>
+                    <cn> 0.2435 </cn>
+                  </apply>
+                  <ci> Km137 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_e4p_c </ci>
+                    <ci> M_h2o_c </ci>
+                    <ci> M_pep_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_3dhq_c </ci>
+                      <apply>
+                        <power/>
+                        <ci> M_pi_c </ci>
+                        <cn type="integer"> 2 </cn>
+                      </apply>
+                    </apply>
+                    <cn> 0.2028 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_e4p_c </ci>
+                    <ci> M_h2o_c </ci>
+                    <ci> M_pep_c </ci>
+                  </apply>
+                  <ci> Km137 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_3dhq_c </ci>
+                    <apply>
+                      <power/>
+                      <ci> M_pi_c </ci>
+                      <cn type="integer"> 2 </cn>
+                    </apply>
+                  </apply>
+                  <ci> Km138 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_DHSKDH_PCATDC" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_3dhsk_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_catechol_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_co2_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h2o_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e71 </ci>
+                    <cn> 0.2833 </cn>
+                  </apply>
+                  <ci> Km139 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_3dhsk_c </ci>
+                    <ci> M_h_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_catechol_c </ci>
+                      <ci> M_co2_c </ci>
+                      <ci> M_h2o_c </ci>
+                    </apply>
+                    <cn> 0.3286 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_3dhsk_c </ci>
+                    <ci> M_h_c </ci>
+                  </apply>
+                  <ci> Km139 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_catechol_c </ci>
+                    <ci> M_co2_c </ci>
+                    <ci> M_h2o_c </ci>
+                  </apply>
+                  <ci> Km140 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_SHIK" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_3dhsk_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadph_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_shik_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadp_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e73 </ci>
+                    <cn> 0.9617 </cn>
+                  </apply>
+                  <ci> Km143 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_3dhsk_c </ci>
+                    <ci> M_nadph_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_shik_c </ci>
+                      <ci> M_nadp_c </ci>
+                    </apply>
+                    <cn> 0.3358 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_3dhsk_c </ci>
+                    <ci> M_nadph_c </ci>
+                  </apply>
+                  <ci> Km143 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_shik_c </ci>
+                    <ci> M_nadp_c </ci>
+                  </apply>
+                  <ci> Km144 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_SHIK3P" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_shik_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_atp_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_adp_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_shik3p_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e74 </ci>
+                    <cn> 0.8614 </cn>
+                  </apply>
+                  <ci> Km145 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_shik_c </ci>
+                    <ci> M_atp_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_adp_c </ci>
+                      <ci> M_shik3p_c </ci>
+                    </apply>
+                    <cn> 0.6165 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_shik_c </ci>
+                    <ci> M_atp_c </ci>
+                  </apply>
+                  <ci> Km145 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_adp_c </ci>
+                    <ci> M_shik3p_c </ci>
+                  </apply>
+                  <ci> Km146 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_5EPS3P" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_shik3p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pep_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_5eps3p_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pi_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e75 </ci>
+                    <cn> 0.4395 </cn>
+                  </apply>
+                  <ci> Km147 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_shik3p_c </ci>
+                    <ci> M_pep_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_5eps3p_c </ci>
+                      <ci> M_pi_c </ci>
+                    </apply>
+                    <cn> 0.9297 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_shik3p_c </ci>
+                    <ci> M_pep_c </ci>
+                  </apply>
+                  <ci> Km147 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_5eps3p_c </ci>
+                    <ci> M_pi_c </ci>
+                  </apply>
+                  <ci> Km148 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_CHOR" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_5eps3p_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_chor_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_pi_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e76 </ci>
+                    <cn> 0.3029 </cn>
+                  </apply>
+                  <ci> Km149 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_5eps3p_c </ci>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_chor_c </ci>
+                      <ci> M_pi_c </ci>
+                    </apply>
+                    <cn> 0.4372 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_5eps3p_c </ci>
+                  <ci> Km149 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_chor_c </ci>
+                    <ci> M_pi_c </ci>
+                  </apply>
+                  <ci> Km150 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_PAPA" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_chor_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_gln__L_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_4a4dch_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_glu__L_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e77 </ci>
+                    <cn> 0.3004 </cn>
+                  </apply>
+                  <ci> Km151 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_chor_c </ci>
+                    <ci> M_gln__L_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_4a4dch_c </ci>
+                      <ci> M_glu__L_c </ci>
+                    </apply>
+                    <cn> 0.3922 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_chor_c </ci>
+                    <ci> M_gln__L_c </ci>
+                  </apply>
+                  <ci> Km151 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_4a4dch_c </ci>
+                    <ci> M_glu__L_c </ci>
+                  </apply>
+                  <ci> Km152 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_PAPB" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_4a4dch_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_4a4dpr_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e78 </ci>
+                    <cn> 0.4039 </cn>
+                  </apply>
+                  <ci> Km153 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_4a4dch_c </ci>
+                  <apply>
+                    <divide/>
+                    <ci> M_4a4dpr_c </ci>
+                    <cn> 0.4063 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_4a4dch_c </ci>
+                  <ci> Km153 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> M_4a4dpr_c </ci>
+                  <ci> Km154 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_PAPC" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_4a4dpr_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nad_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_4aPPA_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_nadh_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_co2_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_h_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e79 </ci>
+                    <cn> 0.8837 </cn>
+                  </apply>
+                  <ci> Km155 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> M_4a4dpr_c </ci>
+                    <ci> M_nad_c </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> M_4aPPA_c </ci>
+                      <ci> M_nadh_c </ci>
+                      <ci> M_co2_c </ci>
+                      <ci> M_h_c </ci>
+                    </apply>
+                    <cn> 0.7859 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_4a4dpr_c </ci>
+                    <ci> M_nad_c </ci>
+                  </apply>
+                  <ci> Km155 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> M_4aPPA_c </ci>
+                    <ci> M_nadh_c </ci>
+                    <ci> M_co2_c </ci>
+                    <ci> M_h_c </ci>
+                  </apply>
+                  <ci> Km156 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_TYRB" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_4aPPA_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_4aPhe_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e80 </ci>
+                    <cn> 0.8718 </cn>
+                  </apply>
+                  <ci> Km157 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_4aPPA_c </ci>
+                  <apply>
+                    <divide/>
+                    <ci> M_4aPhe_c </ci>
+                    <cn> 0.32 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_4aPPA_c </ci>
+                  <ci> Km157 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> M_4aPhe_c </ci>
+                  <ci> Km158 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R_PAL" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="M_4aPhe_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_4acinna_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> e81 </ci>
+                    <cn> 0.34 </cn>
+                  </apply>
+                  <ci> Km159 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> M_4aPhe_c </ci>
+                  <apply>
+                    <divide/>
+                    <ci> M_4acinna_c </ci>
+                    <cn> 0.211 </cn>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> M_4aPhe_c </ci>
+                  <ci> Km159 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> M_4acinna_c </ci>
+                  <ci> Km160 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
+

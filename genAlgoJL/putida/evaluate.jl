@@ -3,8 +3,7 @@ module Evaluate
 using Main.Models
                
 using Random
-using PyCall
-te = pyimport("tellurium")
+using RoadRunner
 
 function runExperiment(m, enzymes=Main.Models.ENZYMES_putida)
     """
@@ -14,7 +13,7 @@ function runExperiment(m, enzymes=Main.Models.ENZYMES_putida)
     Returns:
         allData: float list; foldchanges of species as enzyme levels are perturbed
     """
-    model = te.loada(m)
+    model = RoadRunner.loada(m)
     model.resetAll() # reset all
     model.simulate(0, Main.Models.TIME_TO_SIMULATE) # simulate the trueModel
     model.conservedMoietyAnalysis = true
