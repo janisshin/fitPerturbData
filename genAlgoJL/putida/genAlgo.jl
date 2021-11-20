@@ -53,7 +53,7 @@ function performMutation(population, parameters)
     parent = population * "/" * rand(readdir(population))
 
     io = open(parent, "r");
-    child = RoadRunner.loadSBML(read(io, String))
+    child = RoadRunner.loadSBMLFile(read(io, String))
     close(io)
 
     n = rand(1: length(p)-1) # number of mutations to make in an individual
@@ -91,10 +91,10 @@ function performCrossover(population, parameters)
     end
 
     A = open(parentA, "r")
-    parentA = RoadRunner.loadSBML(read(A, String))
+    parentA = RoadRunner.loadSBMLFile(read(A, String))
     close(A)
     B = open(parentB, "r")
-    child = RoadRunner.loadSBML(read(B, String))
+    child = RoadRunner.loadSBMLFile(read(B, String))
     close(B)    
 
     for p in parameters[1:end-length(parameters)] 
