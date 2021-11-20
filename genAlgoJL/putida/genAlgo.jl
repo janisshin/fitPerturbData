@@ -27,10 +27,10 @@ function generateOffspring(n, population, parameters)
     
         # write child to file
         j = 0
-        while isdir(population * "/antimonyModel_" * string(i, base = 10, pad=3) * ".txt")
+        while isdir(population * "/SBMLModel_" * string(i, base = 10, pad=3) * ".txt")
             j += 1
         end
-        fileName = population * "/antimonyModel_" * string(i, base = 10, pad=3) * ".txt"
+        fileName = population * "/SBMLModel_" * string(i, base = 10, pad=3) * ".txt"
         
         open(fileName, "w") do io
             write(io, offspring) 
@@ -53,7 +53,7 @@ function performMutation(population, parameters)
     parent = population * "/" * rand(readdir(population))
 
     io = open(parent, "r");
-    child = RoadRunner.loada(read(io, String))
+    child = RoadRunner.loadSBML(read(io, String))
     close(io)
 
     n = rand(1: length(p)-1) # number of mutations to make in an individual
@@ -68,7 +68,7 @@ function performMutation(population, parameters)
         mutated_parameter_value = original_parameter_value + original_parameter_value * param_shift
         child.setValue(mutation_site, mutated_parameter_value)
     end
-    return child.getAntimonyString()
+    return RoadRunner.getCurrentSBML(child)   
 end
 
 
@@ -91,17 +91,17 @@ function performCrossover(population, parameters)
     end
 
     A = open(parentA, "r")
-    parentA = RoadRunner.loada(read(A, String))
+    parentA = RoadRunner.loadSBML(read(A, String))
     close(A)
     B = open(parentB, "r")
-    child = RoadRunner.loada(read(B, String))
+    child = RoadRunner.loadSBML(read(B, String))
     close(B)    
 
     for p in parameters[1:end-length(parameters)] 
-        child.setValue(p, parentA.getValue(p))
+        RoadRunner.setValue(child, p, RoadRunner.getValue(parentA, p))
     end
 
-    return child.getAntimonyString()
+    return RoadRunner.getCurrentSBML(child) ########################################################
 
 end
 

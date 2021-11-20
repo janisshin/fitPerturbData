@@ -81,15 +81,15 @@ function generateModelFiles(n, folderName, groundTruthModel_string=groundTruth_e
     folderName = makeFolder(folderName * "/population")
 
     for number in 1:n
-        randomModel = RoadRunner.loadAntimonyFile(groundTruthModel_string) # make a copy of the model 
+        randomModel = RoadRunner.loadSBML(groundTruthModel_string) # make a copy of the model ##############
         # set k values to random numbers 
         for p in parameters
             pValue = rand(Uniform(0, 1))
-            randomModel.setValue(p, pValue) # redefine parameters
+            RoadRunner.setValue(randomModel, p, pValue) # redefine parameters
         end 
-        fileName = folderName * "/antimonyModel_" * string(number) * ".txt"
+        fileName = folderName * "/SBMLModel_" * string(number) * ".txt"
         open(fileName, "w") do io
-            write(io, randomModel.getAntimonyString())
+            write(io, RoadRunner.getCurrentSBML(randomModel))
         end
     end
     return folderName
