@@ -51,9 +51,9 @@ function performMutation(population, parameters)
     
     # randomly choose an existing file
     parent = population * "/" * rand(readdir(population))
-    rr = RoadRunner.createRRInstance()
+    child = RoadRunner.createRRInstance()
     io = open(parent, "r");
-    child = RoadRunner.loadSBML(rr,read(io, String))
+    RoadRunner.loadSBML(child, read(io, String))
     close(io)
 
     n = rand(1: length(p)-1) # number of mutations to make in an individual
@@ -66,7 +66,7 @@ function performMutation(population, parameters)
         param_shift = rand(Uniform(-0.2, 0.2))
         original_parameter_value = child.getValue(mutation_site)
         mutated_parameter_value = original_parameter_value + original_parameter_value * param_shift
-        child.setValue(mutation_site, mutated_parameter_value)
+        RoadRunner.setValue(child, mutation_site, mutated_parameter_value)
     end
     return RoadRunner.getCurrentSBML(child)   
 end
@@ -90,13 +90,13 @@ function performCrossover(population, parameters)
         parentB = population * "/" * rand(readdir(population))
     end
 
-    rr1 = RoadRunner.createRRInstance()
-    rr2 = RoadRunner.createRRInstance()
+    parentA = RoadRunner.createRRInstance()
+    child = RoadRunner.createRRInstance()
     A = open(parentA, "r")
-    parentA = RoadRunner.loadSBML(rr1, read(A, String))
+    RoadRunner.loadSBML(parentA, read(A, String))
     close(A)
     B = open(parentB, "r")
-    child = RoadRunner.loadSBML(rr2, read(B, String))
+    RoadRunner.loadSBML(child, read(B, String))
     close(B)    
 
     for p in parameters[1:end-length(parameters)] 
