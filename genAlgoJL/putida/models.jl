@@ -83,17 +83,19 @@ function generateModelFiles(n, folderName, groundTruthModel_File=nothing, parame
     io = open(groundTruthModel_File)
     template = read(io, String)
     close(io)
-
+    
+    RoadRunner.loadSBML(rr, template) 
+    
     for number in 1:n
-        randomModel = RoadRunner.loadSBML(rr, template) 
+        
         # set k values to random numbers 
         for p in parameters
             pValue = rand(Uniform(0, 1))
-            RoadRunner.setValue(randomModel, p, pValue) # redefine parameters
+            RoadRunner.setValue(rr, p, pValue) # redefine parameters
         end 
         fileName = folderName * "/SBMLModel_" * string(number) * ".txt"
         open(fileName, "w") do io
-            write(io, RoadRunner.getCurrentSBML(randomModel))
+            write(io, RoadRunner.getCurrentSBML(rr))
         end
     end
     return folderName
