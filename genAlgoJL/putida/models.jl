@@ -81,10 +81,8 @@ function generateModelFiles(n, folderName, groundTruthModel_File=nothing, parame
     rr = RoadRunner.createRRInstance()
 
     io = open(groundTruthModel_File)
-    template = read(io, String)
+    RoadRunner.loadSBML(rr, read(io, String)) 
     close(io)
-    
-    RoadRunner.loadSBML(rr, template) 
     
     for number in 1:n
         

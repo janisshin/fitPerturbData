@@ -13,15 +13,18 @@ function runExperiment(m, enzymes=Main.Models.ENZYMES_putida)
     Returns:
         allData: float list; foldchanges of species as enzyme levels are perturbed
     """
-    rr = RoadRunner.createRRInstance()
-    model = RoadRunner.loadSBML(rr, m)
+    model = RoadRunner.createRRInstance()
+    io = open(m)
+    RoadRunner.loadSBML(model, read(io, String))
+    close(io)
+    
     RoadRunner.resetAll(model) # reset all
     RoadRunner.simulate(model, 0, Main.Models.TIME_TO_SIMULATE) # simulate the trueModel
     RoadRunner.setConfigInt("LOADSBMLOPTIONS_CONSERVED_MOIETIES", 1) # model.conservedMoietyAnalysis = true ################################# no Julia equivalent?
     
     RoadRunner.steadyState(model) # get the steadystate of the trueModel
     spConcs = RoadRunner.getFloatingSpeciesConcentrations(model) # collect and store species concentrations (S2-S5)
-    fluxes = RoadRunner.getValue(model, model.getReactionIds()[1]) 
+    fluxes = RoadRunner.getValue(model, RoadRunner.getReactionIds(model)[1]) 
 
     # create empty arrays to store data
     perturbationData = Array{Float64}(undef, length(enzymes), length(spConcs))     
