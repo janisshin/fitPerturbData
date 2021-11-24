@@ -64,7 +64,7 @@ function performMutation(population, parameters)
     
         # how much to mutate the original value
         param_shift = rand(Uniform(-0.2, 0.2))
-        original_parameter_value = child.getValue(mutation_site)
+        original_parameter_value = RoadRunner.getValue(child, mutation_site)
         mutated_parameter_value = original_parameter_value + original_parameter_value * param_shift
         RoadRunner.setValue(child, mutation_site, mutated_parameter_value)
     end
@@ -84,18 +84,18 @@ function performCrossover(population, parameters)
     """=#
     
     # choose the parents
-    parentA = population * "/" * rand(readdir(population))
-    parentB = population * "/" * rand(readdir(population))
+    pA = population * "/" * rand(readdir(population))
+    pB = population * "/" * rand(readdir(population))
     while parentA == parentB
         parentB = population * "/" * rand(readdir(population))
     end
 
     parentA = RoadRunner.createRRInstance()
     child = RoadRunner.createRRInstance()
-    A = open(parentA, "r")
+    A = open(pA, "r")
     RoadRunner.loadSBML(parentA, read(A, String))
     close(A)
-    B = open(parentB, "r")
+    B = open(pB, "r")
     RoadRunner.loadSBML(child, read(B, String))
     close(B)    
 
