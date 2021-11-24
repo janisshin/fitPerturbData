@@ -38,7 +38,7 @@ function runExperiment(m, enzymes=Main.Models.ENZYMES_putida)
         spfoldChange = (spConcs_e-spConcs)./spConcs
         perturbationData[i,:] = spfoldChange
 
-        fluxes_e = RoadRunner.getValue(model, model.getReactionIds()[1])
+        fluxes_e = RoadRunner.getValue(model, RoadRunner.getReactionIds(model)[1])
         fluxFoldChange = (fluxes_e-fluxes)./fluxes
         append!(fluxData, fluxFoldChange)
 
