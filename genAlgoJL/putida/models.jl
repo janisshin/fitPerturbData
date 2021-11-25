@@ -91,7 +91,7 @@ function generateModelFiles(n, folderName, groundTruthModel_File=nothing, parame
             pValue = rand(Uniform(0, 1))
             RoadRunner.setValue(rr, p, pValue) # redefine parameters
         end 
-        fileName = folderName * "/SBMLModel_" * string(number) * ".txt"
+        fileName = folderName * "/SBMLModel_" * string(number) * ".xml"
         open(fileName, "w") do io
             write(io, RoadRunner.getCurrentSBML(rr))
         end

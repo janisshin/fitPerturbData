@@ -27,10 +27,10 @@ function generateOffspring(n, population, parameters)
     
         # write child to file
         j = 0
-        while isdir(population * "/SBMLModel_" * string(i, base = 10, pad=3) * ".txt")
+        while isdir(population * "/SBMLModel_" * string(i, base = 10, pad=3) * ".xml")
             j += 1
         end
-        fileName = population * "/SBMLModel_" * string(i, base = 10, pad=3) * ".txt"
+        fileName = population * "/SBMLModel_" * string(i, base = 10, pad=3) * ".xml"
         
         open(fileName, "w") do io
             write(io, offspring) 
@@ -86,8 +86,8 @@ function performCrossover(population, parameters)
     # choose the parents
     pA = population * "/" * rand(readdir(population))
     pB = population * "/" * rand(readdir(population))
-    while parentA == parentB
-        parentB = population * "/" * rand(readdir(population))
+    while pA == pB
+        pB = population * "/" * rand(readdir(population))
     end
 
     parentA = RoadRunner.createRRInstance()
