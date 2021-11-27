@@ -117,10 +117,7 @@ function calculateFitness(population, groundTruth)
 
     groundTruthData = Main.Evaluate.runExperiment(groundTruth) #, omit=omission
     for individual in readdir(population)
-        print(individual) #################################################
-        # io = open(population * "/" * individual, "r")
-        # individualData = Main.Evaluate.runExperiment(read(io, String))# , omit=omission)
-        # close(io)
+        
         individualData = Main.Evaluate.runExperiment(population * "/" * individual)# , omit=omission)
     
         chiSq = sum((groundTruthData - individualData).^2)
