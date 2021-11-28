@@ -55,12 +55,12 @@ groundTruth_MM_e = ("""
   Vm1 = 1; Vm2 = 2; Vm3 = 4; Vm4 = 5; Vm5 = 7; 
 """)
 
-TIME_TO_SIMULATE = 500
-
 K_LIST = ["k1", "k2", "k3", "k4", "k5"]
 KM_LIST = ["Km1", "Km2", "Km3", "Km4", "Km5","Km6", "Km7", "Km8", "Km9", "Km10"]
-K_LIST_putida = ["Km","Km1","Km3","Km5","Km7","Km9","Km11","Km13","Km15","Km17","Km19","Km20","Km21","Km22","Km23","Km24","Km25","Km26","Km27","Km28","Km29","Km30","Km31","Km32","Km33","Km34","Km35","Km36","Km37","Km38","Km39","Km40","Km41","Km42","Km43","Km44","Km47","Km48","Km49","Km50","Km51","Km52","Km53","Km54","Km55","Km56","Km57","Km58","Km59","Km60","Km61","Km62","Km63","Km64","Km65","Km66","Km67","Km68","Km69","Km70","Km71","Km72","Km73","Km74","Km75","Km76","Km77","Km78","Km79","Km80","Km81","Km82","Km83","Km84","Km85","Km86","Km87","Km88","Km89","Km90","Km91","Km92","Km93","Km94","Km95","Km96","Km97","Km98","Km99","Km100","Km101","Km102","Km103","Km104","Km105","Km106","Km107","Km108","Km109","Km110","Km111","Km112","Km113","Km114","Km115","Km116","Km117","Km118","Km119","Km120","Km121","Km122","Km123","Km124","Km125","Km126","Km129","Km130","Km131","Km132","Km133","Km134","Km135","Km136","Km137","Km138","Km139","Km140","Km143","Km144","Km145","Km146","Km147","Km148","Km149","Km150","Km151","Km152","Km153","Km154","Km155","Km156","Km157","Km158","Km159","Km160"]
 ENZYMES = ["e1", "e2", "e3", "e4", "e5"]
+
+K_LIST_putida = ["Km","Km1","Km3","Km5","Km7","Km9","Km11","Km13","Km15","Km17","Km19","Km20","Km21","Km22","Km23","Km24","Km25","Km26","Km27","Km28","Km29","Km30","Km31","Km32","Km33","Km34","Km35","Km36","Km37","Km38","Km39","Km40","Km41","Km42","Km43","Km44","Km47","Km48","Km49","Km50","Km51","Km52","Km53","Km54","Km55","Km56","Km57","Km58","Km59","Km60","Km61","Km62","Km63","Km64","Km65","Km66","Km67","Km68","Km69","Km70","Km71","Km72","Km73","Km74","Km75","Km76","Km77","Km78","Km79","Km80","Km81","Km82","Km83","Km84","Km85","Km86","Km87","Km88","Km89","Km90","Km91","Km92","Km93","Km94","Km95","Km96","Km97","Km98","Km99","Km100","Km101","Km102","Km103","Km104","Km105","Km106","Km107","Km108","Km109","Km110","Km111","Km112","Km113","Km114","Km115","Km116","Km117","Km118","Km119","Km120","Km121","Km122","Km123","Km124","Km125","Km126","Km129","Km130","Km131","Km132","Km133","Km134","Km135","Km136","Km137","Km138","Km139","Km140","Km143","Km144","Km145","Km146","Km147","Km148","Km149","Km150","Km151","Km152","Km153","Km154","Km155","Km156","Km157","Km158","Km159","Km160"]
+# 78 total enzymes
 ENZYMES_putida = ["e1","e2","e3","e4","e5","e6","e7","e8","e9","e10","e11","e12","e13","e14","e15","e16","e17","e18","e19","e20","e21","e22","e23","e25","e26","e27","e28","e29","e30","e31","e32","e33","e34","e35","e36","e37","e38","e39","e40","e41","e42","e43","e44","e45","e46","e47","e48","e49","e50","e51","e52","e53","e54","e55","e56","e57","e58","e59","e60","e61","e62","e63","e64","e66","e67","e68","e69","e70","e71","e73","e74","e75","e76","e77","e78","e79","e80","e81"]
 
 function generateModelFiles(n, folderName, groundTruthModel_File=nothing, parameters=K_LIST)
@@ -88,10 +88,10 @@ function generateModelFiles(n, folderName, groundTruthModel_File=nothing, parame
         
         # set k values to random numbers 
         for p in parameters
-            pValue = rand(Uniform(0, 1))
+            pValue = rand(Uniform(0.1, 1))
             RoadRunner.setValue(rr, p, pValue) # redefine parameters
         end 
-        fileName = folderName * "/SBMLModel_" * string(number) * ".xml"
+        fileName = folderName * "/SBMLModel_" * string(number, base = 10, pad=1) * ".xml"
         open(fileName, "w") do io
             write(io, RoadRunner.getCurrentSBML(rr))
         end
