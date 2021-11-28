@@ -5,6 +5,10 @@ using Main.Models
 using Random
 using RoadRunner
 
+TIME_TO_SIMULATE = 500
+TIME_TO_SS = 600000
+TIME_INTERVALS = 100
+
 function runExperiment(m, enzymes=Main.Models.ENZYMES_putida)
     """
     Parameters: 
@@ -20,8 +24,7 @@ function runExperiment(m, enzymes=Main.Models.ENZYMES_putida)
     RoadRunner.loadSBML(model, read(io, String))
     close(io)
 
-    RoadRunner.resetAll(model) # reset all
-    RoadRunner.simulateEx(model, 0, Main.Models.TIME_TO_SIMULATE, Main.Models.TIME_TO_SIMULATE)
+    RoadRunner.simulateEx(model, 0, TIME_TO_SIMULATE, TIME_INTERVALS)
     RoadRunner.steadyState(model) # get the steadystate of the trueModel
     spConcs = RoadRunner.getFloatingSpeciesConcentrations(model) # collect and store species concentrations (S2-S5)
     fluxes = RoadRunner.getValue(model, RoadRunner.getReactionIds(model)[1]) 
@@ -32,7 +35,7 @@ function runExperiment(m, enzymes=Main.Models.ENZYMES_putida)
     
     for (i, e) in enumerate(enzymes) # for the number of enzymes, 
         RoadRunner.setValue(model, e, 2.0) # redefine e
-        RoadRunner.simulateEx(model, 0, Main.Models.TIME_TO_SIMULATE, Main.Models.TIME_TO_SIMULATE)
+        RoadRunner.simulateEx(model, 0, TIME_TO_SS, TIME_INTERVALS)
         RoadRunner.steadyState(model) # calculate new steadystate
         
         spConcs_e = RoadRunner.getFloatingSpeciesConcentrations(model) # collect and store species concentrations (S2-S5)
@@ -43,7 +46,7 @@ function runExperiment(m, enzymes=Main.Models.ENZYMES_putida)
         fluxFoldChange = (fluxes_e-fluxes)./fluxes
         append!(fluxData, fluxFoldChange)
 
-        RoadRunner.resetAll(model) # reset all
+        RoadRunner.resetToOrigin(model) # reset all
     end
 
     allData = [reshape(perturbationData, length(perturbationData)); fluxData]
