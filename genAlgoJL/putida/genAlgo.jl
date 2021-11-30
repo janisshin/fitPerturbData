@@ -143,6 +143,7 @@ function selectFittest(population, groundTruth, n)
 
     sorted_scores = reverse(sort(collect(scores), by=x->x[2]))
 
+    # remove the survivors from the list of sorted scores. 
     for ii in 1:n
         pop!(sorted_scores)
     end

@@ -35,18 +35,23 @@ function runExperiment(m, enzymes=Main.Models.ENZYMES_putida)
     
     for (i, e) in enumerate(enzymes) # for the number of enzymes, 
         RoadRunner.setValue(model, e, 2.0) # redefine e
-        RoadRunner.simulateEx(model, 0, TIME_TO_SS, TIME_INTERVALS)
-        RoadRunner.steadyState(model) # calculate new steadystate
         
-        spConcs_e = RoadRunner.getFloatingSpeciesConcentrations(model) # collect and store species concentrations (S2-S5)
-        spfoldChange = (spConcs_e-spConcs)./spConcs
-        perturbationData[i,:] = spfoldChange
+        try
+            RoadRunner.simulateEx(model, 0, TIME_TO_SS, TIME_INTERVALS)
+            RoadRunner.steadyState(model) # calculate new steadystate
+        
+            spConcs_e = RoadRunner.getFloatingSpeciesConcentrations(model) # collect and store species concentrations (S2-S5)
+            spfoldChange = (spConcs_e-spConcs)./spConcs
+            perturbationData[i,:] = spfoldChange
 
-        fluxes_e = RoadRunner.getValue(model, RoadRunner.getReactionIds(model)[1])
-        fluxFoldChange = (fluxes_e-fluxes)./fluxes
-        append!(fluxData, fluxFoldChange)
+            fluxes_e = RoadRunner.getValue(model, RoadRunner.getReactionIds(model)[1])
+            fluxFoldChange = (fluxes_e-fluxes)./fluxes
+            append!(fluxData, fluxFoldChange)
 
-        RoadRunner.resetToOrigin(model) # reset all
+            RoadRunner.resetToOrigin(model) # reset all
+        catch e
+            rm(m)
+        end    
     end
 
     allData = [reshape(perturbationData, length(perturbationData)); fluxData]
