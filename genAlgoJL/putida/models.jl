@@ -94,7 +94,7 @@ function generateModelFiles(n, folderName, makeFolder=true, groundTruthModel_Fil
             pValue = rand(Uniform(0.1, 1))
             RoadRunner.setValue(rr, p, pValue) # redefine parameters
         end 
-        fileName = folderName * "/SBMLModel_" * string(number, base = 10, pad=1) * ".xml"
+        fileName = folderName * "/SBMLModel_" * string(number, base = 10, pad=3) * ".xml"
         open(fileName, "w") do io
             write(io, RoadRunner.getCurrentSBML(rr))
         end
@@ -115,7 +115,7 @@ function makeFolder(folderName::String, date::Bool=false)
         folderName = folderName * Dates.format(now, "yyyymmdd")
     end
     
-    numbered_folderName = folderName * "_" * string(i, base = 10, pad=1)
+    numbered_folderName = folderName * "_" * string(i, base = 10, pad=3)
     if ! isdir(numbered_folderName)
         mkdir(numbered_folderName)
         return numbered_folderName

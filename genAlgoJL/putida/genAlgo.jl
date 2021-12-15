@@ -103,10 +103,9 @@ function performCrossover(population, parameters)
         RoadRunner.setValue(child, p, RoadRunner.getValue(parentA, p))
     end
 
-    return RoadRunner.getCurrentSBML(child) ########################################################
+    return RoadRunner.getCurrentSBML(child) 
 
 end
-
 
 function calculateFitness(population, groundTruth) 
     #="""
@@ -117,7 +116,6 @@ function calculateFitness(population, groundTruth)
 
     groundTruthData = Main.Evaluate.runExperiment(groundTruth) #, omit=omission
     for individual in readdir(population)
-        
         individualData = Main.Evaluate.runExperiment(population * "/" * individual)# , omit=omission)
     
         chiSq = sum((groundTruthData - individualData).^2)
@@ -128,15 +126,6 @@ end
 
 
 function selectFittest(population, groundTruth, n)
-    #="""
-    Selection step of genetic algorithm. Orders models from most fit to least fit. 
-    Removes least fit models. 
-    Parameters
-        population: Str-list of Antimony strings of roadrunner models
-        n: int
-            number of culled members
-        scoreResults: float-list
-    """=#
     
     # compute fitness of population
     scores = calculateFitness(population, groundTruth)
@@ -163,35 +152,14 @@ function extractParams(population, parameters, groundTruth, folderName)
     end
 end
 
-function runGeneticAlgorithm(population, runID, groundTruth=Main.Models.groundTruth_e, parameters=Main.Models.K_LIST, lastGeneration=10, survivorRatio=(2,8), tolerance=1)
-#function runGeneticAlgorithm(population, gt, parameters, lastGeneration, survivorRatio, tolerance, runID, lr, omit)
-    #="""
-    Run genetic algorithm with a given population until convergence or last generation is reached. 
-    Also prints out timestamps for each step
-    Parameters
-        population = name of folder containing antimony files of all individuals
-        groundTruth = Antimony Str representation of model to be evaluated
-        parameters = Str list of parameter names in groundTruth model
-        lastGeneration = int, max number of generations to run
-        survivorRatio = tuple (survive, culled). survive + culled = total number of individuals 
-            in population
-        tolerance = float. genetic algorithm will stop running if fitting score < tolerance
-        runID = name of folder in which to put output file (runningOutput.list)
-        lr = float. learning rate of algorithm. Recommended to put between 0.1 and 1
-        omit = int list. each int signifies a position to be omitted in the fitness evaluation. 
-            see ReadMe for positions and numbers. 
-
-    Returns
-        population = Str-list of Antimony strings of roadrunner models
-    """=#
+function runGeneticAlgorithm(runID, groundTruth=Main.Models.groundTruth_e, parameters=Main.Models.K_LIST, lastGeneration=10, survivorRatio=(2,8), tolerance=1)
 
     converged=false
     generation = 1    
-    
-    fileName = runID * "/runningOutput.list"
-    
+    population = runID*"/population_1"
+
     while !converged && generation < lastGeneration + 1
-        open(fileName, "a") do io
+        open(runID * "/runningOutput.list", "a") do io
             write(io, "generation " * string(generation) * "\n")
         end
             
