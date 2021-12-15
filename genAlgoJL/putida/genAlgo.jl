@@ -125,7 +125,6 @@ function calculateFitness(population, groundTruth)
     return scores 
 end
 
-
 function selectFittest(population, groundTruth, n)
     
     # compute fitness of population
@@ -173,16 +172,13 @@ function runGeneticAlgorithm(runID, groundTruth=Main.Models.groundTruth_e, param
         # check fitness
         scores = calculateFitness(population, groundTruth) 
 
-        open(fileName, "a") do io
+        open(runID * "/runningOutput.list", "a") do io
             write(io, "most fit: " * string(minimum(values(scores))) * "\n")
-            write(io, "least fit: " *  string(maximum(values(scores))) * "\n") 
+            write(io, "least fit: " *  string(maximum(values(scores))) * "\n\n") 
         end 
             
         generation += 1
 
-        open(fileName, "a") do io
-            write(io, "\n")
-        end
     end
     # print params and scores to files
     extractParams(population, parameters, groundTruth, runID)
