@@ -50,12 +50,13 @@ function runExperiment(m, enzymes=Main.Models.ENZYMES_putida)
 
             RoadRunner.resetToOrigin(model) # reset all
         end
+        
+        allData = [reshape(perturbationData, length(perturbationData)); fluxData]
+
+        return allData 
     catch e
         rm(m)
+        return nothing
     end
-    
-    allData = [reshape(perturbationData, length(perturbationData)); fluxData]
-
-    return allData 
 end
 end
