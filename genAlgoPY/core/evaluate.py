@@ -1,21 +1,22 @@
 import tellurium as te
 import random
 import numpy as np
-import pandas as pd
+from core import PathwayModel
 
-from core import models
+TIME_TO_SIMULATE = 100
+N_DATAPOINTS = 100
 
-def runExperiment(m, enzymes=models.ENZYMES, omit=None):
+def runExperiment(m, enzymes, omit=None):
     """
     Parameters: 
-        m: Antimony str of model
-        enzymes: Str list of enzyme names in m
+        m: Antimony str of model. PathwayModel.rxnModel(antimonyStr)
+        enzymes: Str list of enzyme names in m. PathwayModel.rxnModel.enzymes
     Returns:
         allData: float list; foldchanges of species as enzyme levels are perturbed
     """
     model = te.loada(m)
     model.resetAll() # reset all
-    s = model.simulate(0, models.TIME_TO_SIMULATE, models.N_DATAPOINTS) # simulate the trueModel
+    s = model.simulate(0, TIME_TO_SIMULATE, N_DATAPOINTS) # simulate the trueModel
     ss = model.steadyState() # get the steadystate of the trueModel
     spConcs = model.getFloatingSpeciesConcentrations() # collect and store species concentrations (S2-S5)
     fluxes = np.array([model.getValue(model.getReactionIds()[0])])  # collect and store fluxes
